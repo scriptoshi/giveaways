@@ -1,0 +1,17 @@
+{
+    "printWidth": 100,
+    "overrides": [
+        {
+            "files": "*",
+            "options": {
+                "bracketSameLine": false,
+                "tabWidth": 4,
+                "useTabs": true,
+                "singleQuote": false,
+                "bracketSpacing": false,
+                "explicitTypes": "always",
+                "singleAttributePerLine": true
+            }
+        }
+    ]
+}

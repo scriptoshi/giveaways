@@ -1,0 +1,147 @@
+@import "./components.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--header-height: 65px;
+}
+
+@font-face {
+	font-family: "Walsheim-Bold";
+	src: url("./Walsheim-Bold.woff2");
+}
+@font-face {
+	font-family: "Walsheim-Light";
+	src: url("./Walsheim-Light.woff2");
+}
+
+@font-face {
+	font-family: "Walsheim-Medium";
+	src: url("./Walsheim-Medium.woff2");
+}
+
+@font-face {
+	font-family: "Walsheim-Regular";
+	src: url("./Walsheim-Regular.woff2");
+}
+
+.tagg {
+	@apply inline-flex items-center justify-center px-2 py-1.5
+     text-xs font-sans tracking-wide align-baseline transition-all duration-200
+     leading-none rounded-md font-semibold border;
+}
+
+.tagg {
+	@apply cursor-pointer;
+}
+
+@layer components {
+	p {
+		@apply text-gray-600 dark:text-gray-400;
+	}
+
+	h3 {
+		@apply text-gray-700 dark:text-gray-300 font-semibold text-2xl;
+	}
+
+	h4 {
+		@apply text-gray-700 dark:text-gray-400 font-semibold text-xl;
+	}
+
+	.card {
+		@apply relative w-full rounded-md min-w-[1px] flex-col break-words bg-white text-slate-500 shadow-soft dark:bg-gray-800 dark:text-gray-200 dark:shadow-none print:border;
+	}
+
+	.card-body {
+		@apply flex-auto p-4;
+	}
+
+	.card-header {
+		@apply flex-auto p-4;
+	}
+
+	.card-header {
+		@apply border-b border-dashed border-gray-300 dark:border-gray-700 dark:bg-gray-700 p-4;
+	}
+
+	.card-title {
+		@apply font-medium;
+	}
+
+	.icontainer {
+		@apply w-full;
+	}
+
+	.main-content {
+		@apply mt-[60px] grid grid-cols-1 place-content-start transition-[width,
+        margin-left,
+        margin-right,
+        padding-left,
+        padding-right] duration-[.25s] ease-in print: m-0 md:ml-[var(--main-sidebar-width)];
+	}
+
+	.table-default {
+		@apply max-w-full table-auto w-full;
+	}
+
+	.table-default {
+		@apply divide-y divide-gray-200 dark:divide-gray-600;
+	}
+
+	.table-default thead {
+		@apply bg-gray-50 dark:bg-gray-700;
+	}
+
+	.table-default thead > tr > th {
+		@apply text-gray-800 dark:text-gray-200 text-xs font-semibold tracking-wider py-3 px-6 text-left uppercase;
+	}
+
+	.table-default tbody {
+		@apply divide-y divide-gray-100 dark:divide-gray-600;
+	}
+
+	.table-default tbody > tr > td {
+		padding: 1rem 1.5rem;
+	}
+
+	.table-default tfoot > tr > td {
+		--tw-border-opacity: 1;
+		border-color: rgba(229, 231, 235, var(--tw-border-opacity));
+		border-top-width: 1px;
+		padding: 0.75rem 1.5rem;
+	}
+
+	.dark .table-default tfoot > tr > td {
+		--tw-border-opacity: 1;
+		border-color: rgba(55, 65, 81, var(--tw-border-opacity));
+	}
+
+	.table-default.borderless-row tbody > :not([hidden]) ~ :not([hidden]) {
+		border-style: none;
+	}
+}
+
+.marquee-text-content {
+	display: flex;
+	gap: 20px;
+}
+.marquee-text-text {
+	display: flex;
+	gap: 20px;
+}
+
+@layer base {
+	body {
+		@apply bg-slate-50 font-sans text-sm leading-5 text-slate-500 antialiased dark:bg-gray-900 dark:text-gray-200 dark:[color-scheme:dark];
+		text-rendering: optimizeLegibility;
+	}
+
+	@layer utilities {
+		input[type="number"]::-webkit-inner-spin-button,
+		input[type="number"]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+}

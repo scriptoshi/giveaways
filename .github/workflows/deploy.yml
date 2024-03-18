@@ -1,0 +1,34 @@
+name: Deploy
+
+# Trigger the workflow on push and
+# pull request events on the production branch
+on:
+    push:
+        branches:
+            - main
+# Authenticate to the the server via ssh
+# and run our deployment script
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Deploy to server
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  port: ${{ secrets.PORT }}
+                  key: ${{ secrets.SSHKEY }}
+                  script: |
+                      rm -rf /var/www/build
+                      cd /var/www && git clone git@github.com:betnfinance/betn.git build
+                      cp /var/www/envs/.betn /var/www/build/.env
+                      cd /var/www/build && ./.scripts/deploy.sh
+                      rm -rf /var/www/betnfinance_io_back
+                      mv /var/www/betn.io /var/www/betnfinance_io_back
+                      mv /var/www/build /var/www/betn.io
+                      cd /var/www/betn.io && php artisan optimize
+                      cd /var/www/betn.io && php artisan storage:link
+                      cd /var/www/betn.io && sudo chgrp -R www-data storage bootstrap/cache
+                      cd /var/www/betn.io && sudo chmod -R ug+rwx storage bootstrap/cache

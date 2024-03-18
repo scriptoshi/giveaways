@@ -1,0 +1,20 @@
+<?php
+namespace DummyRootNamespace\Transformers;
+
+use League\Fractal\TransformerAbstract;
+use DummyRootNamespace{{modelNamespace}}{{modelName}};
+
+class DummyClass extends TransformerAbstract
+{
+    
+	{{availableIncludes}};
+
+    public function transform({{modelName}} ${{modelNameVariable}})
+    {
+        return {{transformArray}};
+    }
+
+	{{relationshipFunctions}}
+
+}
+
