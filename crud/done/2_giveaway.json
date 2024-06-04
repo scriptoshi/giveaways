@@ -1,0 +1,108 @@
+{
+    "fields": [
+        {
+            "name": "project_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:projects,id"
+        },
+        {
+            "name": "uuid",
+            "type": "uuid"
+        },
+        {
+            "name": "slug",
+            "type": "string"
+        },
+        {
+            "name": "duration",
+            "type": "integer|nullable",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "period",
+            "type": "select|nullable|default:'hours'",
+            "options": {
+                "hours": "hours",
+                "days": "days",
+                "weeks": "weeks",
+                "months": "months"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "starts_at",
+            "type": "timestamp|nullable",
+            "rules": "date|required"
+        },
+        {
+            "name": "ends_at",
+            "type": "timestamp|nullable",
+            "rules": "date|required"
+        },
+        {
+            "name": "prize",
+            "type": "decimal|10,2",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "fee",
+            "type": "decimal|10,2",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "sleep",
+            "type": "decimal|24,16",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "symbol",
+            "type": "string|default:'USDT'",
+            "rules": "required|string"
+        },
+        {
+            "name": "hash",
+            "type": "string|nullable",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "num_winners",
+            "type": "integer|nullable",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "type",
+            "type": "select|nullable|default:'draw'",
+            "options": {
+                "draw": "draw",
+                "leaderboard": "leaderboard",
+                "draw_leaderboard": "draw_leaderboard",
+                "fcfs": "fcfs",
+                "fcfs_leaderboard": "fcfs_leaderboard",
+                "draw_fcfs": "draw_fcfs"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "draw_size",
+            "type": "integer|default:100",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "live",
+            "type": "boolean|default:false",
+            "rules": "required|boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "project",
+            "type": "belongsTo",
+            "class": "Project|project_id|id"
+        },
+        {
+            "name": "questers",
+            "type": "hasMany",
+            "class": "Quester|giveaway_id|id"
+        }
+    ]
+}

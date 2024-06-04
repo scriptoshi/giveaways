@@ -20,6 +20,21 @@
 .filepond.fp-bordered .filepond--panel-root {
 	@apply border-2 border-slate-300 border-dashed dark:border-navy-450 bg-transparent;
 }
+.filepond.nft-upload .filepond--root {
+	@apply !mb-0;
+}
+
+.filepond.nft-upload .filepond--panel-root {
+	@apply min-h-[256px] bg-transparent;
+}
+
+.filepond.nft-upload .filepond--drop-label {
+	@apply min-h-[256px];
+}
+
+.filepond.nft-upload {
+	@apply min-h-[256px];
+}
 
 .filepond.fp-bg-filled .filepond--panel-root {
 	@apply bg-slate-150/80 dark:bg-navy-500/[.85];

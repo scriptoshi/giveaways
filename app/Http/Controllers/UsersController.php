@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\User as ResourcesUser;
 use App\Models\User;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
 class UsersController extends Controller
@@ -94,6 +95,18 @@ class UsersController extends Controller
             $request->session()->put('chainId', $request->chain);
         if ($request->coin)
             $request->session()->put('coinId', $request->coin);
+        return back();
+    }
+
+    public function activate(Request $request)
+    {
+        $request->validate(['code' => 'exists:users,otp'], ['code' => 'Invalid activation code']);
+        if ($request->user()->otp !=  $request->code)
+            throw ValidationException::withMessages(['code' => ['Invalid activation code']]);
+        $user = $request->user();
+        $user->otp = null;
+        $user->email_verified_at = now();
+        $user->save();
         return back();
     }
 }

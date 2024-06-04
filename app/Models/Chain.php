@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Chain extends Model
 {
     use SoftDeletes;
-
-    //use HasFactory;
 
     /**
      * The database table used by the model.
@@ -55,31 +55,9 @@ class Chain extends Model
 
     /**
      * Get the chain the coin Belongs To.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function coins()
+    public function coins(): HasMany
     {
         return $this->hasMany(Coin::class);
-    }
-
-    /**
-     * Get the chain the coin Belongs To.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function amms()
-    {
-        return $this->hasMany(Amm::class);
-    }
-
-    /**
-     * Get the chain the coin Belongs To.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
-     */
-    public function factories()
-    {
-        return $this->hasMany(Factory::class);
     }
 }

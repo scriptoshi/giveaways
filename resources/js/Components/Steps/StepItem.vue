@@ -1,7 +1,7 @@
 <script setup>
 import {computed} from "vue";
 
-import {HiX} from "oh-vue-icons/icons";
+import {HiSolidX} from "oh-vue-icons/icons";
 
 import VueIcon from "../VueIcon.vue";
 const props = defineProps({
@@ -13,7 +13,7 @@ const props = defineProps({
 	description: String,
 	title: String,
 });
-const hasError = computed(() => props.error && props.index === props.current - 1);
+const hasError = computed(() => props.error && props.index === props.current);
 const isLast = computed(() => props.index === props.total - 1);
 const bg = computed(() => {
 	if (hasError.value) return "bg-red-600 dark:bg-red-400";
@@ -29,7 +29,7 @@ const line = computed(() => {
 });
 
 const text = computed(() => {
-	if (hasError.value) return "text-red-600 dark:text-red-400";
+	if (hasError.value) return "text-white";
 	if (props.index < props.current) return "text-white";
 	if (props.index === props.current) return "text-emerald-600 dark:text-emerald-400";
 	return "text-gray-300 dark:text-gray-600";
@@ -47,13 +47,13 @@ const text = computed(() => {
 			>
 				<span>
 					<VueIcon
-						:icon="HiX"
+						:icon="HiSolidX"
 						v-if="hasError"
-						class="text-red-500"
+						class="text-white mb-0.5"
 					/>
 					<slot
 						name="icon"
-						v-else-if="current"
+						v-else-if="index === current"
 						>{{ index + 1 }}</slot
 					>
 					<template v-else>{{ index + 1 }}</template>
@@ -62,14 +62,18 @@ const text = computed(() => {
 			<div class="ml-3 relative">
 				<span
 					:class="
-						props.index === props.current
+						index === current
 							? 'text-emerald-600 dark:text-emerald-400'
 							: 'text-gray-700 dark:text-gray-300'
 					"
 					class="whitespace-nowrap font-bold block"
 					>{{ title }}</span
 				>
-				<span v-if="vertical">{{ description }}</span>
+				<span
+					:class="{'text-red-500': error}"
+					v-if="vertical"
+					>{{ error ?? description }}</span
+				>
 			</div>
 		</div>
 		<div

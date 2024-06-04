@@ -13,6 +13,8 @@ const props = defineProps({
 	success: Boolean,
 	rounded: Boolean,
 	link: Boolean,
+	url: Boolean,
+	external: Boolean,
 });
 const colors = computed(() => {
 	if (props.default)
@@ -38,6 +40,14 @@ const colors = computed(() => {
 	>
 		<slot />
 	</Link>
+	<a
+		v-else-if="url"
+		v-bind="external ? {target: '_blank', rel: 'noopener noreferrer nofollow'} : {}"
+		:class="[rounded ? 'rounded-full' : '', colors]"
+		class="btn border font-semibold disabled:opacity-70 disabled:pointer-events-none"
+	>
+		<slot />
+	</a>
 	<button
 		v-else
 		:class="[rounded ? 'rounded-full' : '', colors]"

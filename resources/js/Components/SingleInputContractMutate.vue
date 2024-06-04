@@ -1,8 +1,8 @@
 <script setup>
 import {computed, ref, watch} from "vue";
 
-import {parseUnits} from "@ethersproject/units";
 import _camelCase from "lodash/camelCase";
+import {parseUnits} from "viem";
 import {useI18n} from "vue-i18n";
 
 import FormInput from "@/Components/FormInput.vue";
@@ -70,7 +70,7 @@ const update = async () => {
 			busy.value = false;
 			if (e.message.toString().includes("Internal JSON-RPC error.")) {
 				const err = JSON.parse(
-					e.message.toString().replace("Internal JSON-RPC error.", "")
+					e.message.toString().replace("Internal JSON-RPC error.", ""),
 				);
 				return (error.value = err?.message);
 			}

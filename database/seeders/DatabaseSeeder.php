@@ -15,8 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(ChainsTableSeeder::class);
         $this->call(CoinsTableSeeder::class);
-        $this->call(AmmsTableSeeder::class);
         $this->call(BadgesTableSeeder::class);
-        $this->call(TestFactoriesSeeder::class);
     }
 }

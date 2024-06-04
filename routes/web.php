@@ -1,9 +1,17 @@
 <?php
 
+use App\Http\Controllers\AdsController;
+use App\Http\Controllers\ConnectionsController;
+use App\Http\Controllers\ContributionsController;
+use App\Http\Controllers\GiveawaysController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaunchpadsController;
+use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\QuestersController;
+use App\Http\Controllers\QuestsController;
 use App\Http\Controllers\S3Controller;
-use App\Http\Controllers\TokensController;
+use App\Http\Controllers\SocialsController;
+use App\Http\Controllers\TasksController;
 use App\Http\Controllers\Web3Controller;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +39,18 @@ Route::controller(HomeController::class)
         Route::get('/trending', 'trending')->name('home.trending');
         Route::get('/explore/{item?}', 'home')->name('explore');
     });
+Route::name('user.profile')
+    ->get('/@{project:slug}', [InfluencersController::class, 'show']);
+
+Route::name('socials.')->controller(SocialsController::class)
+    ->group(function () {
+        Route::get('/go/{to}', 'go')->name('go');
+    });
+Route::name('socials.')->controller(SocialsController::class)
+    ->group(function () {
+        Route::get('/go/{to}', 'go')->name('go');
+    });
+
 
 Route::controller(S3Controller::class)
     ->group(function () {
@@ -45,6 +65,27 @@ Route::controller(Web3Controller::class)
         Route::post('account/add', 'addAccount')->middleware(['auth:sanctum', 'verified'])->name('account.add');
         Route::delete('account/delete/{id}', 'deleteAccount')->middleware(['auth:sanctum', 'verified'])->name('accounts.delete');
     });
+
+
+Route::controller(ConnectionsController::class)
+    ->name('connections.')
+    ->group(function () {
+        Route::post('connect/{provider}', 'connect')->name('connect');
+        Route::get('discord/add-bot', 'addDiscordBot')->name('discord.add.bot');
+        Route::any('discord/bot-added', 'discordBotAdded')->name('discord.bot.added');
+        Route::any('discord/check/invite', 'checkDiscordInviteHasBot')->name('check.invite');
+        Route::any('telegram/check/bot', 'checkTelegramHasBot')->name('check.telegram');
+        Route::any('callback/{provider}/{uuid?}', 'callback')->name('callback');
+    });
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::name('user.')
+        ->controller(UsersController::class)
+        ->group(function () {
+            Route::post('/activate', 'activate')->name('activate');
+        });
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::name('user.')
@@ -63,59 +104,79 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 
-Route::name('tokens.')->controller(TokensController::class)->group(function () {
-    Route::get('/tokens', 'index')->middleware(['auth:sanctum', 'verified'])->name('index');
-    Route::get('/crosschain/{chainId}/{token}', 'crosschain')->name('crosschain');
-    Route::get('/tokens/create/{chainId}/{type}', 'create')->name('create');
-    Route::post('/tokens/store', 'store')->middleware(['auth:sanctum', 'verified'])->name('store');
-    Route::post('/tokens/crosschain/check', 'checkCrosschain')->middleware(['auth:sanctum', 'verified'])->name('crosschain.check');
-    Route::put('/tokens/tokens/{token}', 'toggle')->middleware(['auth:sanctum', 'verified'])->name('toggle');
-    Route::put('/tokens/logo/{token}', 'updateLogo')->middleware(['auth:sanctum', 'verified'])->name('update.logo');
-    Route::put('/tokens/whitelist/add/{token}', 'addWhiteList')->name('whitelist.add');
-    Route::put('/tokens/whitelist/remove/{token}', 'removeWhiteList')->name('whitelist.remove');
 
-    Route::get('/token/{chainId}/{token}', 'show')->name('show');
-    Route::put('/tokens/{token}', 'update')->middleware(['auth:sanctum', 'verified'])->name('update');
-    Route::delete('/tokens/{token}', 'destroy')->middleware(['auth:sanctum', 'verified'])->name('destroy');
+Route::name('projects.')->controller(ProjectsController::class)->group(function () {
+    Route::get('/projects', 'index')->name('index');
+    Route::get('/@{project:slug}', 'show')->name('show');
+    Route::get('/projects/create', 'create')->name('create');
+    Route::post('projects/check-username', 'checkUsername')->name('check.username');
+    Route::post('/projects/store', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/projects/deploy-store', 'deployStore')->name('deploy.store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/projects/messages/{project:uuid}/{uuid?}', 'saveMessages')->name('messages.save')->middleware(['auth:sanctum', 'verified']);;
+    Route::put('/projects/{project:uuid}/update', 'update')->name('update')->middleware(['auth:sanctum', 'verified']);
+    Route::get('/projects/{project:uuid}', 'edit')->name('edit')->middleware(['auth:sanctum', 'verified']);
+    Route::delete('/projects/{project:uuid}/delete', 'delete')->middleware(['auth:sanctum', 'verified'])->name('delete');
+});
+
+
+Route::name('services.')->controller(AdsController::class)->group(function () {
+    Route::get('/services', 'index')->name('index');
+    Route::get('/service/{ad:slug}', 'show')->name('show');
+    Route::get('/services/create', 'create')->name('create');
+    Route::post('/services/store', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/services/messages/{ad:uuid}/{uuid?}', 'saveMessages')->name('messages.save')->middleware(['auth:sanctum', 'verified']);;
+    Route::put('/services/{ad:uuid}/update', 'update')->name('update')->middleware(['auth:sanctum', 'verified']);
+    Route::get('/services/{ad:uuid}', 'edit')->name('edit')->middleware(['auth:sanctum', 'verified']);
+    Route::delete('/services/{ad:uuid}/destroy', 'destroy')->middleware(['auth:sanctum', 'verified'])->name('destroy');
+});
+
+Route::name('giveaways.')->controller(GiveawaysController::class)->group(function () {
+    Route::get('/crypto-give-aways', 'index')->name('index');
+    Route::get('/crypto-give-away/{giveaway:slug}', 'show')->name('show');
+    Route::get('/crypto-give-aways/create', 'create')->name('create');
+    Route::post('/giveaways/store', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/giveaways/messages/{giveaway:uuid}/{uuid?}', 'saveMessages')->name('messages.save')->middleware(['auth:sanctum', 'verified']);;
+    Route::put('/giveaways/{giveaway:uuid}/update', 'update')->name('update')->middleware(['auth:sanctum', 'verified']);
+    Route::put('/giveaways/{giveaway:uuid}/stop', 'stop')->name('stop')->middleware(['auth:sanctum', 'verified']);
+    Route::get('/crypto-give-aways/{giveaway:uuid}', 'edit')->name('edit')->middleware(['auth:sanctum', 'verified']);
+    Route::get('/give-away-tasks/{giveaway:uuid}', 'tasks')->name('tasks')->middleware(['auth:sanctum', 'verified']);
+    Route::delete('/giveaways/{giveaway:uuid}/delete', 'delete')->middleware(['auth:sanctum', 'verified'])->name('delete');
+});
+
+
+Route::name('quests.')->controller(QuestsController::class)->group(function () {
+    Route::get('/check-task/registered', 'checkTask')->name('check.task');
+    Route::post('/quests/store/{giveaway:uuid}', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/quests/update/{quest}', 'update')->name('update')->middleware(['auth:sanctum', 'verified']);
+});
+
+Route::name('questers.')
+    ->middleware(['auth:sanctum', 'verified'])
+    ->controller(QuestersController::class)
+    ->group(function () {
+        Route::post('/questers/pump/{quester}', 'pump')->name('pump');
+        Route::post('/questers/boost/{quester}', 'boost')->name('boost');
+        Route::post('/questers/claim/{quester}', 'claim')->name('claim');
+        Route::post('/questers/claimed/{quester}', 'claimed')->name('claimed');
+    });
+
+
+Route::name('tasks.')->controller(TasksController::class)->group(function () {
+    Route::post('/check/{quest}', 'check')
+        ->name('check')
+        ->middleware(['auth:sanctum', 'verified']);
+    Route::post('/check-all/{giveaway:uuid}', 'checkAll')
+        ->name('check.all')
+        ->middleware(['auth:sanctum', 'verified']);
 });
 
 
 
-#launchpads
 Route::name('launchpads.')->controller(LaunchpadsController::class)->group(function () {
+    Route::post('/launchpads/store/{project:uuid}', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+});
 
-    Route::post('/launchpads/list', 'list')->name('list');
-    Route::post('/launchpads/extras', 'extras')->name('extras');
-    Route::get('/launchpads/edit/{chainId}/{launchpad}', 'edit')->name('edit');
-    Route::get('/{launchpad}/create/{chainId}', 'create')
-        ->name('create')
-        ->whereIn('launchpad', ['fairlaunch', 'fairliquidity', 'launchpad', 'privatesale']);
 
-    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-        Route::post('/launchpads/statuses', 'statuses')->name('statuses');
-        //step3
-        Route::get('/{launchpads}/project/{chainId}/{address}', 'project')
-            ->name('project')
-            ->whereIn('launchpads', ['fairlaunch', 'fairliquidity', 'launchpad', 'privatesale']);
-        Route::get('/{launchpads}/founders/{chainId}/{address}', 'founders')
-            ->name('founders')
-            ->whereIn('launchpads', ['fairlaunch', 'fairliquidity', 'launchpad', 'privatesale']);
-        //step 1/2
-        Route::get('/{launchpads}/deploy/{chainId}/{type}/{coin}/{token}', 'deploy')
-            ->name('deploy')
-            ->whereIn('launchpads', ['fairlaunch', 'fairliquidity', 'launchpad', 'privatesale']);;
-        Route::post('/launchpads/hate/{launchpad}', 'hate')->name('hate');
-        Route::post('/launchpads/love/{launchpad}', 'love')->name('love');
-        Route::post('/launchpads/unlike/{launchpad}', 'unlike')->name('unlike');
-        Route::post('/launchpads/like/{launchpad}', 'like')->name('like');
-        Route::post('/launchpads/finalize/{launchpad}', 'finalize')->name('finalize');
-        Route::post('/launchpads/unsubscribe/{launchpad}', 'unsubscribe')->name('unsubscribe');
-        Route::post('/launchpads/subscribe/{launchpad}', 'subscribe')->name('subscribe');
-        Route::post('/launchpads/status/{launchpad}', 'status')->name('status');
-        Route::post('/launchpads/store', 'store')->name('store');
-        Route::post('/launchpads/sync', 'sync')->name('sync');
-    });
-    Route::get('/launchpads/{chain?}', 'index')->name('index');
-    Route::get('/launchpads/{launchpad}/json', 'view')->name('view');
-    Route::get('/launchpads/{chainId}/{launchpad}', 'show')->name('show');
+Route::name('contributions.')->controller(ContributionsController::class)->group(function () {
+    Route::post('/contributions/store/{launchpad}', 'store')->name('store');
 });

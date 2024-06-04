@@ -166,7 +166,7 @@ return [
             'force' => true,
             'form-helper' => 'inertia',
             'model-namespace' => 'Models',
-            'only' => 'policy,controller,model,migration,route,factory,resource,lang,enums',
+            'only' => 'policy,controller,model,migration,route,factory,resource,enums',
         ],
         [
             "name" => 'pivots',

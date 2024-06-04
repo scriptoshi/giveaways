@@ -26,9 +26,11 @@ const stripLabels = (groupsOfShapes) => {
             const pairs = toPairs(relay);
             const keysToRemove = pairs
                 .filter(([key, value]) => {
-                    return (typeof value !== "object") && !value?.functionName && !value?.abi;
+                    const isContract = (typeof value === "object") && !!value?.functionName && !!value?.abi;
+                    return !isContract;
                 })
                 .map(([key]) => key);
+
             return omit(relay, keysToRemove);
         })
     );
@@ -61,7 +63,7 @@ const encodeAbi = (groupsOfShapes) => {
     return groupsOfShapes.map((group) =>
         group.map((shape) => {
             return Object.keys(shape).reduce((memo, key) => {
-                if (typeof shape[key] === 'object' && shape[key].functionName !== undefined && isContractFunction(shape.contract.abi, shape[key].functionName)) {
+                if (typeof shape[key] === 'object' && shape[key]?.functionName !== undefined && isContractFunction(shape.contract.abi, shape[key]?.functionName)) {
                     return {
                         ...memo,
                         [key]: {

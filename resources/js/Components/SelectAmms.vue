@@ -1,26 +1,29 @@
 <script setup>
-import {computed} from "vue";
+import {computed, watch} from "vue";
 
 import {Listbox, ListboxButton, ListboxLabel, ListboxOption, ListboxOptions} from "@headlessui/vue";
 import {CheckIcon, ChevronDownIcon} from "@heroicons/vue/24/solid";
 import {usePage} from "@inertiajs/vue3";
-import {invoke, until} from "@vueuse/core";
 import {useAccount} from "use-wagmi";
-import {bsc} from "viem/chains";
-const {chain} = useAccount();
-const amms = computed(() => {
-	const list = usePage().props.amms;
-	return list[chain.id ?? bsc.id];
-});
+const {chainId} = useAccount();
+
 const props = defineProps({
 	modelValue: Object,
 	label: {type: String, default: "Select A DEX"},
 });
-const emit = defineEmits(["update:modelValue"]);
-invoke(async () => {
-	await until(chain.value).not.toBeNull();
-	if (!props.modelValue?.router) emit("update:modelValue", amms.value?.[0]);
+const amms = computed(() => {
+	const list = usePage().props.amms;
+	return list[chainId.value] ?? [];
 });
+const emit = defineEmits(["update:modelValue"]);
+watch(
+	chainId,
+	(chainId) => {
+		if (!chainId) return;
+		if (!props.modelValue?.router) emit("update:modelValue", amms.value?.[0]);
+	},
+	{immediate: true},
+);
 
 const selected = computed({
 	set(value) {

@@ -43,7 +43,7 @@ const loading = computed(() => Object.values(txs).filter((t) => !t.receipt).leng
 				/>
 			</slot>
 			<span class="hidden font-semibold text-gray-700 dark:text-gray-300 sm:flex">{{
-				shortenAddress(address)
+				shortenAddress(address, 2)
 			}}</span>
 			<ChevronDownIcon
 				:class="{'rotate-180': open}"

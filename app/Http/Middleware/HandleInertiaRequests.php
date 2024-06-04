@@ -12,6 +12,7 @@ use App\Models\Chain;
 use App\Models\Coin;
 use Illuminate\Support\Collection;
 use Storage;
+use Str;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -52,8 +53,17 @@ class HandleInertiaRequests extends Middleware
         // $notifs = Auth::user()?->notifications;
 
         return array_merge(parent::share($request), [
+            /**
+             */
+            'formId' => function () use ($request) {
+                if ($request->session()->has('formId'))
+                    return $request->session()->get('formId');
+                $formId = Str::random(16);
+                $request->session()->put('formId', $formId);
+                return $formId;
+            },
             'AuthCheck' => auth()->check(),
-            'verified' => !!config('fortify.features.email-verification') ?  ($user ? $user->hasVerifiedEmail() : null) : true,
+            'verified' => $user ? $user->hasVerifiedEmail() : null,
             'chains' => fn () => ResourcesChain::collection(Chain::with('coins')->where('active', 1)->get()),
             'login' => $request->session()->get('login', false),
             'ref' =>  $user?->referral ?? $request->cookie('referral') ?? '0x1c3cAB3A544c06306e6934902474dE0d88709f96',
@@ -88,10 +98,14 @@ class HandleInertiaRequests extends Middleware
                 'mediumUrl' => config('app.mediumUrl'),
                 'uploadsDisk' => config('app.uploads_disk'),
                 'nftsDisk' => config('app.nfts_disk'),
+                'nftBaseURI' => config('app.nfts_disk') === 'public'
+                    ? Storage::disk('public')->url('uploads')
+                    : config('app.nftBaseURI'),
                 's3' => config('app.uploads_disk') !== 'public',
                 'ns3' => config('app.nfts_disk') !== 'public',
             ],
             'walletConnectProjectId' => config('app.walletConnectProjectId'),
+            'beamsInstanceId' => config('app.beams_instance_id'),
             'csrf_token' => csrf_token()
         ]);
     }

@@ -1,0 +1,417 @@
+[
+    {
+        "id": "solana",
+        "name": "Solana",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/solana.png"
+    },
+    {
+        "id": "ethereum",
+        "name": "Ethereum",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/ethereum.png"
+    },
+    {
+        "id": "sepolia",
+        "name": "Sepolia",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/ethereum.png"
+    },
+    {
+        "id": "bsc",
+        "name": "BSC",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/bsc.png"
+    },
+    {
+        "id": "base",
+        "name": "Base",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/base.png"
+    },
+    {
+        "id": "arbitrum",
+        "name": "Arbitrum",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/arbitrum.png"
+    },
+    {
+        "id": "optimism",
+        "name": "Optimism",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/optimism.png"
+    },
+    {
+        "id": "blast",
+        "name": "Blast",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/blast.png"
+    },
+    {
+        "id": "polygon",
+        "name": "Polygon",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/polygon.png"
+    },
+    {
+        "id": "avalanche",
+        "name": "Avalanche",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/avalanche.png"
+    },
+    {
+        "id": "mantle",
+        "name": "Mantle",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/mantle.png"
+    },
+    {
+        "id": "zksync",
+        "name": "zkSync",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/zksync.png"
+    },
+    {
+        "id": "linea",
+        "name": "Linea",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/linea.png"
+    },
+    {
+        "id": "aptos",
+        "name": "Aptos",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/aptos.png"
+    },
+    {
+        "id": "mode",
+        "name": "Mode",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/mode.png"
+    },
+    {
+        "id": "cronos",
+        "name": "Cronos",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/cronos.png"
+    },
+    {
+        "id": "scroll",
+        "name": "Scroll",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/scroll.png"
+    },
+    {
+        "id": "pulsechain",
+        "name": "PulseChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/pulsechain.png"
+    },
+    {
+        "id": "sui",
+        "name": "Sui",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/sui.png"
+    },
+    {
+        "id": "starknet",
+        "name": "Starknet",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/starknet.png"
+    },
+    {
+        "id": "ton",
+        "name": "TON",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/ton.png"
+    },
+    {
+        "id": "core",
+        "name": "Core",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/core.png"
+    },
+    {
+        "id": "fantom",
+        "name": "Fantom",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/fantom.png"
+    },
+    {
+        "id": "canto",
+        "name": "Canto",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/canto.png"
+    },
+    {
+        "id": "manta",
+        "name": "Manta",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/manta.png"
+    },
+    {
+        "id": "celo",
+        "name": "Celo",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/celo.png"
+    },
+    {
+        "id": "hedera",
+        "name": "Hedera",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/hedera.png"
+    },
+    {
+        "id": "degenchain",
+        "name": "DegenChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/degenchain.png"
+    },
+    {
+        "id": "metis",
+        "name": "Metis",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/metis.png"
+    },
+    {
+        "id": "injective",
+        "name": "Injective",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/injective.png"
+    },
+    {
+        "id": "near",
+        "name": "NEAR",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/near.png"
+    },
+    {
+        "id": "kava",
+        "name": "Kava",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/kava.png"
+    },
+    {
+        "id": "venom",
+        "name": "Venom",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/venom.png"
+    },
+    {
+        "id": "polygonzkevm",
+        "name": "PolygonzkEVM",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/polygonzkevm.png"
+    },
+    {
+        "id": "multiversx",
+        "name": "MultiversX",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/multiversx.png"
+    },
+    {
+        "id": "merlinchain",
+        "name": "MerlinChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/merlinchain.png"
+    },
+    {
+        "id": "dogechain",
+        "name": "Dogechain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/dogechain.png"
+    },
+    {
+        "id": "moonbeam",
+        "name": "Moonbeam",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/moonbeam.png"
+    },
+    {
+        "id": "algorand",
+        "name": "Algorand",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/algorand.png"
+    },
+    {
+        "id": "opbnb",
+        "name": "opBNB",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/opbnb.png"
+    },
+    {
+        "id": "zetachain",
+        "name": "ZetaChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/zetachain.png"
+    },
+    {
+        "id": "filecoin",
+        "name": "Filecoin",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/filecoin.png"
+    },
+    {
+        "id": "iotex",
+        "name": "IoTeX",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/iotex.png"
+    },
+    {
+        "id": "sei",
+        "name": "Sei",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/sei.png"
+    },
+    {
+        "id": "conflux",
+        "name": "Conflux",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/conflux.png"
+    },
+    {
+        "id": "aurora",
+        "name": "Aurora",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/aurora.png"
+    },
+    {
+        "id": "arbitrumnova",
+        "name": "ArbitrumNova",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/arbitrumnova.png"
+    },
+    {
+        "id": "beam",
+        "name": "Beam",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/beam.png"
+    },
+    {
+        "id": "gnosischain",
+        "name": "GnosisChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/gnosischain.png"
+    },
+    {
+        "id": "astar",
+        "name": "Astar",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/astar.png"
+    },
+    {
+        "id": "thundercore",
+        "name": "ThunderCore",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/thundercore.png"
+    },
+    {
+        "id": "boba",
+        "name": "Boba",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/boba.png"
+    },
+    {
+        "id": "flare",
+        "name": "Flare",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/flare.png"
+    },
+    {
+        "id": "telos",
+        "name": "Telos",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/telos.png"
+    },
+    {
+        "id": "shibarium",
+        "name": "Shibarium",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/shibarium.png"
+    },
+    {
+        "id": "oasissapphire",
+        "name": "OasisSapphire",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/oasissapphire.png"
+    },
+    {
+        "id": "wanchain",
+        "name": "Wanchain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/wanchain.png"
+    },
+    {
+        "id": "evmos",
+        "name": "Evmos",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/evmos.png"
+    },
+    {
+        "id": "zkfair",
+        "name": "ZKFair",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/zkfair.png"
+    },
+    {
+        "id": "avalanchedfk",
+        "name": "AvalancheDFK",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/avalanchedfk.png"
+    },
+    {
+        "id": "neonevm",
+        "name": "NeonEVM",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/neonevm.png"
+    },
+    {
+        "id": "velas",
+        "name": "Velas",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/velas.png"
+    },
+    {
+        "id": "smartbch",
+        "name": "SmartBCH",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/smartbch.png"
+    },
+    {
+        "id": "acala",
+        "name": "Acala",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/acala.png"
+    },
+    {
+        "id": "moonriver",
+        "name": "Moonriver",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/moonriver.png"
+    },
+    {
+        "id": "godwoken",
+        "name": "Godwoken",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/godwoken.png"
+    },
+    {
+        "id": "elastos",
+        "name": "Elastos",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/elastos.png"
+    },
+    {
+        "id": "oasisemerald",
+        "name": "OasisEmerald",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/oasisemerald.png"
+    },
+    {
+        "id": "fuse",
+        "name": "Fuse",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/fuse.png"
+    },
+    {
+        "id": "stepnetwork",
+        "name": "StepNetwork",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/stepnetwork.png"
+    },
+    {
+        "id": "harmony",
+        "name": "Harmony",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/harmony.png"
+    },
+    {
+        "id": "energi",
+        "name": "Energi",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/energi.png"
+    },
+    {
+        "id": "kcc",
+        "name": "KCC",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/kcc.png"
+    },
+    {
+        "id": "sxnetwork",
+        "name": "SXNetwork",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/sxnetwork.png"
+    },
+    {
+        "id": "meter",
+        "name": "Meter",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/meter.png"
+    },
+    {
+        "id": "milkomedacardano",
+        "name": "Milkomeda",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/milkomedacardano.png"
+    },
+    {
+        "id": "ethereumclassic",
+        "name": "EthereumClassic",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/ethereumclassic.png"
+    },
+    {
+        "id": "ethereumpow",
+        "name": "EthereumPoW",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/ethereumpow.png"
+    },
+    {
+        "id": "tombchain",
+        "name": "TombChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/tombchain.png"
+    },
+    {
+        "id": "bitgert",
+        "name": "Bitgert",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/bitgert.png"
+    },
+    {
+        "id": "combo",
+        "name": "COMBO",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/combo.png"
+    },
+    {
+        "id": "redlightchain",
+        "name": "RedlightChain",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/redlightchain.png"
+    },
+    {
+        "id": "syscoin",
+        "name": "Syscoin",
+        "logo": "https://dd.dexscreener.com/ds-data/chains/syscoin.png"
+    }
+]

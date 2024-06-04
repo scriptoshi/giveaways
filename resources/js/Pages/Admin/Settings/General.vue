@@ -14,6 +14,8 @@ import Loading from "@/Components/Loading.vue";
 import DescriptionTextArea from "@/Components/ProjectDescriptionTextArea.vue";
 import Switch from "@/Components/Switch.vue";
 import MailSettings from "@/Pages/Admin/Settings/MailSettings.vue";
+import PushNotifications from "@/Pages/Admin/Settings/PushNotifications.vue";
+import SiteServices from "@/Pages/Admin/Settings/SiteServices.vue";
 
 const form = useForm({
 	...usePage().props.general,
@@ -100,6 +102,13 @@ const save = (s) => {
 				<div class="card-body">
 					<div class="block">
 						<MailSettings />
+					</div>
+				</div>
+			</div>
+			<div class="card mt-8 card-border">
+				<div class="card-body">
+					<div class="block">
+						<PushNotifications />
 					</div>
 				</div>
 			</div>
@@ -206,6 +215,14 @@ const save = (s) => {
 							<span class="ml-2">Save Configuration</span>
 						</button>
 					</div>
+				</div>
+			</div>
+			<div class="card mt-5 card-border">
+				<div class="card-body">
+					<div class="flex items-center justify-between mb-4">
+						<h4>Services</h4>
+					</div>
+					<SiteServices />
 				</div>
 			</div>
 		</div>

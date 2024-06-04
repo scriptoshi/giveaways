@@ -10,19 +10,22 @@ import VueIcon from "@/Components/VueIcon.vue";
 import {NetworkIcon} from "@/Wagmi/components/Icons";
 
 const chains = useChains();
-defineProps({
+const props = defineProps({
 	modelValue: Object,
+	testnet: {type: Boolean, default: true},
 });
 const filter = ref("");
 const search = ref();
-const filteredChains = computed(() =>
-	chains.value.filter(
+const filteredChains = computed(() => {
+	const fil = chains.value.filter(
 		(f) =>
 			f.name?.toLowerCase().includes(filter.value.toLowerCase()) ||
 			f?.nativeCurrency?.name?.toLowerCase()?.includes(filter.value.toLowerCase()) ||
 			f.nativeCurrency?.symbol?.toLowerCase()?.includes(filter.value.toLowerCase()),
-	),
-);
+	);
+	if (props.testnet) return fil;
+	return fil.filter((f) => !f.testnet);
+});
 const emit = defineEmits(["update:modelValue", "close"]);
 const close = () => emit("close");
 const select = (currency) => {
@@ -40,15 +43,15 @@ onMounted(() => search.value.focus());
 	>
 		<div
 			:class="isSmall ? $style.fullscreen : ''"
-			class="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md pb-2.5 lg:absolute fixed top-0 lg:top-full left-0 lg:mt-2 shadow-[0_8px_12px_rgb(51_51_51_/_8%);]"
+			class="w-full bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-sm pb-2.5 lg:absolute fixed top-0 lg:top-full left-0 lg:mt-2 shadow-[0_8px_12px_rgb(51_51_51_/_8%);]"
 		>
 			<div class="relative box-border">
 				<div
 					:class="isSmall ? $style.fade : ''"
-					class="p-3.5"
+					class="p-2"
 				>
 					<div
-						class="flex items-center justify-between rounded-md bg-gray-100 dark:bg-gray-700 p-2 pl-md-3 mb-2 lg:hidden"
+						class="flex items-center justify-between rounded-sm bg-gray-100 dark:bg-gray-700 p-2 pl-md-3 mb-2 lg:hidden"
 					>
 						<span class="h5 m-0">{{ $t("Preferred currency") }}</span>
 						<button
@@ -63,7 +66,7 @@ onMounted(() => search.value.focus());
 						</button>
 					</div>
 					<div
-						class="py-[0.625] px-[0.9375rem] text-sm min-h-[2rem] flex content-center items-center rounded-md"
+						class="py-[0.625] px-1 border text-sm min-h-[2rem] flex content-center items-center rounded-sm"
 					>
 						<VueIcon
 							:icon="HiSearch"
@@ -100,16 +103,9 @@ onMounted(() => search.value.focus());
 					</div>
 				</div>
 				<div>
-					<div class="text-gray-900 bg-white dark:bg-gray-700 pl-4">
-						<div
-							class="overflow-x-hidden overflow-y-scroll h-screen lg:max-h-[17rem] pr-4"
-						>
+					<div class="text-gray-900 bg-white dark:bg-gray-700">
+						<div class="overflow-x-hidden overflow-y-scroll h-screen lg:max-h-[17rem]">
 							<div class="">
-								<div
-									class="pb-2 pt-1 ml-2 text-gray-600 dark:text-gray-400 text-sm font-semibold uppercase"
-								>
-									{{ $t("Showing Only Supported") }}
-								</div>
 								<div class="space-y-2">
 									<div
 										@click="select(null)"
@@ -118,7 +114,7 @@ onMounted(() => search.value.focus());
 												? 'border border-emerald-300 dark:border-emerald-400 bg-emerald-50/60 dark:bg-transparent hover:bg-emerald-100 '
 												: 'bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 '
 										"
-										class="flex content-center text-gray-500 dark:text-gray-300 hover:text-emerald-900 hover:dark:text-emerald-400 items-center text-sm rounded-md cursor-pointer transition-colors pl-2.5 pr-2 py-1.5"
+										class="flex content-center text-gray-500 dark:text-gray-300 hover:text-emerald-900 hover:dark:text-emerald-400 items-center text-sm rounded-sm cursor-pointer transition-colors pl-2.5 pr-2 py-1.5"
 										tabindex="-1"
 									>
 										<div
@@ -138,10 +134,10 @@ onMounted(() => search.value.focus());
 										@click="select(chain)"
 										:class="
 											chain.id == modelValue?.id
-												? 'border border-emerald-300 dark:border-emerald-400 bg-emerald-100 dark:bg-transparent hover:bg-emerald-100 '
+												? 'border border-emerald-300 dark:border-emerald-400 bg-emerald-50/60 dark:bg-transparent hover:bg-emerald-100 '
 												: 'bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 '
 										"
-										class="flex content-center text-gray-500 dark:text-gray-300 hover:text-emerald-900 hover:dark:text-emerald-400 items-center text-sm rounded-md cursor-pointer transition-colors pl-2.5 pr-2 py-1.5"
+										class="flex content-center text-gray-500 dark:text-gray-300 hover:text-emerald-900 hover:dark:text-emerald-400 items-center text-sm rounded-sm cursor-pointer transition-colors pl-2 pr-2.5 py-1.5"
 										tabindex="-1"
 									>
 										<div
@@ -166,7 +162,7 @@ onMounted(() => search.value.focus());
 														? 'border-emerald-600 dark:border-emerald-400 text-emerald-600 dark:text-emerald-400'
 														: ' border-gray-300 dark:border-gray-500 '
 												"
-												class="bg-white dark:bg-gray-900 py-1 min-w-[4rem] border rounded-[4px] font-semibold text-center self-center ml-auto"
+												class="bg-white dark:bg-gray-900 px-1 border rounded-sm font-semibold text-center self-center ml-auto"
 												>{{ chain.nativeCurrency.symbol }}</span
 											>
 										</div>

@@ -76,6 +76,13 @@ img {
 
 /* Layout */
 
+.code {
+	color: #10b981;
+	font-size: 18px;
+	line-height: 30px;
+	text-align: left;
+}
+
 .wrapper {
 	-premailer-cellpadding: 0;
 	-premailer-cellspacing: 0;

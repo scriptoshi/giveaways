@@ -39,7 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\Locale::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
             \App\Http\Middleware\CheckReferral::class,
-
+            \App\Http\Middleware\LastSeen::class,
         ],
 
         'api' => [

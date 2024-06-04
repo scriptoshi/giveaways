@@ -26,7 +26,7 @@ class ChainsTableSeeder extends Seeder
                 'websockets' => ['wss://avalanche-c-chain-rpc.publicnode.com', 'wss://arbitrum-one-rpc.publicnode.com'],
             ], [
                 'name' => 'Arbitrum Nova',
-                'slug' => 'nova',
+                'slug' => 'arbitrumnova',
                 'chainId' => '42170',
                 'explorer' => 'https://nova.arbiscan.io/',
                 'testnet' => '0',
@@ -35,7 +35,7 @@ class ChainsTableSeeder extends Seeder
                 'websockets' => ['wss://arbitrum-nova.publicnode.com', 'wss://arbitrum-nova-rpc.publicnode.com'],
             ], [
                 'name' => 'Avalanche',
-                'slug' => 'avax',
+                'slug' => 'avalanche',
                 'chainId' => '43114',
                 'explorer' => 'https://snowtrace.io',
                 'testnet' => '0',
@@ -44,7 +44,7 @@ class ChainsTableSeeder extends Seeder
                 'websockets' => ['wss://arbitrum-one.publicnode.com'],
             ], [
                 'name' => 'polygon',
-                'slug' => 'matic',
+                'slug' => 'polygon',
                 'chainId' => '137',
                 'explorer' => 'https://polygonscan.com',
                 'testnet' => '0',
@@ -64,7 +64,7 @@ class ChainsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Fantom',
-                'slug' => 'ftm',
+                'slug' => 'fantom',
                 'chainId' => '250',
                 'explorer' => 'https://ftmscan.com',
                 'testnet' => '0',
@@ -84,7 +84,7 @@ class ChainsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Zksync Era',
-                'slug' => 'zksync-era',
+                'slug' => 'zksync',
                 'chainId' => '324',
                 'explorer' => 'https://explorer.zksync.io/',
                 'testnet' => '0',
@@ -104,7 +104,7 @@ class ChainsTableSeeder extends Seeder
             ],
             [
                 'name' => 'Bsc Testnet',
-                'slug' => 'bsc-testnet',
+                'slug' => 'bsc',
                 'chainId' => '97',
                 'explorer' => 'https://testnet.bscscan.com/',
                 'testnet' => '1',

@@ -18,7 +18,7 @@ const showTransations = ref(false);
 		leave-to-class="transform scale-95 opacity-0"
 	>
 		<PopoverPanel
-			class="w-full bg-white dark:bg-gray-800 sm:w-[320px] fixed top-[58px] h-screen sm:h-[unset] shadow-md left-0 right-0 sm:absolute sm:bottom-[unset] sm:left-[unset] mt-2 sm:rounded-xl rounded-b-none border-t sm:border border-emerald-500 z-[100]"
+			class="w-full bg-white dark:bg-gray-800 sm:w-[320px] fixed top-[58px] h-screen sm:h-[unset] shadow-md left-0 right-0 sm:absolute sm:bottom-[unset] sm:left-[unset] -mt-1 sm:rounded-sm rounded-b-none border-t sm:border border-emerald-500 z-[100]"
 		>
 			<Transactions
 				:showTxs="showTransations"

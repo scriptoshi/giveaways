@@ -1,13 +1,18 @@
 <script setup>
-import {computed, useSlots} from "vue";
+import {computed, onMounted, ref, useSlots} from "vue";
 
 import {ExclamationCircleIcon} from "@heroicons/vue/24/outline";
+import {useElementHover} from "@vueuse/core";
+const el = ref();
+const hover = useElementHover(el);
+const input = ref();
 const props = defineProps({
 	modelValue: [String, Number],
 	placeholder: [String, Number],
 	inputClasses: String,
 	hide: Boolean,
 	disabled: Boolean,
+	autofocus: Boolean,
 	label: String,
 	type: String,
 	error: String,
@@ -18,6 +23,12 @@ const props = defineProps({
 	},
 });
 defineEmits(["update:modelValue"]);
+defineExpose({focus: () => input.value.focus()});
+onMounted(() => {
+	if (props.autofocus) {
+		input.value.focus();
+	}
+});
 const slots = useSlots();
 const lg = computed(() => props.size === "lg");
 const sm = computed(() => props.size === "sm");
@@ -55,29 +66,37 @@ const classes = computed(() => {
 			v-if="label || $slots.label"
 			:class="xs ? 'text-xs' : 'text-sm'"
 			class="block mb-1 font-medium text-gray-900 dark:text-gray-300"
-			><slot name="label">{{ label }}</slot></label
+			><slot
+				name="label"
+				:hover="hover"
+				>{{ label }}</slot
+			></label
 		>
-
 		<div
 			v-if="$slots.trail || $slots.lead"
-			class="relative rounded-md shadow-sm"
+			class="relative rounded-sm shadow-sm"
+			ref="el"
 		>
 			<div
 				v-if="$slots.lead"
 				class="absolute inset-y-0 left-0 pl-1.5 flex items-center pointer-events-none"
 			>
-				<slot name="lead" />
+				<slot
+					name="lead"
+					:hover="hover"
+				/>
 			</div>
 			<input
 				:value="modelValue"
 				:disabled="disabled"
+				ref="input"
 				@input="$emit('update:modelValue', $event.target.value)"
 				:type="type ? type : hide ? 'password' : 'text'"
 				class="border block w-full focus:outline-none focus:ring-1 appearance-none transition-colors duration-300"
 				:class="[
 					error
-						? 'bg-red-50 border-red-500  text-red-900 placeholder-red-700 rounded-md focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
-						: 'bg-white border-gray-300 text-gray-900  rounded-md focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
+						? 'bg-red-50 border-red-500  text-red-900 placeholder-red-700 rounded-sm focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
+						: 'bg-white border-gray-300 text-gray-900  rounded-sm focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
 					classes,
 					inputClasses,
 				]"
@@ -96,7 +115,10 @@ const classes = computed(() => {
 				v-else-if="$slots.trail"
 				class="absolute inset-y-0 right-0 pr-3 flex items-center"
 			>
-				<slot name="trail" />
+				<slot
+					name="trail"
+					:hover="hover"
+				/>
 			</div>
 		</div>
 		<input
@@ -108,8 +130,8 @@ const classes = computed(() => {
 			class="appearance-none"
 			:class="[
 				error
-					? 'bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-md focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
-					: 'bg-white border-gray-300 text-gray-900  rounded-md focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
+					? 'bg-red-50 border-red-500 text-red-900 placeholder-red-700 rounded-sm focus:ring-red-500 focus:border-red-500  dark:bg-red-100 dark:border-red-400'
+					: 'bg-white border-gray-300 text-gray-900  rounded-sm focus:ring-emerald-500 focus:border-emerald-500 dark:bg-gray-900 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white',
 				'border block w-full focus:outline-none  focus:ring-1 appearance-none',
 				classes,
 				inputClasses,
@@ -130,5 +152,6 @@ const classes = computed(() => {
 		>
 			{{ help }}
 		</p>
+		<slot name="help" />
 	</div>
 </template>

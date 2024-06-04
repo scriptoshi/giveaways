@@ -1,0 +1,117 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "uuid",
+            "type": "uuid"
+        },
+        {
+            "name": "category",
+            "type": "select",
+            "options": {
+                "shillers": "shillers",
+                "attendee": "attendee",
+                "doxxer": "doxxer",
+                "auditor": "auditor",
+                "developer": "developer",
+                "listing": "listing",
+                "host": "host",
+                "moderator": "moderator",
+                "articles": "articles",
+                "influencer": "influencer",
+                "other": "other"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "tags",
+            "type": "json|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "title",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "description",
+            "type": "text|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "price",
+            "type": "decimal:8,2|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "duration",
+            "type": "integer|nullable",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "period",
+            "type": "select|nullable|default:'hours'",
+            "options": {
+                "hours": "hours",
+                "days": "days",
+                "weeks": "weeks",
+                "months": "months"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "rating",
+            "type": "integer|default:0",
+            "rules": "nullable|numeric"
+        },
+        {
+            "name": "telegram",
+            "type": "string|nullable",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "url",
+            "type": "string|nullable",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "verified_at",
+            "type": "timestamp|nullable"
+        },
+        {
+            "name": "promoted_at",
+            "type": "timestamp|nullable"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        },
+        {
+            "name": "escrows",
+            "type": "hasMany",
+            "class": "Escrow|ad_id|id"
+        },
+        {
+            "name": "messages",
+            "type": "morphMany",
+            "class": "Messages|messageable"
+        },
+        {
+            "name": "uploads",
+            "type": "morphMany",
+            "class": "Upload|uploadable"
+        },
+        {
+            "name": "image",
+            "type": "morphOne|where:'key','image'",
+            "class": "Upload|uploadable"
+        }
+    ]
+}

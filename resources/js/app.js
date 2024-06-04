@@ -21,10 +21,12 @@ import "../css/app.css";
 import "./bootstrap";
 // eslint-disable-next-line import/order
 import messages from "@/vue-i18n-locales.generated";
-
+// Hijack BigInt https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#use_within_json
+// eslint-disable-next-line no-extend-native
+BigInt.prototype.toJSON = function () { return this.toString(); };
 createInertiaApp({
     progress: { color: "#4B5563" },
-    title: (title) => `${title} | Betn`,
+    title: (title) => `${title} | sleep`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,

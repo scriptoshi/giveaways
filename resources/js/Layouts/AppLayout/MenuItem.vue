@@ -34,9 +34,9 @@ onMounted(() => (isOpen.value = !!props.menu.active));
 				class="items-center text-sm cursor-pointer flex font-semibold h-8 justify-between px-6 select-none mb-2 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
 			>
 				<span class="flex items-center">
-					<component
+					<VueIcon
 						class="w-5 h-5 mr-2 text-emerald-600 dark:text-emerald-400"
-						:is="menu.icon"
+						:icon="menu.icon"
 					/>
 					<div class="whitespace-nowrap">{{ menu.name }}</div>
 				</span>
@@ -52,9 +52,9 @@ onMounted(() => (isOpen.value = !!props.menu.active));
 				class="items-center text-sm cursor-pointer flex font-semibold h-8 justify-between px-6 select-none mb-2 hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
 			>
 				<span class="flex items-center">
-					<component
+					<VueIcon
 						class="w-5 h-5 mr-2 text-emerald-600 dark:text-emerald-400"
-						:is="menu.icon"
+						:icon="menu.icon"
 					/>
 					<div class="whitespace-nowrap">{{ menu.name }}</div>
 				</span>
@@ -71,22 +71,18 @@ onMounted(() => (isOpen.value = !!props.menu.active));
 				class="items-center text-sm cursor-pointer flex font-semibold h-8 justify-between px-6 select-none hover:text-emerald-500 dark:hover:text-emerald-400 hover:bg-gray-200/50 dark:hover:bg-gray-700/50"
 			>
 				<span class="flex items-center">
-					<component
+					<VueIcon
 						class="w-5 h-5 mr-2 text-emerald-600 dark:text-emerald-400"
-						:is="menu.icon"
+						:icon="menu.icon"
 					/>
 					<div class="whitespace-nowrap">{{ menu.name }}</div>
 				</span>
-				<span
+				<VueIcon
 					v-if="menu.submenu"
-					class="text-lg mt-1"
-				>
-					<VueIcon
-						:icon="HiChevronRight"
-						:class="isOpen ? 'rotate-90' : ''"
-						class="w-4 h-4 transition-transform duration-300"
-					/>
-				</span>
+					:icon="HiChevronRight"
+					:class="isOpen ? 'rotate-90' : ''"
+					class="w-4 h-4 transition-transform duration-300"
+				/>
 			</div>
 			<CollapseTransition>
 				<ul
@@ -106,6 +102,12 @@ onMounted(() => (isOpen.value = !!props.menu.active));
 						<Link
 							class="h-full w-full flex items-center"
 							:href="sub.url"
+							><span class="flex items-center">
+								<VueIcon
+									v-if="sub.icon"
+									class="w-4 h-4 mr-1 text-emerald-600 dark:text-emerald-400"
+									:icon="sub.icon"
+								/> </span
 							><span>{{ sub.name }}</span></Link
 						>
 					</div>

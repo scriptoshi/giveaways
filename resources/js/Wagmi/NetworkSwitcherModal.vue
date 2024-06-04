@@ -3,8 +3,7 @@ import {computed, ref} from "vue";
 
 import {Link, usePage} from "@inertiajs/vue3";
 import {CoChevronDoubleRight} from "oh-vue-icons/icons";
-import {Chain} from "sushi/chain";
-import {useAccount, useSwitchChain} from "use-wagmi";
+import {useAccount, useChains, useSwitchChain} from "use-wagmi";
 
 import Loading from "@/Components/Loading.vue";
 import VueIcon from "@/Components/VueIcon.vue";
@@ -14,7 +13,11 @@ import JetButton from "@/Jetstream/SecondaryButton.vue";
 import {NetworkIcon} from "@/Wagmi/components/Icons/index";
 const neededChain = computed(() => Number(usePage().props.chainId));
 const {chain} = useAccount();
-const requiredChain = computed(() => Chain.from(neededChain.value ?? chain.id ?? 1));
+const chains = useChains();
+
+const requiredChain = computed(
+	() => chains.value.find((c) => c.id.toString() === neededChain.value?.toString?.()) ?? chain,
+);
 const {switchChain} = useSwitchChain();
 const closed = ref(false);
 const isOpen = false;

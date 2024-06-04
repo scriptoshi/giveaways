@@ -10,6 +10,7 @@ const hover = useElementHover(el);
 const emit = defineEmits(["update:modelValue"]);
 defineProps({
 	modelValue: String,
+	loading: Boolean,
 });
 const input = ref(null);
 onMounted(() => {

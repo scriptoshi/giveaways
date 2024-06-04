@@ -39,6 +39,14 @@ const spacesPath = computed({
 		emit("update:modelValue", value);
 	},
 });
+const logoError = computed({
+	get() {
+		return props.logoError;
+	},
+	set(value) {
+		emit("update:logoError", value);
+	},
+});
 const uploadPath = computed({
 	get() {
 		return props.file;
@@ -73,7 +81,7 @@ const uploadToSpaces = async () => {
 	uploadPath.value = file;
 	deleteUrl.value = remove;
 };
-const logoError = ref(null);
+
 const reader = new FileReader();
 reader.onload = function (e) {
 	logoUri.value = e.target.result;
@@ -95,8 +103,9 @@ watch(logo, (logo) => {
 	if (logo) reader.readAsDataURL(logo);
 	else logoUri.value = null;
 });
-
+const deleting = ref(false);
 const clearFile = async () => {
+	deleting.value = true;
 	if (deleteUrl.value) {
 		await axios.delete(deleteUrl.value);
 	}
@@ -104,6 +113,7 @@ const clearFile = async () => {
 	logo.value = null;
 	spacesPath.value = null;
 	percent.value = 0;
+	deleting.value = false;
 };
 
 const preview = computed(() => {
@@ -132,18 +142,6 @@ const preview = computed(() => {
 				class="w-5 h-6"
 			/>
 		</WeCopy>
-		<a
-			href="#"
-			v-else-if="preview"
-			@click.prevent="clearFile()"
-			class="mr-3 text-base font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300"
-			>Clear</a
-		>
-		<span
-			v-else
-			class="mr-3 text-base font-medium"
-			>Upload
-		</span>
 		<div
 			class="inline-flex items-center justify-center overflow-hidden rounded-full bottom-5 left-5"
 		>
@@ -202,7 +200,14 @@ const preview = computed(() => {
 			class="btn space-x-2 bg-error text-base py-1.5 font-medium text-white hover:bg-error-focus hover:shadow-lg hover:shadow-error/50 focus:bg-error-focus focus:shadow-lg focus:shadow-error/50 active:bg-error-focus/90"
 		>
 			<span>Delete</span>
-			<XMarkIcon class="h-6 w-6" />
+			<Loading
+				class="w-4 h-4 text-white ml-2 -mr-1"
+				v-if="deleting"
+			/>
+			<XMarkIcon
+				v-else
+				class="w-4 h-4 text-white ml-2 -mr-1"
+			/>
 		</button>
 		<button
 			v-else-if="logo"

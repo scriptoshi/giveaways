@@ -1,0 +1,58 @@
+{
+    "fields": [
+        {
+            "name": "ad_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:ads,id"
+        },
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "coin_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:coins,id"
+        },
+        {
+            "name": "contract",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "amount",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "status",
+            "type": "select|nullable|default:'pending'",
+            "options": {
+                "pending": "pending",
+                "released": "released",
+                "claimed": "claimed",
+                "locked": "locked",
+                "dispute": "dispute",
+                "resolved": "resolved"
+            }
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        },
+        {
+            "name": "ad",
+            "type": "belongsTo",
+            "class": "Ad|ad_id|id"
+        },
+        {
+            "name": "coin",
+            "type": "belongsTo",
+            "class": "Coin|coin_id|id"
+        }
+    ]
+}

@@ -2,31 +2,47 @@
 import {computed} from "vue";
 
 import {XMarkIcon} from "@heroicons/vue/24/outline";
-import {BookOpenIcon, HomeIcon} from "@heroicons/vue/24/solid";
 import {Link, usePage} from "@inertiajs/vue3";
 import {breakpointsTailwind, useBreakpoints} from "@vueuse/core";
-import {useAccount} from "use-wagmi";
+import {
+	BiDropletHalf,
+	CoMixer,
+	FaBalanceScale,
+	HiHome,
+	HiPlusCircle,
+	LaTwitterSquare,
+	LaUsersSolid,
+	MdGeneratingtokensSharp,
+	MdLockpersonRound,
+	MdRocketlaunchSharp,
+	MdToken,
+	RiContrastDrop2Fill,
+	RiDiscordLine,
+	RiFunctionLine,
+	RiMacbookLine,
+	RiMapPinUserFill,
+	RiRocket2Line,
+	RiTelegramLine,
+} from "oh-vue-icons/icons";
+import {uid} from "uid";
+import {useChainId} from "use-wagmi";
 import {useI18n} from "vue-i18n";
 
 import CollapseTransition from "@/Components/CollapseTransition.vue";
 import SiteLogo from "@/Components/SiteLogo.vue";
-import RiFundsLine from "@/Layouts/AppLayout/Icons/RiFundsLine.vue";
-import RiRocket2Line from "@/Layouts/AppLayout/Icons/RiRocket2Line.vue";
 import Lang from "@/Layouts/AppLayout/Lang.vue";
 import MenuItem from "@/Layouts/AppLayout/MenuItem.vue";
 import MiniMenuItem from "@/Layouts/AppLayout/MiniMenuItem.vue";
-import Discord from "@/Social/Discord.vue";
-import Telegram from "@/Social/Telegram.vue";
-import Twitter from "@/Social/Twitter.vue";
 
 const config = computed(() => usePage().props.config);
-const chId = computed(() => usePage().props.chainId);
+
 const {t} = useI18n();
 const AuthCheck = computed(() => usePage().props.AuthCheck);
 const twitterUrl = computed(() => usePage().props?.config?.twitterUrl);
 const telegramUrl = computed(() => usePage().props?.config?.telegramUrl);
 const discordUrl = computed(() => usePage().props?.config?.discordUrl);
-const {chainId} = useAccount();
+const chId = computed(() => usePage().props.chainId);
+const chainId = useChainId();
 const menus = computed(() => [
 	...(AuthCheck.value
 		? [
@@ -35,7 +51,7 @@ const menus = computed(() => [
 					route: "home",
 					active: window.route().current("home"),
 					url: window.route("home"),
-					icon: HomeIcon,
+					icon: HiHome,
 				},
 		  ]
 		: [
@@ -44,23 +60,57 @@ const menus = computed(() => [
 					route: "home",
 					active: window.route().current("home"),
 					url: window.route("home"),
-					icon: HomeIcon,
+					icon: HiHome,
 				},
 		  ]),
 	{
 		name: t("Tokens"),
+		route: ["projects.index"],
+		active:
+			window.route().current("projects.index") ||
+			window.route().current("projects.create") ||
+			window.route().current("projects.edit") ||
+			window.route().current("projects.show"),
+		url: window.route("projects.index"),
+		icon: MdRocketlaunchSharp,
+	},
+	{
+		name: t("Memes"),
 		route: ["tokens.index"],
 		active: window.route().current("tokens.index") || window.route().current("tokens.show"),
 		url: window.route("tokens.index"),
-		icon: RiFundsLine,
+		icon: RiFunctionLine,
+	},
+
+	{
+		name: t("Drops"),
+		route: ["airdrops.index"],
+		active:
+			window.route().current("airdrops.index") ||
+			window.route().current("airdrops.show") ||
+			window.route().current("airdrops.create"),
+		url: window.route("airdrops.index"),
+		icon: BiDropletHalf,
 	},
 	{
-		name: t("Launchpads"),
-		route: ["launchpads.index"],
+		name: t("Nfts"),
+		route: ["nfts.index"],
 		active:
-			window.route().current("launchpads.index") || window.route().current("launchpads.show"),
-		url: window.route("launchpads.index"),
-		icon: RiRocket2Line,
+			window.route().current("nfts.index") ||
+			window.route().current("nfts.show") ||
+			window.route().current("nfts.create"),
+		url: window.route("nfts.index"),
+		icon: MdToken,
+	},
+	{
+		name: t("Influencers"),
+		route: ["influencers.index"],
+		active:
+			window.route().current("influencers.index") ||
+			window.route().current("influencers.show") ||
+			window.route().current("influencers.create"),
+		url: window.route("influencers.index"),
+		icon: LaUsersSolid,
 	},
 	{
 		name: "line",
@@ -68,24 +118,160 @@ const menus = computed(() => [
 		icon: null,
 	},
 	{
-		name: "docs",
-		url: "https://docs.betn.io",
-		icon: BookOpenIcon,
+		name: t("Launchpad"),
+		route: ["launchpads.*", "nfts.*"],
+		active: window.route().current("launchpads.*") || window.route().current("nfts.*"),
+		url: null,
+		icon: RiRocket2Line,
+		submenu: [
+			{
+				name: t("Token Sales"),
+				route: ["launchpads.index"],
+				active:
+					window.route().current("launchpads.index") ||
+					window.route().current("launchpads.show"),
+				url: window.route("launchpads.index"),
+				icon: MdRocketlaunchSharp,
+			},
+			{
+				name: t("AirDrops"),
+				route: ["airdrops.index"],
+				active:
+					window.route().current("airdrops.index") ||
+					window.route().current("airdrops.show") ||
+					window.route().current("airdrops.create"),
+				url: window.route("airdrops.index"),
+				icon: BiDropletHalf,
+			},
+			{
+				name: t("Nft Sales"),
+				route: ["nfts.index"],
+				active:
+					window.route().current("nfts.index") ||
+					window.route().current("nfts.show") ||
+					window.route().current("nfts.create"),
+				url: window.route("nfts.index"),
+				icon: MdToken,
+			},
+			{
+				name: t("Token Locks"),
+				route: ["nfts.index"],
+				active:
+					window.route().current("nfts.index") ||
+					window.route().current("nfts.show") ||
+					window.route().current("nfts.create"),
+				url: window.route("nfts.index"),
+				icon: MdToken,
+			},
+			{
+				name: t("Multi Sender"),
+				route: ["nfts.index"],
+				active:
+					window.route().current("nfts.index") ||
+					window.route().current("nfts.show") ||
+					window.route().current("nfts.create"),
+				url: window.route("nfts.index"),
+				icon: MdToken,
+			},
+		],
+	},
+	{
+		name: t("Create"),
+		route: ["launchpads.*", "nfts.*"],
+		active: window.route().current("launchpads.*") || window.route().current("nfts.*"),
+		url: null,
+		icon: HiPlusCircle,
+		submenu: [
+			{
+				id: uid(),
+				name: "ERC20 Token",
+				route: ["tokens.create"],
+				url: window.route("tokens.create", {
+					chainId: chainId.value ?? chId.value ?? 5,
+					type: "standard",
+				}),
+				icon: MdGeneratingtokensSharp,
+			},
+			{
+				id: uid(),
+				name: "Nft Launchpad",
+				route: ["nfts.create"],
+				url: window.route("nfts.create", {
+					chainId: chainId.value ?? chId.value ?? 5,
+				}),
+				icon: RiMapPinUserFill,
+			},
+			{
+				id: uid(),
+				name: "Token Launch",
+				route: ["launchpads.create"],
+				url: window.route("launchpads.create", {
+					launchpad: "fairlaunch",
+					chainId: chainId.value ?? chId.value ?? 5,
+				}),
+				icon: FaBalanceScale,
+			},
+			{
+				id: uid(),
+				name: "Token Airdrop",
+				route: ["airdrops.create"],
+				url: window.route("airdrops.create", {
+					chainId: chainId.value ?? chId.value ?? 5,
+				}),
+				icon: RiContrastDrop2Fill,
+			},
+			{
+				id: uid(),
+				name: "Token Lock",
+				route: ["locks.create"],
+				url: window.route("airdrops.create", {
+					chainId: chainId.value ?? chId.value ?? 5,
+				}),
+				/* url: window.route("locks.create", {
+            chainId: chainId.value ?? chId.value??5,
+        }), */
+				href: "#",
+				icon: MdLockpersonRound,
+			},
+			{
+				id: uid(),
+				route: ["sender.tokens"],
+				name: "Multisend Tx",
+				url: window.route("airdrops.create", {
+					chainId: chainId.value ?? chId.value ?? 5,
+				}),
+				/* url: window.route("sender.tokens", {
+            chainId: chainId.value ?? chId.value??5,
+        }), */
+				href: "#",
+				icon: CoMixer,
+			},
+		],
+	},
+	{
+		name: "line",
+		url: null,
+		icon: null,
+	},
+	{
+		name: "Docs",
+		url: "https://docs.sleep.finance",
+		icon: RiMacbookLine,
 	},
 	{
 		name: t("Telegram"),
 		url: telegramUrl.value,
-		icon: Telegram,
+		icon: RiTelegramLine,
 	},
 	{
 		name: t("Twitter"),
 		url: twitterUrl.value,
-		icon: Twitter,
+		icon: LaTwitterSquare,
 	},
 	{
 		name: t("Discord"),
 		url: discordUrl.value,
-		icon: Discord,
+		icon: RiDiscordLine,
 	},
 ]);
 const breakpoints = useBreakpoints(breakpointsTailwind);

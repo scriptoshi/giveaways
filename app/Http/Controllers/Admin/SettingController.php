@@ -20,8 +20,8 @@ class SettingController extends Controller
 
     public function dashboard(Request $request)
     {
-        $factories = ResourcesFactory::collection(Factory::all());
-        return Inertia::render('Admin/Dashboard', compact('factories'));
+
+        return Inertia::render('Admin/Dashboard');
     }
 
     public function settings(Request $request)
@@ -60,8 +60,24 @@ class SettingController extends Controller
             'WALLETCONNET_PROJECT_ID' => config('app.walletConnectProjectId'),
             'EIP712' => config('app.eip712'),
         ];
+
+        $notification = [
+            'BEAMS_INSTANCE_ID' => config('app.beams_instance_id'),
+            'BEAMS_SECRET_KEY' => config('app.beams_secret_key'),
+            'TELEGRAM_BOT_TOKEN' => config('app.telegram_bot_token'),
+            'TELEGRAM_CHANNEL' => config('app.telegram_channel'),
+        ];
+
+        $services = [
+            'ANKR_KEY' => config('services.ankr.apiKey'),
+            'COINLAYER_APIKEY' => config('services.coinlayer.api_key'),
+            'MORALIS_API_KEY' => config('services.moralis.apiKey'),
+            'PINATA_API_KEY' => config('services.pinata.api_key'),
+            'PINATA_API_SECRET' => config('services.pinata.secret_key'),
+        ];
+
         $chainsList = ResourcesChain::collection(Chain::all());
-        return Inertia::render('Admin/Settings', compact('mail', 'chainsList', 'general'));
+        return Inertia::render('Admin/Settings', compact('mail', 'chainsList', 'general', 'notification', 'services'));
     }
 
     public function toggleChain(Request $request, $chainId)
@@ -102,7 +118,16 @@ class SettingController extends Controller
             'APP_NAME' => config('app.name'),
             'ADMIN' => config('app.admin'),
             'WALLETCONNET_PROJECT_ID' => config('app.walletConnectProjectId'),
+            'BEAMS_INSTANCE_ID' => config('app.beams_instance_id'),
+            'BEAMS_SECRET_KEY' => config('app.beams_secret_key'),
+            'TELEGRAM_BOT_TOKEN' => config('app.telegram_bot_token'),
+            'TELEGRAM_CHANNEL' => config('app.telegram_channel'),
             'EIP712' => config('app.eip712'),
+            'ANKR_KEY' => config('services.ankr.apiKey'),
+            'COINLAYER_APIKEY' => config('services.coinlayer.api_key'),
+            'MORALIS_API_KEY' => config('services.moralis.apiKey'),
+            'PINATA_API_KEY' => config('services.pinata.api_key'),
+            'PINATA_API_SECRET' => config('services.pinata.secret_key'),
         ];
         $editor = DotenvEditor::load();
         foreach ($keys as $key => $default) {

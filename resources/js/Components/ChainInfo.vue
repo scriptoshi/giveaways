@@ -19,10 +19,10 @@ const chain = computed(() =>
 		class="flex flex-row align-middle items-center"
 	>
 		<NetworkIcon
-			class="w-5 h-5 rounded-full inline-table mr-3"
+			class="w-5 h-5 rounded-full inline-table"
 			:chain-id="chain.id"
 		/>
-		<span class="text-emerald-600 dark:text-emerald-400 font-bold text-xs"
+		<span class="text-emerald-600 ml-3 dark:text-emerald-400 font-bold text-xs hidden sm:flex"
 			><slot>{{ chain.name }}</slot></span
 		>
 	</div>

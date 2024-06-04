@@ -22,13 +22,13 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   script: |
                       rm -rf /var/www/build
-                      cd /var/www && git clone git@github.com:betnfinance/betn.git build
-                      cp /var/www/betn.io/.env /var/www/build/.env
+                      cd /var/www && git clone git@github.com:sleepfinance/sleep.git build
+                      cp /var/www/sleep.finance/.env /var/www/build/.env
                       cd /var/www/build && ./.scripts/deploy.sh
-                      rm -rf /var/www/betnfinance_io_back
-                      mv /var/www/betn.io /var/www/betnfinance_io_back
-                      mv /var/www/build /var/www/betn.io
-                      cd /var/www/betn.io && php artisan optimize
-                      cd /var/www/betn.io && php artisan storage:link
-                      cd /var/www/betn.io && sudo chgrp -R www-data storage bootstrap/cache
-                      cd /var/www/betn.io && sudo chmod -R ug+rwx storage bootstrap/cache
+                      rm -rf /var/www/sleepfinance_io_back
+                      mv /var/www/sleep.finance /var/www/sleepfinance_io_back
+                      mv /var/www/build /var/www/sleep.finance
+                      cd /var/www/sleep.finance && php artisan optimize
+                      cd /var/www/sleep.finance && php artisan storage:link
+                      cd /var/www/sleep.finance && sudo chgrp -R www-data storage bootstrap/cache
+                      cd /var/www/sleep.finance && sudo chmod -R ug+rwx storage bootstrap/cache

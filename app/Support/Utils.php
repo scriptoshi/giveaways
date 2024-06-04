@@ -2,6 +2,8 @@
 
 namespace App\Support;
 
+use Str;
+
 class Utils
 {
     public static $units = [
@@ -118,5 +120,25 @@ class Utils
         $unit = is_string($unit) ? $units[$unit] : bcpow('10', $unit);
         $number = bcdiv($number, $unit, 18);
         return $number;
+    }
+
+    public static function uniqidID($length = 13)
+    {
+        if (function_exists("openssl_random_pseudo_bytes"))
+            return strtoupper(substr(bin2hex(openssl_random_pseudo_bytes(ceil($length / 2))), 0, $length));
+        if (function_exists("random_bytes"))
+            return strtoupper(substr(bin2hex(random_bytes(ceil($length / 2))), 0, $length));
+        return Str::random($length);
+    }
+
+    public static function durationToSeconds($duration, $period)
+    {
+        return match ($period) {
+            'minutes', 'minute' => $duration * 60 * 60,
+            'hours', 'hour' => $duration * 60 * 60,
+            'days', 'day' => $duration * 60 * 60 * 24,
+            'weeks', 'week' => $duration * 60 * 60 * 24 * 7,
+            'months', 'month' => $duration * 60 * 60 * 24 * 7 * 30
+        };
     }
 }

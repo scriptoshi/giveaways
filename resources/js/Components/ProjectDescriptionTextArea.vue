@@ -1,5 +1,5 @@
 <script setup>
-import {computed, nextTick, onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 
 import {FaceSmileIcon} from "@heroicons/vue/24/solid";
 import {createPopper} from "@popperjs/core";
@@ -11,6 +11,7 @@ const props = defineProps({
 	modelValue: String,
 	emoji: {type: Boolean, default: true},
 	rows: {type: Number, default: 5},
+	placeholder: {type: String, default: "Enter Details..."},
 });
 const textarea = ref(null);
 const open = ref(false);
@@ -35,7 +36,7 @@ onMounted(() => {
 	}
 });
 
-nextTick(() => textarea.value.focus());
+// nextTick(() => textarea.value.focus());
 const onSelect = (emoji) => {
 	if (cursor.value !== -1) {
 		emit(
@@ -78,7 +79,7 @@ const modelVal = computed({
 					@blur="updateCursor"
 					@keyup="updateCursor"
 					class="block w-full p-3 border-0 text-gray-700 dark:text-gray-300 resize-none focus:ring-0 sm:text-sm outline-none focus:outline-none bg-transparent"
-					placeholder="Enter Details..."
+					:placeholder="placeholder"
 				/>
 				<!-- Spacer textareaent to match the height of the toolbar -->
 				<div aria-hidden="true">
@@ -119,13 +120,15 @@ const modelVal = computed({
 					</div>
 				</div>
 				<div class="flex-shrink-0">
-					<button
-						type="button"
-						@click="$emit('update:modelValue', '')"
-						class="ease-in-out duration-150 inline-flex items-center px-4 py-1 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
-					>
-						Clear
-					</button>
+					<slot name="clear">
+						<button
+							type="button"
+							@click="$emit('update:modelValue', '')"
+							class="ease-in-out duration-150 inline-flex items-center px-4 py-1 border border-transparent text-sm leading-4 font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+						>
+							Clear
+						</button>
+					</slot>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,53 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "message_id",
+            "type": "foreignId|nullable|constrained",
+            "rules": "required|integer|exists:messages,id"
+        },
+        {
+            "name": "messageable",
+            "type": "morphs"
+        },
+        {
+            "name": "message",
+            "type": "string",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "rating",
+            "type": "integer|default:0",
+            "rules": "nullable|numeric"
+        },
+        {
+            "name": "is_reply",
+            "type": "boolean|default:false"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "replies",
+            "type": "hasMany",
+            "class": "Message|message_id|id"
+        },
+        {
+            "name": "message",
+            "type": "belongsTo",
+            "class": "Message|message_id|id"
+        },
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        },
+        {
+            "name": "messageable",
+            "type": "morphTo"
+        }
+    ]
+}

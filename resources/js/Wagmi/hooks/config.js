@@ -11,6 +11,7 @@ export const useWagmiConfig = (chains = [], walletConnectConfig) => {
     console.log(viemChains);
     const config = createConfig({
         chains: [...viemChains],
+        syncConnectedChain: true,
         multiInjectedProviderDiscovery: true,
         autoConnect: true,
         _connectors: [

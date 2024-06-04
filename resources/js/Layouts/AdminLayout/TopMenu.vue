@@ -63,7 +63,7 @@ const userNavigation = [
 	},
 	{
 		name: t("Manage Bookies"),
-		href: "https://docs.betn.io",
+		href: "https://docs.sleep.finance",
 		icon: RiAwardLine,
 		active: false,
 	},

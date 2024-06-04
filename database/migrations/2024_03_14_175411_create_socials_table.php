@@ -17,6 +17,9 @@ return new class extends Migration
             $table->morphs('socialable');
             $table->string('link');
             $table->string('network');
+            $table->string('code')->nullable()->unique();
+            $table->integer('clicks')->nullable()->default(0);
+            $table->integer('followers')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -6,6 +6,7 @@ import {
 	BiUiChecksGrid,
 	FaCog,
 	MdGroupworkOutlined,
+	MdSynclock,
 	RiAwardFill,
 	RiExchangeBoxFill,
 	RiExchangeFill,
@@ -96,6 +97,30 @@ const menus = computed(() => {
 				window.route().current("admin.factories.create") ||
 				window.route().current("admin.factories.show"),
 			icon: MdGroupworkOutlined,
+			id: uid(),
+		},
+		{
+			text: "Launchpads",
+			value: "launchpads",
+			url: window.route("admin.launchpads.index"),
+			active: window.route().current("admin.launchpads.index"),
+			icon: MdGroupworkOutlined,
+			id: uid(),
+		},
+		{
+			text: "Projects",
+			value: "projects",
+			url: window.route("admin.projects.index"),
+			active: window.route().current("admin.projects.index"),
+			icon: MdSynclock,
+			id: uid(),
+		},
+		{
+			text: "Boosts",
+			value: "boosts",
+			url: window.route("admin.boosts.index"),
+			active: window.route().current("admin.boosts.index"),
+			icon: MdSynclock,
 			id: uid(),
 		},
 	];

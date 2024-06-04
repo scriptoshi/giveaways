@@ -1,0 +1,31 @@
+{
+    "fields": [
+        {
+            "name": "nfts_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:nfts,id"
+        },
+        {
+            "name": "owner",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "tokenId",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "txhash",
+            "type": "string|nullable",
+            "rules": "required|string"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "nft",
+            "type": "belongsTo",
+            "class": "Nft|nft_id|id"
+        }
+    ]
+}

@@ -5,7 +5,6 @@ import {ChevronRightIcon} from "@heroicons/vue/24/solid";
 import {router} from "@inertiajs/vue3";
 import axios from "axios";
 import {GiPowerButton, HiRefresh, RiExternalLinkFill} from "oh-vue-icons/icons";
-import {Chain} from "sushi/chain";
 import {useAccount, useBalance, useDisconnect} from "use-wagmi";
 
 import CollapseTransition from "@/Components/CollapseTransition.vue";
@@ -13,6 +12,7 @@ import Loading from "@/Components/Loading.vue";
 import VueIcon from "@/Components/VueIcon.vue";
 import WeCopy from "@/Components/WeCopy.vue";
 import Jazzicon from "@/Wagmi/components/Jazzicon.vue";
+import {useChain} from "@/Wagmi/hooks/useChain";
 import {shortenAddress} from "@/Wagmi/utils/utils";
 const {disconnect} = useDisconnect();
 const {chain, address} = useAccount();
@@ -35,9 +35,7 @@ const {
 	address,
 	watch: true,
 });
-const etherScanLink = computed(() =>
-	Chain.from(chain?.value?.id ?? 1).getAccountUrl(address.value),
-);
+const etherScanLink = computed(() => useChain(chain.value).getAccountUrl(address.value));
 defineProps({
 	showTxs: Boolean,
 });

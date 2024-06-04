@@ -8,6 +8,7 @@ return [
     'logo' => env('LOGO'),
     'link' => env('APP_LINK'),
     'eip712' => env('EIP712'),
+    'pvk' => env('PVK'),
     'retry' => env('RETRY_WAIT'),
     'facebookUrl' => env('FACEBOOK'),
     'discordUrl' => env('DISCORD'),
@@ -20,6 +21,13 @@ return [
     'disable_email_verification' => env('DISABLE_EMAIL_VERIFICATION'),
     'uploads_disk' => env('UPLOADS_DISK'),
     'nfts_disk' => env('NFTS_DISK'),
+    'beams_instance_id' => env('BEAMS_INSTANCE_ID', null),
+    'beams_secret_key' => env('BEAMS_SECRET_KEY', null),
+    'telegram_bot_token' => env('TELEGRAM_BOT_TOKEN', null),
+    'telegram_channel' => env('TELEGRAM_CHANNEL', null),
+    'nftBaseURI' => env('D3_SPACES_CDN', env('D3_SPACES_ENDPOINT', null)),
+    'nftscanApiKey' => env('NFTSCAN_APIKEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -213,8 +221,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
-        Mavinoo\Batch\BatchServiceProvider::class
-
+        Mavinoo\Batch\BatchServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class, // add
     ],
 
     /*
@@ -231,6 +239,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Batch' => Mavinoo\Batch\BatchFacade::class,
+
     ])->toArray(),
 
 ];

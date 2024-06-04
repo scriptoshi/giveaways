@@ -1,0 +1,82 @@
+{
+    "fields": [
+        {
+            "name": "giveaway_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:giveaways,id"
+        },
+        {
+            "name": "quest_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:quests,id"
+        },
+        {
+            "name": "quester_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:questers,id"
+        },
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "uuid",
+            "type": "uuid"
+        },
+        {
+            "name": "type",
+            "type": "select",
+            "options": {
+                "twitter": "twitter",
+                "telegram": "telegram",
+                "discord": "discord",
+                "tweet": "tweet",
+                "mint": "mint",
+                "swap": "swap",
+                "presale": "presale",
+                "api": "api"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "status",
+            "type": "select",
+            "options": {
+                "pending": "pending",
+                "running": "running",
+                "failed": "failed",
+                "complete": "complete",
+                "skip": "skip"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "sleep",
+            "type": "decimal:16,8|default:1",
+            "rules": "nullable|numeric"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "giveaway",
+            "type": "belongsTo",
+            "class": "Giveaway|giveaway_id|id"
+        },
+        {
+            "name": "quest",
+            "type": "belongsTo",
+            "class": "Quest|quest_id|id"
+        },
+        {
+            "name": "quester",
+            "type": "belongsTo",
+            "class": "Quester|quester_id|id"
+        },
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        }
+    ]
+}

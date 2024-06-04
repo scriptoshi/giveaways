@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-use \App\Enums\SocialNetwork;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Enums\SocialNetwork;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Social extends Model
 {
     use SoftDeletes;
-
-    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -46,17 +44,18 @@ class Social extends Model
         'socialable_type',
         'socialable_id',
         'link',
-        'network'
+        'network',
+        'code',
+        'clicks',
+        'followers',
     ];
 
 
     /**
 
      * Get the model that owns this social
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\morphTo
      */
-    public function socialable()
+    public function socialable(): MorphTo
     {
         return $this->morphTo();
     }

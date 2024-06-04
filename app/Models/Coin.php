@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Coin extends Model
 {
     use SoftDeletes;
     use HasUuid;
-    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -60,10 +59,8 @@ class Coin extends Model
     /**
 
      * Get the chain the coin Belongs To.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function chain()
+    public function chain(): BelongsTo
     {
         return $this->belongsTo(Chain::class, 'chain_id', 'id');
     }

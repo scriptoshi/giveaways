@@ -20,7 +20,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '280',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,
@@ -31,7 +31,7 @@ class CoinsTableSeeder extends Seeder
             ], [
                 'name' => 'Ethereum',
                 'chainId' => '324',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,
@@ -54,7 +54,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '42161',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0x82aF49447D8a07e3bd95BD0d56f35241523fBab1',
@@ -65,7 +65,7 @@ class CoinsTableSeeder extends Seeder
             ], [
                 'name' => 'Ethereum',
                 'chainId' => '42170',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0x722E8BdD2ce80A4422E880164f2079488e115365',
@@ -88,7 +88,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '1313161555',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,
@@ -100,7 +100,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '1313161554',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0x8BEc47865aDe3B172A928df8f990Bc7f2A3b9f79',
@@ -124,7 +124,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '288',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0xa18bF3994C0Cc6E3b63ac420308E5383f53120D7',
@@ -136,7 +136,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '28',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,
@@ -268,7 +268,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '5',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6',
@@ -328,7 +328,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '1',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
@@ -388,7 +388,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '10',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => '0x4200000000000000000000000000000000000006',
@@ -424,7 +424,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '2888',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,
@@ -2416,7 +2416,7 @@ class CoinsTableSeeder extends Seeder
             [
                 'name' => 'Ethereum',
                 'chainId' => '11155111',
-                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x7C598c96D02398d89FbCb9d41Eab3DF0C16F227D/logo.png',
+                'logo_uri' => 'https://raw.githubusercontent.com/pollum-io/pegasys-tokenlists/master/logos/0x15dC8168AA893ee5ABf46778AE99Fd7Ed9225914/logo.png',
                 'symbol' => 'ETH',
                 'contract' => '0x0000000000000000000000000000000000000000',
                 'wrapped' => NULL,

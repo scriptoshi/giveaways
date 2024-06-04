@@ -16,6 +16,7 @@ onClickOutside(outside, () => {
 });
 defineProps({
 	modelValue: Object,
+	testnet: {type: Boolean, default: true},
 });
 const emit = defineEmits(["update:modelValue"]);
 const updateModelValue = (val) => emit("update:modelValue", val);
@@ -33,7 +34,7 @@ const updateModelValue = (val) => emit("update:modelValue", val);
 					? 'bg-zinc-50 dark:bg-gray-700 hover:bg-zinc-100 dark:hover:bg-gray-700'
 					: ' hover:bg-gray-50 bg-white dark:bg-gray-900'
 			"
-			class="border text-gray-600 dark:text-gray-300 flex items-center py-1.5 px-3 border-gray-300 dark:border-gray-600 rounded-md text-sm font-semibold leading-6 w-full text-center align-middle select-none normal-case transition-colors duration-200 ease-in-out"
+			class="border text-gray-600 dark:text-gray-300 flex items-center py-1.5 px-3 border-gray-300 dark:border-gray-600 rounded-sm text-sm font-semibold leading-6 w-full text-center align-middle select-none normal-case transition-colors duration-200 ease-in-out"
 		>
 			<template v-if="modelValue?.name">
 				<NetworkIcon
@@ -66,6 +67,7 @@ const updateModelValue = (val) => emit("update:modelValue", val);
 				v-if="isOpen"
 				@close="close"
 				:modelValue="modelValue"
+				:testnet="testnet"
 				@update:modelValue="updateModelValue"
 			/>
 		</transition>

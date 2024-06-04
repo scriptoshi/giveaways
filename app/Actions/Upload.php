@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use File;
-use Illuminate\Http\Request;
 use Storage;
 
 class Upload

@@ -36,7 +36,7 @@ const filteredChains = computed(() => {
 </script>
 <template>
 	<PopoverPanel
-		class="flex flex-col w-full bg-white dark:bg-gray-800 sm:w-[320px] fixed bottom-0 top-[55px] shadow-md left-0 right-0 sm:absolute sm:top-[unset] sm:bottom-[unset] sm:left-[unset] mt-2 sm:rounded-xl rounded-b-none border-t sm:border border-gray-300 dark:border-gray-600 z-[100]"
+		class="flex flex-col w-full bg-white dark:bg-gray-800 sm:w-[320px] fixed bottom-0 top-[55px] shadow-md left-0 right-0 sm:absolute sm:top-[unset] sm:bottom-[unset] sm:left-[unset] mt-2 sm:rounded-[4px] rounded-b-none border-t sm:border border-gray-300 dark:border-gray-600 z-[100]"
 	>
 		<div class="flex gap-2 items-center p-4 pb-3">
 			<MagnifyingGlassIcon class="text-gray-500 w-5 h-5" />

@@ -49,7 +49,7 @@ const validate = () => {
 		</slot>
 
 		<div
-			class="w-full rounded-sm rounded-tl-none border border-gray-300 transition-colors duration-200 focus-within:!border-gray-200 hover:border-gray-400 dark:border-gray-600 dark:focus-within:!border-emerald-500 dark:hover:border-gray-500 dark:bg-gray-900"
+			class="mx-0.5 rounded-md rounded-tl-none border border-gray-300 transition-colors duration-200 focus-within:!border-emerald-500 focus-within:ring-1 focus-within:outline-none focus-within:!ring-emerald-500 hover:border-gray-400 dark:border-gray-600 dark:focus-within:!border-emerald-500 dark:hover:border-gray-500 dark:bg-gray-900"
 		>
 			<label class="block">
 				<textarea
@@ -60,8 +60,8 @@ const validate = () => {
 					class="form-textarea w-full resize-none bg-transparent p-3 pb-0 placeholder:text-gray-400/70"
 				></textarea>
 			</label>
-			<div class="flex justify-between p-2.5">
-				<div class="flex items-end space-x-1">
+			<div class="flex justify-between items-end p-2.5">
+				<div class="flex items-center space-x-1">
 					<button
 						@click.prevent="sort"
 						class="btn -ml-1 h-8 w-8 rounded-full p-0 hover:bg-gray-300/20 focus:bg-gray-300/20 active:bg-gray-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"

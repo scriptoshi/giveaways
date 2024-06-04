@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('cache:prune-stale-tags')->hourly();
+        $schedule->command('app:update-twitter-connections')->twiceDaily(1, 13);
+        $schedule->command('app:giveaway-status')->everyFourMinutes();
         //$schedule->command('etherscan:update')->everyThirtyMinutes();
         //$schedule->command('update:galxemints')->everyFifteenMinutes();
         //$schedule->command('leader:board')->hourly();

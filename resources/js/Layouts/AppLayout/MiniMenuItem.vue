@@ -4,6 +4,8 @@ import {ref} from "vue";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
 import {Link} from "@inertiajs/vue3";
 
+import VueIcon from "@/Components/VueIcon.vue";
+
 defineProps({
 	menu: Object,
 });
@@ -41,7 +43,7 @@ const onMouseLeave = (open) => {
 	>
 		<Link
 			v-if="menu.route"
-			:href="menu.route"
+			:href="menu.url"
 			class="text-2xl mr-3 focus-visible:outline-none group-hover:text-emerald-500 dark:group-hover:text-emerald-400"
 			:class="
 				menu.active
@@ -49,9 +51,9 @@ const onMouseLeave = (open) => {
 					: ' text-gray-900 dark:text-gray-200'
 			"
 		>
-			<component
+			<VueIcon
 				class="w-7 h-7"
-				:is="menu.icon"
+				:icon="menu.icon"
 			/>
 		</Link>
 		<a
@@ -61,9 +63,9 @@ const onMouseLeave = (open) => {
 			:title="menu.name"
 			class="text-2xl mr-3 focus-visible:outline-none text-emerald-500 dark:text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-300"
 		>
-			<component
+			<VueIcon
 				class="w-7 h-7"
-				:is="menu.icon"
+				:icon="menu.icon"
 			/>
 		</a>
 	</div>
@@ -82,14 +84,14 @@ const onMouseLeave = (open) => {
 				ref="buttonRef"
 				class="text-2xl mr-3 focus-visible:outline-none"
 			>
-				<component
+				<VueIcon
 					:class="
 						menu.active || open
 							? 'text-emerald-500 dark:text-emerald-400'
 							: ' text-gray-900 dark:text-gray-200'
 					"
 					class="w-7 h-7"
-					:is="menu.icon"
+					:icon="menu.icon"
 				/>
 			</MenuButton>
 		</div>

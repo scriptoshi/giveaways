@@ -16,6 +16,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('nonce')->unique()->nullable();
+            $table->string('otp')->nullable();
             $table->string('referral')->nullable();
             $table->timestamp('last_seen_at')->nullable();
             $table->softDeletes();

@@ -6,7 +6,10 @@ use App\Http\Controllers\Admin\CoinsController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AmmsController;
 use App\Http\Controllers\Admin\BadgesController;
+use App\Http\Controllers\Admin\BoostsController;
 use App\Http\Controllers\Admin\FactoriesController;
+use App\Http\Controllers\Admin\LaunchpadsController;
+use App\Http\Controllers\Admin\ProjectsController;
 use App\Http\Controllers\Admin\ServicesController as AdminServicesController;
 use App\Http\Controllers\Admin\UsersController as AdminUsersController;
 use Illuminate\Support\Facades\Route;
@@ -102,5 +105,35 @@ Route::name('factories.')->controller(FactoriesController::class)->group(functio
     Route::post('/factories/version/{factory}', 'version')->name('version');
     Route::put('/factories/{factory}', 'update')->name('update');
     Route::delete('/factories/{factory}', 'destroy')->name('destroy');
+});
+#factories
+
+
+Route::name('launchpads.')->controller(LaunchpadsController::class)->group(function () {
+    Route::get('/launchpads', 'index')->name('index');
+    Route::get('/launchpads/{launchpad}/edit', 'edit')->name('edit');
+    Route::put('/launchpads/{launchpad}', 'update')->name('update');
+    Route::put('/launchpads/toggle/{launchpad}', 'toggle')->name('toggle');
+    Route::put('/launchpads/badges/{launchpad}', 'badges')->name('badges');
+    Route::delete('/launchpads/{launchpad}', 'destroy')->name('destroy');
+});
+
+Route::name('projects.')->controller(ProjectsController::class)
+    ->group(function () {
+        Route::get('/projects', 'index')->name('index');
+        Route::get('/projects/{project:uuid}/edit', 'edit')->name('edit');
+        Route::put('/projects/{project:uuid}', 'update')->name('update');
+        Route::put('/projects/toggle/{project:uuid}', 'toggle')->name('toggle');
+        Route::put('/projects/badges/{project:uuid}', 'badges')->name('badges');
+        Route::delete('/projects/{project:uuid}', 'destroy')->name('destroy');
+    });
+
+
+#factories
+Route::name('boosts.')->controller(BoostsController::class)->group(function () {
+    Route::get('/boosts', 'index')->name('index');
+    Route::get('/boosts/create', 'create')->name('create');
+    Route::post('/boosts/store', 'store')->name('store');
+    Route::delete('/boosts/{boost}', 'destroy')->name('destroy');
 });
 #factories

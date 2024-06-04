@@ -12,16 +12,22 @@ import { close as closeAddAdressModal, open as showAddAdressModal } from "@/Wagm
 import { useWagmiModalToggle } from "@/Wagmi/hooks/useWagmiModalToggle.js";
 export const error = ref(null);
 export const busy = ref(false);
+export const isSignining = ref(false);
+export const signatureRejected = ref(false);
+export const logout = ref(false);
+const AuthCheck = computed(() => usePage().props.AuthCheck);
 export const logOut = async () => {
+    if (!AuthCheck.value || logout.value) return;
+    logout.value = true;
     await axios.post(window.route("logout"));
     router.reload({ preserveScroll: false, preserveState: false });
+    logout.value = false;
     busy.value = false;
 };
 
 
 export const useAuth = () => {
-    const { address, connector, isConnected, isConnecting, isReconnecting } = useAccount();
-    const AuthCheck = computed(() => usePage().props.AuthCheck);
+    const { address, connector, isConnected, isConnecting } = useAccount();
     const accounts = computed(() => usePage().props.user?.accounts?.map(a => a.address));
     const { signMessageAsync } = useSignMessage();
     const { open, isEnabled: useModalToRegister, isOpen, close } = useRegisterModal();
@@ -33,6 +39,8 @@ export const useAuth = () => {
     };
     const { disconnect } = useDisconnect();
     const SignIn = async () => {
+        console.log('SignIn');
+        signatureRejected.value = false;
         // avoid redirect loop
         if (window.route().current('register')
             || isOpen.value
@@ -49,11 +57,13 @@ export const useAuth = () => {
             if (useModalToRegister.value && !!address) return open();
             return router.visit(data.address);
         }
+        isSignining.value = true;
         let signature;
         try {
             signature = await signMessageAsync({ message: data.nonce });
         } catch (err) {
             error.value = "Signature Rejected.";
+            signatureRejected.value = true;
             busy.value = false;
             return;
         }
@@ -62,6 +72,7 @@ export const useAuth = () => {
             signature,
         });
         closeWagmiModal();
+        isSignining.value = false;
         busy.value = false;
         if (window.route().current('login')) {
             router.visit(response.url ?? window.route('home'));
@@ -75,6 +86,7 @@ export const useAuth = () => {
     };
 
     const activate = async () => {
+        console.log('activate');
         busy.value = true;
         closeAddAdressModal();
         const { data } = await axios.post(window.route("status"), {
@@ -89,29 +101,32 @@ export const useAuth = () => {
         SignIn();
     };
     const init = () => {
-        watch([isConnected, address, isConnecting, isReconnecting], ([connected, address, isConnecting, isReconnecting]) => {
-            if (isConnecting || isReconnecting) return;
-            if (address) {
-                if (AuthCheck.value) {
-                    if (accounts.value.includes(address)) {
-                        busy.value = false;
-                        closeAddAdressModal();
-                        return;
-                    }
-                    console.log('showing address modal');
-                    showAddAdressModal();
-                } else {
-                    activate();
-                }
-            }
-            if (connected) {
+        watch([isConnected, address], ([connected, address]) => {
+            if (isConnecting.value) return;
+            if (connected && address && connector.value) {
                 connector?.value?.on?.("", (accounts) => {
                     activate();
                 });
-            } else {
+                if (AuthCheck.value) return;
+                activate();
+            }
+            else {
                 close();
                 if (AuthCheck.value)
                     signOut();
+            }
+        }, { immediate: true });
+        watch(address, (address) => {
+            if (isConnecting.value) return;
+            if (AuthCheck.value) {
+                if (!address) return signOut();
+                if (accounts.value.includes(address)) {
+                    busy.value = false;
+                    closeAddAdressModal();
+                    return;
+                }
+                console.log('showing address modal');
+                showAddAdressModal();
             }
         }, { immediate: true });
     };
@@ -121,8 +136,7 @@ export const useAuth = () => {
         signOut,
         busy,
         error,
-        SignIn,
-        activate
+        SignIn
     };
 };
 

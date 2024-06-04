@@ -1,0 +1,61 @@
+{
+    "fields": [
+        {
+            "name": "giveaway_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:giveaways,id"
+        },
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "percent",
+            "type": "decimal|5,2"
+        },
+        {
+            "name": "qid",
+            "type": "string"
+        },
+        {
+            "name": "pump",
+            "type": "integer|default:1",
+            "rules": "nullable|numeric"
+        },
+        {
+            "name": "status",
+            "type": "select|nullable|default:'pending'",
+            "options": {
+                "pending": "pending",
+                "rejected": "rejected",
+                "completed": "completed",
+                "drawn": "drawn",
+                "winner": "winner",
+                "claimed": "claimed"
+            },
+            "rules": "required|string"
+        },
+        {
+            "name": "comment",
+            "type": "string"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "giveaway",
+            "type": "belongsTo",
+            "class": "Giveaway|giveaway_id|id"
+        },
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        },
+        {
+            "name": "pumps",
+            "type": "hasMany",
+            "class": "Pump|quester_id|id"
+        }
+    ]
+}

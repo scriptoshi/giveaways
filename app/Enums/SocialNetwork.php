@@ -15,7 +15,10 @@ enum SocialNetwork: string
     case TIKTOK = 'tiktok';
     case TELEGRAM = 'telegram';
     case YOUTUBE = 'youtube';
+    case YOUTUBE_TRAILER = 'youtube_trailer';
     case WEB = 'website';
     case DOCS = 'docs';
     case WHITEPAPER = 'whitepaper';
+    case SNAPCHAT = 'snapchat';
+    case LINKTREE = 'linktree';
 }

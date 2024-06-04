@@ -97,7 +97,7 @@ const save = () => {
 							$t("Public Username")
 						}}</label>
 						<RegisterInput
-							placeholder="Eg betn.io"
+							placeholder="Eg sleep.finance"
 							v-model="form.username"
 							:error="form.errors.username"
 						>

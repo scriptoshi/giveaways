@@ -30,7 +30,31 @@ module.exports = {
                 '20': '20',
             },
             fontFamily: {
-                sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
+                pepe: ["Al-dente", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "pepe-bold": ["Boboiboy", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "pepe-text": ["Diamond-Girl", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "pepe-p": ["Otterly-Adorable", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "pepe-label": ["Chocolate", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "pepe-span": ["Diamond-Girl", "ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                sans: ["ShadowsIntoLight", "DM Sans", ...defaultTheme.fontFamily.sans],
+                "Walsheim-Bold": ["ShadowsIntoLight", "Walsheim-Bold", ...defaultTheme.fontFamily.sans],
+            },
+
+            keyframes: {
+                'shake': {
+                    '10%, 90%': {
+                        transform: 'translate3d(-1px, 0, 0)'
+                    },
+                    '20%, 80%': {
+                        transform: 'translate3d(2px, 0, 0)'
+                    },
+                    '30%, 50%, 70%': {
+                        transform: 'translate3d(-4px, 0, 0)'
+                    },
+                    '40%, 60%': {
+                        transform: 'translate3d(4px, 0, 0)'
+                    }
+                }
             },
             gridTemplateColumns: {
                 "token-section": "auto minmax(auto, 1fr) auto",
@@ -74,6 +98,7 @@ module.exports = {
                 ellipsis: "ellipsis 1.25s infinite",
                 "spin-slow": "spin 2s linear infinite",
                 fade: "opacity 150ms linear",
+                'shake': 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both',
             },
             floatup: {
                 wiggle: {
@@ -99,26 +124,13 @@ module.exports = {
             },
             colors: () => {
                 return {
-                    emerald: {
-                        '50': '#fdf8ef',
-                        '100': '#faeeda',
-                        '200': '#f5dbb3',
-                        '300': '#eec283',
-                        '400': '#e69f51',
-                        '500': '#e18937',
-                        '600': '#d16c25',
-                        '700': '#ae5320',
-                        '800': '#8b4421',
-                        '900': '#70391e',
-                        '950': '#3c1b0e',
-                    },
+
                     gray: colors.stone,
                     slate: {
                         ...colors.stone,
                         '150': colors.stone['100'],
                         '450': colors.stone['500'],
                     },
-                    teal: colors.fuchsia,
                     cyan: colors.cyan,
                     fuchsia: colors.fuchsia,
                     lime: colors.lime,
@@ -225,6 +237,7 @@ module.exports = {
                     "high-emphesis": "#E3E3E3",
                     "higher-emphesis": "#FCFCFD",
                     navy: {
+
                         50: colors.stone["50"],
                         100: colors.stone["100"],
                         200: colors.stone["200"],
@@ -326,6 +339,7 @@ module.exports = {
             opacity: {
                 15: ".15",
             },
+
             zIndex: {
                 1: "1",
                 2: "2",
@@ -366,14 +380,7 @@ module.exports = {
         require("tailwindcss-gradient"),
         require("tailwind-scrollbar-hide"),
         require("tailwind-scrollbar"),
-        require("tailwind-bootstrap-grid")({
-            containerMaxWidths: {
-                sm: "540px",
-                md: "720px",
-                lg: "960px",
-                xl: "1140px",
-            },
-        }),
+        require("tailwind-bootstrap-grid"),
         function ({ addVariant, addUtilities }) {
             addVariant(
                 "supports-backdrop-blur",

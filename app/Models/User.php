@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-
+use App\Notifications\OneTimePassword;
+use Qirolab\Laravel\Reactions\Traits\Reacts;
+use Qirolab\Laravel\Reactions\Contracts\ReactsInterface;
 use App\Traits\HasNonce;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,9 +14,11 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use SWeb3\Utils;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, ReactsInterface
 {
     use HasApiTokens;
     use HasProfilePhoto;
@@ -23,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use SoftDeletes;
     use HasFactory;
+    use Reacts;
 
 
     /**
@@ -94,46 +99,98 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-
-
-
     /**
      * Get the accounts the user Owns.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function accounts()
+    public function accounts(): HasMany
     {
         return $this->hasMany(Account::class, 'user_id', 'id');
     }
 
+
+
+    /**
+     * Get the reactions the launchpads Has.
+     *
+     */
+    public function contributions(): HasMany
+    {
+        return $this->hasMany(Contribution::class, 'project_id', 'id');
+    }
+
+    /**
+     * Get the accounts the user Owns.
+     *
+     */
+    public function connections(): HasMany
+    {
+        return $this->hasMany(Connection::class, 'user_id', 'id');
+    }
+
+
+
     /**
 
      * Get the accounts the user Owns.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function account()
+    public function account(): HasOne
     {
         return $this->hasOne(Account::class)->latestOfMany();
     }
 
     /**
-     * Get the launchpads the user Owns.
+
+     * Get the accounts the user Owns.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      */
-    public function slips()
+    public function projects(): HasMany
     {
-        return $this->hasMany(Slip::class, 'user_id', 'id');
+        return $this->hasMany(Project::class);
     }
+
+
+    /**
+
+     * Get the accounts the user Owns.
+     *
+     */
+    public function project(): HasOne
+    {
+        return $this->hasOne(Project::class)->latestOfMany();
+    }
+
+
+
+    /**
+
+     * Get the accounts the user Owns.
+     *
+     */
+    public function pumps(): HasMany
+    {
+        return $this->hasMany(Pump::class);
+    }
+
 
 
 
     // users that trust this user
     public function getIsVerifiedAttribute()
     {
-        return  $this->email_verified_at && $this->phone_verified_at && $this->document_verified_at && $this->id_verified_at;
+        return  $this->email_verified_at;
+    }
+
+
+    /**
+     * Send the email verification notification.
+     *
+     * @return void
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new OneTimePassword);
     }
 
     //permission
@@ -152,5 +209,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->accounts()
             ->whereIn('address', $admins)
             ->exists();
+    }
+
+    public function getOtp(): string
+    {
+        $this->otp = substr(str_shuffle(str_repeat($x = '123456789', ceil(10 / strlen($x)))), 1, 10);
+        $this->save();
+        return $this->otp;
     }
 }

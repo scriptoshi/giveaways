@@ -18,7 +18,11 @@ class Social extends JsonResource
         return [
             'id' => $this->id,
             'link' => $this->link,
+            'url' => route('socials.go', ['to' => $this->code]),
+            'name' => ucfirst($this->network->value),
             'network' => $this->network,
+            'clicks' => $this->clicks,
+            'followers' => $this->clicks,
         ];
     }
 }

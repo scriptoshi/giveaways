@@ -1,0 +1,76 @@
+{
+    "fields": [
+        {
+            "name": "giveaway_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:giveaways,id"
+        },
+        {
+            "name": "quest_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:quests,id"
+        },
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "name",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "symbol",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "contract",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "chainId",
+            "type": "string",
+            "rules": "required|string"
+        },
+        {
+            "name": "hash",
+            "type": "string|nullable",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "meta",
+            "type": "json|nullable",
+            "rules": "nullable|string"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "giveaway",
+            "type": "belongsTo",
+            "class": "Giveaway|giveaway_id|id"
+        },
+        {
+            "name": "quest",
+            "type": "belongsTo",
+            "class": "Quest|quest_id|id"
+        },
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        },
+        {
+            "name": "uploads",
+            "type": "morphMany",
+            "class": "Upload|uploadable"
+        },
+        {
+            "name": "nft",
+            "type": "morphOne|where:'key','nft'",
+            "class": "Upload|uploadable"
+        }
+    ]
+}

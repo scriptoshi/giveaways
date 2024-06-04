@@ -1,7 +1,7 @@
 <script setup>
-import {useAccount} from "use-wagmi";
+import {useChain} from "@/Wagmi/hooks/useChain";
 
-const {chain} = useAccount();
+const {chain} = useChain();
 </script>
 <template>
 	<div>
@@ -10,7 +10,7 @@ const {chain} = useAccount();
 			role="alert"
 		>
 			<span class="font-semibold uppercase">Deployment is offline!</span>
-			{{ chain.name }} is not yet supported
+			{{ chain?.name ?? "your current chain" }} is not yet supported
 		</div>
 	</div>
 </template>

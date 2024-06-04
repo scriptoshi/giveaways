@@ -6,6 +6,45 @@
 :root {
 	--header-height: 65px;
 }
+/*
+@font-face {
+	font-family: "ShadowsIntoLight";
+	src: url("./ShadowsIntoLight.ttf");
+	size-adjust: 130%;
+}
+
+@font-face {
+	font-family: "Al-dente";
+	src: url("./Al-dente.woff");
+	size-adjust: 130%;
+}
+@font-face {
+	font-family: "Boboiboy";
+	src: url("./Boboiboy.ttf");
+	size-adjust: 130%;
+}
+@font-face {
+	font-family: "Chocolate";
+	src: url("./Chocolate-Covered-Raindrops-Bold.woff");
+	size-adjust: 170%;
+}
+@font-face {
+	font-family: "Diamond-Girl";
+	src: url("./Diamond-Girl.woff");
+	size-adjust: 130%;
+}
+
+@font-face {
+	font-family: "Otterly-Adorable";
+	src: url("./Otterly-Adorable.otf");
+	size-adjust: 130%;
+}
+
+@font-face {
+	font-family: "Pepe-Medium";
+	src: url("./Pepe-Medium.woff");
+	size-adjust: 110%;
+}*/
 
 @font-face {
 	font-family: "Walsheim-Bold";
@@ -38,7 +77,7 @@
 
 @layer components {
 	p {
-		@apply text-gray-600 dark:text-gray-400;
+		@apply text-gray-600 dark:text-gray-400 font-pepe-p;
 	}
 
 	h3 {
@@ -49,12 +88,20 @@
 		@apply text-gray-700 dark:text-gray-400 font-semibold text-xl;
 	}
 
+	label {
+		@apply font-pepe-label;
+	}
+	input,
+	textarea {
+		@apply font-pepe-bold;
+	}
+
 	.card {
 		@apply relative w-full rounded-md min-w-[1px] flex-col break-words bg-white text-slate-500 shadow-soft dark:bg-gray-800 dark:text-gray-200 dark:shadow-none print:border;
 	}
 
 	.card-body {
-		@apply flex-auto p-4;
+		@apply flex-auto p-4 font-pepe-text;
 	}
 
 	.card-header {
@@ -66,7 +113,7 @@
 	}
 
 	.card-title {
-		@apply font-medium;
+		@apply font-medium font-pepe-bold;
 	}
 
 	.icontainer {
@@ -78,7 +125,7 @@
         margin-left,
         margin-right,
         padding-left,
-        padding-right] duration-[.25s] ease-in print: m-0 md:ml-[var(--main-sidebar-width)];
+        padding-right] duration-[.10s] ease-in print: m-0 md:ml-[var(--main-sidebar-width)];
 	}
 
 	.table-default {
@@ -119,6 +166,58 @@
 
 	.table-default.borderless-row tbody > :not([hidden]) ~ :not([hidden]) {
 		border-style: none;
+	}
+	@keyframes shake {
+		0% {
+			transform: translateY(0);
+			background-color: #ff0;
+		}
+
+		10% {
+			transform: translateY(-10px);
+			background-color: #ff0;
+		}
+
+		20% {
+			transform: translateY(10px);
+			background-color: #ff0;
+		}
+
+		30% {
+			transform: translateY(-10px);
+		}
+
+		40% {
+			transform: translateY(10px);
+		}
+
+		50% {
+			transform: translateY(-10px);
+		}
+
+		60% {
+			transform: translateY(10px);
+		}
+
+		70% {
+			transform: translateY(-10px);
+		}
+
+		80% {
+			transform: translateY(10px);
+		}
+
+		90% {
+			transform: translateY(-10px);
+		}
+
+		to {
+			transform: translateY(0);
+		}
+	}
+
+	.animate-shake {
+		animation: shake 0.7s ease-in-out;
 	}
 }
 

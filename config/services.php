@@ -44,6 +44,34 @@ return [
     ],
     'ankr' => [
         'apiKey' => env('ANKR_KEY'),
-    ]
+    ],
+    // telegram channel updates
+    'telegram' => [
+        'bot_token' => env('TELEGRAM_BOT_TOKEN'),
+        'bot' => env('TELEGRAM_BOT_NAME'),  // The bot's username
+        'client_id' => null,
+        'client_secret' => env('TELEGRAM_BOT_TOKEN'),
+        'redirect' => env('TELEGRAM_REDIRECT_URI'),
+    ],
+    //webpush updates
+    'pusher' => [
+        'beams_instance_id' =>  env('BEAMS_INSTANCE_ID'),
+        'beams_secret_key' =>  env('BEAMS_SECRET_KEY')
+    ],
 
+    'twitter-oauth-2' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
+        'redirect' => env('TWITTER_CLIENT_REDIRECT'),
+    ],
+
+    'discord' => [
+        'client_id' => env('DISCORD_CLIENT_ID'),
+        'client_secret' => env('DISCORD_CLIENT_SECRET'),
+        'redirect' => env('DISCORD_REDIRECT_URI'),
+        'bot_token' => env('DISCORD_BOT_TOKEN'),
+        // optional
+        'allow_gif_avatars' => (bool)env('DISCORD_AVATAR_GIF', true),
+        'avatar_default_extension' => env('DISCORD_EXTENSION_DEFAULT', 'jpg'), // only pick from jpg, png, webp
+    ],
 ];

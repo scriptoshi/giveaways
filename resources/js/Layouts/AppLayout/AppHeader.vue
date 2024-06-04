@@ -1,14 +1,13 @@
 <script setup>
-import {computed, ref} from "vue";
+import {computed, nextTick, ref} from "vue";
 
 import {PopoverButton} from "@headlessui/vue";
 import {ChevronDoubleDownIcon} from "@heroicons/vue/24/solid";
-import {Link as InertiaLink, usePage} from "@inertiajs/vue3";
+import {Link as InertiaLink, Link, usePage} from "@inertiajs/vue3";
 import {
 	FaPowerOff,
 	HiSolidGift,
 	HiTicket,
-	LaAlignLeftSolid,
 	LaUserPlusSolid,
 	MdSettingsOutlined,
 	RiAwardLine,
@@ -18,9 +17,11 @@ import {useAccount, useDisconnect} from "use-wagmi";
 import {useI18n} from "vue-i18n";
 
 import Loading from "@/Components/Loading.vue";
+import SiteLogo from "@/Components/SiteLogo.vue";
 import VueIcon from "@/Components/VueIcon.vue";
 import DarkSwitch from "@/Layouts/AdminLayout/DarkSwitch.vue";
 import CreateButton from "@/Layouts/AppLayout/Header/CreateButton.vue";
+import SiteMenu from "@/Layouts/AppLayout/Header/SiteMenu.vue";
 import RegisterModal from "@/Pages/Auth/RegisterModal.vue";
 import ConnectModal from "@/Wagmi/ConnectModal.vue";
 import {logOut, useAuth} from "@/Wagmi/hooks/authentication";
@@ -47,7 +48,7 @@ const Icons = {
 };
 
 const {init, SignIn} = useAuth();
-init();
+nextTick(init);
 const {disconnect} = useDisconnect();
 const signOut = async () => {
 	disconnect();
@@ -96,7 +97,7 @@ const userNavigation = [
 	},
 	{
 		name: t("Documentation"),
-		href: "https://docs.betn.io",
+		href: "https://docs.sleep.finance",
 		icon: HiSolidGift,
 		active: false,
 	},
@@ -110,26 +111,24 @@ const logout = async () => {
 };
 defineProps({
 	open: Boolean,
+	searchRoute: {type: String, default: "projects.index"},
+	blank: Boolean,
 });
-const emit = defineEmits(["toggle"]);
-const toggle = () => emit("toggle");
 </script>
 <template>
 	<header
 		class="bg-gray-50 dark:bg-gray-800 flex sticky top-0 w-full z-20 border-b border-gray-200 dark:border-gray-700"
 	>
 		<div class="h-16 item items-center flex justify-between py-0 px-4 relative w-full">
-			<div class="flex justify-center">
-				<div class="rouded-full cursor-pointer mx-1 p-2">
-					<div class="text-2xl flex items-center">
-						<VueIcon
-							:icon="LaAlignLeftSolid"
-							:open="open"
-							@click="toggle"
-							class="w-6 h-6"
-						/>
-					</div>
-				</div>
+			<div class="flex justify-start">
+				<Link
+					href="/"
+					class="w-auto flex mr-4 items-center"
+				>
+					<SiteLogo class="w-7 h-auto mr-3" />
+					<h3 class="font-extralight hidden">Give away</h3>
+				</Link>
+				<SiteMenu class="hidden lg:flex" />
 			</div>
 			<div class="flex flex-row items-center space-x-3">
 				<CreateButton />
@@ -137,7 +136,7 @@ const toggle = () => emit("toggle");
 				<Web3Menu v-if="AuthCheck">
 					<template #profile>
 						<img
-							class="w-6 h-6 -ml-2 border border-gray-400 dark:border-gray-600 mr-2 rounded-full"
+							class="w-6 h-6 sm:-ml-2 border border-gray-400 dark:border-gray-600 sm:mr-2 rounded-full"
 							:src="avatar"
 						/>
 					</template>

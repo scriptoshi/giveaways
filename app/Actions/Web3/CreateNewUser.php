@@ -69,9 +69,6 @@ class CreateNewUser implements CreatesNewUsers
                     'address' => Utils::toChecksumAddress($input['address']),
                     'provider' => $input['provider'] ?? null
                 ]));
-                if (config('app.galxe.signup')) {
-                    Galxe::signup($user);
-                }
                 //$this->createTeam($user);
             });
         });

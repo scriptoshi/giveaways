@@ -1,0 +1,16 @@
+{
+    "fields": [
+        {
+            "name": "quester_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:questers,id"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "quester",
+            "type": "belongsTo",
+            "class": "Quester|quester_id|id"
+        }
+    ]
+}

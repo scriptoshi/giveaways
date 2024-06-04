@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
@@ -15,7 +16,7 @@ class RegisterResponse implements RegisterResponseContract
      */
     public function toResponse($request)
     {
-        if($request->filled('registermodal')) return back();
+        if ($request->filled('registermodal')) return back();
         return $request->wantsJson()
             ? new JsonResponse('', 201)
             : redirect()->intended(Fortify::redirects('register'));

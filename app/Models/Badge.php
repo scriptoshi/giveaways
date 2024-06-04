@@ -3,15 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Badge extends Model
 {
     use SoftDeletes;
-
-    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -51,13 +48,12 @@ class Badge extends Model
 
 
 
+
     /**
      * Get the token the badge Belongs To.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function tokens()
+    public function projects(): MorphToMany
     {
-        return $this->morphedByMany(Token::class, 'badgeable');
+        return $this->morphedByMany(Project::class, 'badgeable');
     }
 }

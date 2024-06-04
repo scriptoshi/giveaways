@@ -2,7 +2,7 @@
 import {computed, ref, watch} from "vue";
 
 import {useAccount, usePublicClient} from "use-wagmi";
-import {zeroAddress} from "viem";
+import {isAddress, zeroAddress} from "viem";
 
 import CollapseTransition from "@/Components/CollapseTransition.vue";
 import Loading from "@/Components/Loading.vue";
@@ -30,6 +30,7 @@ const update = async () => {
 	});
 	loading.value = false;
 };
+const contractAddress = computed(() => props.contract);
 const {
 	error,
 	busy,
@@ -42,7 +43,7 @@ const {
 	simulation,
 	receipt,
 	call,
-} = useContractCall(tokenAbi, props.contract);
+} = useContractCall(tokenAbi, contractAddress);
 const approve = async () => {
 	await call("approve", [props.spender, props.amount]);
 	await update();
@@ -53,20 +54,35 @@ const requiresApproval = computed(
 	() => props.contract !== zeroAddress && props.shouldApprove && allowance.value < props.amount,
 );
 watch(
-	() => props.shouldApprove,
-	(shouldApprove) => {
-		if (shouldApprove) update();
+	[() => props.shouldApprove, () => props.contract, () => props.spender],
+	([shouldApprove, contract, spender, amount]) => {
+		if (
+			!shouldApprove ||
+			!isAddress(contract) ||
+			!isAddress(spender) ||
+			contract === zeroAddress
+		)
+			return;
+
+		update();
 	},
+	{immediate: true},
 );
 </script>
 <template>
 	<CollapseTransition>
-		<div v-show="loading">
+		<div
+			v-bind="$attrs"
+			v-show="loading"
+		>
 			<h3 class="text-sm my-4 text-right">{{ $t("Checking Approvals Please Wait...") }}</h3>
 		</div>
 	</CollapseTransition>
 	<CollapseTransition>
-		<div v-show="requiresApproval">
+		<div
+			v-bind="$attrs"
+			v-show="requiresApproval"
+		>
 			<slot
 				name="approval"
 				:error="error"
@@ -108,12 +124,12 @@ watch(
 				</h3>
 				<button
 					@click.prevent="approve"
-					class="px-6 py-3 self-start float-right rounded-lg text-emerald-500 hover:text-emerald-600 font-semibold border border-emerald-500 hover:border-emerald-600 transition duration-150"
+					class="px-6 py-3 float-right rounded-lg text-emerald-500 hover:text-emerald-600 font-semibold border border-emerald-500 hover:border-emerald-600 transition duration-150"
 				>
 					<slot name="button">
 						<Loading
 							v-if="busy || confirming"
-							class="-ml-1 !mr-2"
+							class="-ml-1 !mr-2 inline-flex"
 						/>
 						{{ $t("Approve Tokens") }}
 					</slot>
@@ -122,7 +138,10 @@ watch(
 		</div>
 	</CollapseTransition>
 	<CollapseTransition>
-		<div v-show="!requiresApproval">
+		<div
+			v-bind="$attrs"
+			v-show="!requiresApproval"
+		>
 			<slot />
 		</div>
 	</CollapseTransition>

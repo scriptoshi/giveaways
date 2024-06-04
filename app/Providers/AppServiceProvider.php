@@ -9,6 +9,9 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Notifications\ChannelManager;
+use Illuminate\Support\Facades\Notification;
+use NotificationChannels\Telegram\TelegramChannel;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Notification::resolved(static function (ChannelManager $service) {
+            $service->extend('telegram2', static fn ($app) => $app->make(TelegramChannel::class));
+        });
     }
 
     /**

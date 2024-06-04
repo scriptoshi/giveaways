@@ -23,7 +23,12 @@ const {error, status} = useSwitchChain();
 		>
 			<PopoverButton as="div">
 				<button
-					class="btn max-w-xs space-x-1 px-3 text-gray-600 dark:text-gray-200 rounded-lg flex items-center bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700"
+					:class="
+						open
+							? 'border-emerald-500 dark:border-emerald-400 text-emerald-500 dark:text-emerald-400  bg-emerald-50 dark:bg-gray-900'
+							: 'border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-200 bg-white dark:bg-gray-900'
+					"
+					class="btn max-w-xs space-x-1 px-3 rounded-sm flex items-center border transition-colors"
 				>
 					<Loading
 						v-if="status === 'loading'"
