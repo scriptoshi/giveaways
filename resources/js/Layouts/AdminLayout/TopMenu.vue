@@ -91,16 +91,7 @@ const logout = async () => {
 						href="/admin"
 						class="text-2xl font-bold flex items-center lg:ml-2.5"
 					>
-						<img
-							v-if="logoUrl"
-							:src="logoUrl"
-							class="h-6 mr-2"
-							alt="Launcho"
-						/>
-						<Logo
-							v-else
-							class="h-8 mr-2"
-						/>
+						<Logo class="h-8 mr-2" />
 						<span
 							class="self-center hidden md:flex text-emerald-500 whitespace-nowrap"
 							>{{ $page.props.config.appName }}</span

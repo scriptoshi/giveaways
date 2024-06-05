@@ -19,19 +19,13 @@ class ChainsController extends Controller
     {
         $keyword = $request->get('search');
         $perPage = 25;
+        $query =  Chain::query();
         if (!empty($keyword)) {
-            $chainsItems  = Chain::where('name', 'LIKE', "%$keyword%")
-                ->orWhere('type', 'LIKE', "%$keyword%")
-                ->orWhere('chainId', 'LIKE', "%$keyword%")
-                ->orWhere('explorer', 'LIKE', "%$keyword%")
-                ->orWhere('label', 'LIKE', "%$keyword%")
-                ->orWhere('active', 'LIKE', "%$keyword%")
-                ->latest()->paginate($perPage);
-        } else {
-            $chainsItems = Chain::with(['coins'])->latest()->paginate($perPage);
+            $query->where('name', 'LIKE', "%$keyword%")
+                ->orWhere('chainId', 'LIKE', "%$keyword%");
         }
+        $chainsItems =  $query->latest()->paginate($perPage);
         $chainList = ChainResource::collection($chainsItems);
-
         return Inertia::render('Admin/Chains/Index', compact('chainList'));
     }
 
@@ -41,7 +35,6 @@ class ChainsController extends Controller
      */
     public function create()
     {
-
         return Inertia::render('Admin/Chains/Create', compact('chains'));
     }
 

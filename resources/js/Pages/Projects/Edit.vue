@@ -8,6 +8,8 @@ import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
 import CollapseTransition from "@/Components/CollapseTransition.vue";
 import FormInput from "@/Components/FormInput.vue";
 import Loading from "@/Components/Loading.vue";
+import LogoInput from "@/Components/LogoInput.vue";
+import LogoInputLocal from "@/Components/LogoInputLocal.vue";
 import ProjectDescriptionTextArea from "@/Components/ProjectDescriptionTextArea.vue";
 import SocialIcon from "@/Components/SocialIcon.vue";
 import {useFormUploadParams} from "@/hooks/useFormUploadParams";
