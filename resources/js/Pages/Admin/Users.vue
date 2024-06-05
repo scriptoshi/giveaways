@@ -4,10 +4,10 @@ import {ref} from "vue";
 import {router as Inertia} from "@inertiajs/vue3";
 import {debouncedWatch, useUrlSearchParams} from "@vueuse/core";
 
+import Pagination from "@/Components/Pagination.vue";
 import SearchInput from "@/Components/TableSearchInput.vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
-import Address from "./AccountAddress.vue";
-import Pagination from "./Components/Pagination.vue";
+import Address from "@/Pages/Admin/AccountAddress.vue";
 
 defineProps({
 	users: Array,
