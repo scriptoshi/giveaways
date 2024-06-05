@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use Envatic\CrudStrap\Traits\WhenMorphed;
+use App\Traits\WhenMorphed;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class Message extends JsonResource
