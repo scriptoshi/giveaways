@@ -4,9 +4,11 @@ import {computed, nextTick, ref} from "vue";
 import {PopoverButton} from "@headlessui/vue";
 import {ChevronDoubleDownIcon} from "@heroicons/vue/24/solid";
 import {Link as InertiaLink, Link, usePage} from "@inertiajs/vue3";
+import {breakpointsTailwind, useBreakpoints} from "@vueuse/core";
 import {
 	FaPowerOff,
 	HiSolidGift,
+	HiSolidPlusSm,
 	HiTicket,
 	LaUserPlusSolid,
 	MdSettingsOutlined,
@@ -16,11 +18,11 @@ import {
 import {useAccount, useDisconnect} from "use-wagmi";
 import {useI18n} from "vue-i18n";
 
+import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
 import Loading from "@/Components/Loading.vue";
 import SiteLogo from "@/Components/SiteLogo.vue";
 import VueIcon from "@/Components/VueIcon.vue";
 import DarkSwitch from "@/Layouts/AdminLayout/DarkSwitch.vue";
-import CreateButton from "@/Layouts/AppLayout/Header/CreateButton.vue";
 import SiteMenu from "@/Layouts/AppLayout/Header/SiteMenu.vue";
 import RegisterModal from "@/Pages/Auth/RegisterModal.vue";
 import ConnectModal from "@/Wagmi/ConnectModal.vue";
@@ -35,6 +37,7 @@ import TrustWalletIcon from "@/Wagmi/Icons/TrustWalletIcon.vue";
 import WalletConnectIcon from "@/Wagmi/Icons/WalletConnectIcon.vue";
 import Web3Menu from "@/Wagmi/Menu.vue";
 import Network from "@/Wagmi/Network.vue";
+
 const Icons = {
 	Injected: ChevronDoubleDownIcon,
 	MetaMask: MetamaskIcon,
@@ -47,6 +50,8 @@ const Icons = {
 	Ledger: LedgerIcon,
 };
 
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isSm = breakpoints.smaller("sm");
 const {init, SignIn} = useAuth();
 nextTick(init);
 const {disconnect} = useDisconnect();
@@ -131,7 +136,18 @@ defineProps({
 				<SiteMenu class="hidden lg:flex" />
 			</div>
 			<div class="flex flex-row items-center space-x-3">
-				<CreateButton />
+				<!--CreateButton /-->
+				<PrimaryButton
+					secondary
+					link
+					:href="route('giveaways.create')"
+				>
+					<VueIcon
+						class="w-6 h-6 -ml-2"
+						:icon="HiSolidPlusSm"
+					/>
+					<span v-if="!isSm">Create</span>
+				</PrimaryButton>
 				<Network />
 				<Web3Menu v-if="AuthCheck">
 					<template #profile>

@@ -1,71 +1,236 @@
 <script setup>
-import {BiWindowDash, HiSolidPlus, HiSolidX} from "oh-vue-icons/icons";
+import {computed, ref} from "vue";
 
-import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
+import {router} from "@inertiajs/vue3";
+import {debouncedWatch, useUrlSearchParams} from "@vueuse/core";
+import {HiSearch, HiSolidArrowUp, HiSolidCubeTransparent} from "oh-vue-icons/icons";
+
+import FormInput from "@/Components/FormInput.vue";
+import PaginationSquare from "@/Components/PaginationSquare.vue";
 import VueIcon from "@/Components/VueIcon.vue";
-import AppLayout from "@/Layouts/AppLayout.vue";
-import ProjectRow from "@/Pages/Projects/ProjectRow.vue";
+import DialogModal from "@/Jetstream/DialogModal.vue";
+import Layout from "@/Layouts/AppLayout.vue";
+import GiveAwayCard from "@/Pages/Giveaways/Index/GiveAwayCard.vue";
+import PopularEvents from "@/Pages/Projects/Index/PopularEvents.vue";
 defineProps({
-	projects: Array,
+	giveaways: Object,
+	popular: Array,
 });
+const params = useUrlSearchParams("history");
+debouncedWatch(
+	[() => params.search, () => params.by, () => params.order],
+	([searchBy, orderBy, orderDir]) => {
+		const search = searchBy === "" ? null : searchBy;
+		const by = orderBy === "" ? null : orderBy;
+		const order = orderDir === "" || orderDir === "latest" ? null : orderDir;
+		router.visit(window.route("giveaways.index", {search, by, order}), {
+			preserveScroll: true,
+		});
+	},
+	{debounce: 500},
+);
+const setLatest = () => {
+	params.by = !params.order ? (params.by === "oldest" ? null : "oldest") : null;
+	params.order = null;
+};
+const setPrize = () => {
+	params.by = params.order === "prize" ? (params.by === "oldest" ? null : "oldest") : null;
+	params.order = "prize";
+};
+const setWinners = () => {
+	params.by = params.order === "winners" ? (params.by === "oldest" ? null : "oldest") : null;
+	params.order = "winners";
+};
+const setJoined = () => {
+	params.by = params.order === "joined" ? (params.by === "oldest" ? null : "oldest") : null;
+	params.order = "joined";
+};
+const order = computed(() => params.order);
+const showHowItWorks = ref(false);
 </script>
+
 <template>
-	<AppLayout>
-		<div class="mt-8 mx-auto container">
-			<div class="mt-4 mb-6 flex flex-col sm:flex-row justify-between space-y-2 sm:space-y-0">
-				<div
-					v-if="projects?.data?.length ?? 0 === 0"
-					class="h-64 p-8 w-full border bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 rounded-sm flex items-center justify-center"
-				>
-					<div class="flex items-center flex-col">
-						<VueIcon
-							:icon="BiWindowDash"
-							class="w-16 h-16 mb-6 text-gray-300 dark:text-gray-600"
-						/>
-						<h3 class="text-gray-400 dark:text-gray-500 text-sm">
-							{{ $t("We could not find any GA-s that match your search") }}
-						</h3>
-						<p class="text-gray-400 dark:text-gray-500 text-sm">
-							{{ $t("You can reset your search or add the project to our system") }}
-						</p>
-						<div
-							class="flex flex-col mt-8 space-y-2 sm:space-y-0 sm:flex-row sm:space-x-2"
+	<Layout>
+		<main class="w-full relative container">
+			<div
+				class="grid relative grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
+			>
+				<div class="lg:col-span-2 mt-8">
+					<div class="grid sm:grid-cols-2 w-full mb-2 -mt-2">
+						<FormInput
+							class="max-w-xs"
+							input-classes="!pl-7"
+							placeholder="project name"
+							v-model="params.search"
+							size="xs"
 						>
-							<PrimaryButton secondary>
+							<template #lead>
 								<VueIcon
-									:icon="HiSolidX"
-									class="-ml-1 mr-2 w-4 h-4"
+									:icon="HiSearch"
+									class="w-4 h-4"
 								/>
-								{{ $t("Reset Search") }}
-							</PrimaryButton>
-							<PrimaryButton secondary>
+							</template>
+						</FormInput>
+						<div class="flex items-center justify-end space-x-2">
+							<a
+								class="text-xs font-semibold hover:underline"
+								href="#"
+								@click.prevent="showHowItWorks = !showHowItWorks"
+								>[ How it Works ]</a
+							><a
+								class="text-xs font-semibold hover:underline"
+								:class="{'text-emerald-500': !order}"
+								href="#"
+								@click.prevent="setLatest"
+								>[ Latest
 								<VueIcon
-									:icon="HiSolidPlus"
-									class="-ml-1 mr-2 w-4 h-4"
+									:icon="HiSolidArrowUp"
+									v-if="params.by === 'oldest' && !order"
+									class="w-3 h-3"
 								/>
-								{{ $t("Add Project") }}
-							</PrimaryButton>
-							<PrimaryButton secondary>
+								]</a
+							>
+							<a
+								class="text-xs font-semibold hover:underline"
+								href="#"
+								:class="{'text-emerald-500': order === 'prize'}"
+								@click.prevent="setPrize"
+								>[ Prize
 								<VueIcon
-									:icon="HiSolidPlus"
-									class="-ml-1 mr-2 w-4 h-4"
+									:icon="HiSolidArrowUp"
+									v-if="params.by === 'oldest' && order === 'prize'"
+									class="w-3 h-3"
+								/>]</a
+							>
+							<a
+								class="text-xs font-semibold hover:underline"
+								href="#"
+								:class="{'text-emerald-500': order === 'winners'}"
+								@click.prevent="setWinners"
+								>[ Winners
+								<VueIcon
+									:icon="HiSolidArrowUp"
+									v-if="params.by === 'oldest' && order === 'winners'"
+									class="w-3 h-3"
 								/>
-								{{ $t("Add Give away") }}
-							</PrimaryButton>
+								]</a
+							>
+							<a
+								class="text-xs font-semibold hover:underline"
+								:class="{'text-emerald-500': order === 'joined'}"
+								@click.prevent="setJoined"
+								href="#"
+								>[ Joined
+								<VueIcon
+									:icon="HiSolidArrowUp"
+									v-if="params.by === 'oldest' && order === 'joined'"
+									class="w-3 h-3"
+								/>
+								]</a
+							>
+						</div>
+					</div>
+					<div
+						v-if="giveaways.data?.length"
+						class="grid gap-y-3 w-full"
+					>
+						<GiveAwayCard
+							v-for="giveaway in giveaways.data"
+							:key="giveaway.id"
+							:giveaway="giveaway"
+						/>
+						<PaginationSquare :meta="giveaways.meta" />
+					</div>
+					<div
+						v-else
+						class="flex shadow-sm items-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-md justify-center w-full h-64"
+					>
+						<div class="flex flex-col items-center">
+							<VueIcon
+								class="w-12 h-12 text-gray-400"
+								:icon="HiSolidCubeTransparent"
+							/>
+							<div class="text-gray-400 text-2xl font-semibold">
+								{{ $t("No Giveaways found") }}
+							</div>
+							<p class="mt-5">
+								If you need
+								<strong class="text-emerald-500">to host your giveaway</strong>
+							</p>
+							<p class="mt-1">
+								Please contact our
+								<a
+									target="_blank"
+									class="text-sky-600 dark:text-sky-500 hover:text-sky-800 dark:hover:text-sky-400"
+									href="https://t.me/betnfinance"
+									>Telegram</a
+								>
+								for more information
+							</p>
 						</div>
 					</div>
 				</div>
-				<div
-					v-else
-					class="grid 2xl:grid-cols-4 xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4"
-				>
-					<ProjectRow
-						v-for="project in projects?.data ?? []"
-						:key="project.id"
-						:project="project"
-					/>
+				<div class="dark:bg-gray-800 h-[calc(100vh-40px)] bg-white/90 sticky top-16">
+					<div
+						class="bg-gray-300/40 dark:bg-gray-700/40 text-gray-900 dark:text-white p-3 text-sm font-semibold"
+					>
+						{{ $t("Top Projects to follow") }}
+					</div>
+					<PopularEvents :projects="popular" />
 				</div>
 			</div>
-		</div>
-	</AppLayout>
+		</main>
+		<DialogModal
+			:show="showHowItWorks"
+			@close="showHowItWorks = false"
+			closeable
+		>
+			<template #title> How it works </template>
+			<template #content>
+				<ul class="list-disc list-inside">
+					<li>{{ $t("You will perform a few tasks in order to join the giveaway") }}</li>
+					<li>
+						{{
+							$t(
+								"The tasks include following the project on social media or contributing to the project.",
+							)
+						}}
+					</li>
+					<li>
+						{{
+							$t(
+								"After the giveaway ends, sleep finance will select a winner based on the giveaway criterion",
+							)
+						}}
+					</li>
+					<li>
+						{{
+							$t(
+								"Winners will have to claim the prize from the prize contract. You will need gas to do so.",
+							)
+						}}
+					</li>
+					<li>
+						{{
+							$t(
+								"If you dont win, you can still claim the sleep tokens you earned from participation.",
+							)
+						}}
+					</li>
+					<li>
+						{{
+							$t(
+								"Sleep tokens will be available to withdraw from all your quests, but after withdraw, you cannot pump giveaway again.",
+							)
+						}}
+					</li>
+					<li>
+						{{
+							"Sleep finance does not endorse any of the projects listed here, DYOR before investing or paying for anything."
+						}}.
+					</li>
+				</ul>
+			</template>
+		</DialogModal>
+	</Layout>
 </template>

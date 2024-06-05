@@ -24,6 +24,46 @@ use SWeb3\Utils;
 class QuestersController extends Controller
 {
 
+
+    /**
+     * Display the specified resource.
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function sleep(Request $request)
+    {
+        $query = Quester::query()
+            ->where('user_id', $request->user()->id)
+            ->whereNotNull('completed_at')
+            ->with([
+                'user.account',
+                'giveaway.project.logo'
+            ]);
+        $questers = $query->clone()->latest()->take(100)->get();
+        $signed = $query->whereNull('sleep_hash')
+            ->whereNotNull('sleep_signature')
+            ->latest()
+            ->take(100)
+            ->get()
+            ->unique('sleep_signature');
+        return Inertia::render('Questers/Sleep', [
+            'total' => fn () => Quester::query()
+                ->where('user_id', $request->user()->id)
+                ->sum('sleep'),
+            'available' => fn () => Quester::query()
+                ->where('user_id', $request->user()->id)
+                ->whereNull('sleep_signature')
+                ->whereNotNull('completed_at')
+                ->whereNotNull('sleep')
+                ->where('sleep', '>=', 0)
+                ->sum('sleep'),
+            'questers' => fn () =>  QuesterResource::collection($questers),
+            'signed' => fn () =>  QuesterResource::collection($signed),
+            'prizeClaim' => json_decode(\File::get(resource_path('js/abi/SleepClaim.json')), true)
+
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -35,12 +75,16 @@ class QuestersController extends Controller
     public function pump(Request $request, Quester $quester)
     {
         $this->authorize('update', $quester);
+        if ($quester->sleep_signature) {
+            throw ValidationException::withMessages(['code' => 'You already claimed your sleep tokens']);
+        }
         if ($quester->last_pump_at > now()->subHour()) {
             throw ValidationException::withMessages(['code' => __('You next pump is in :minutes minutes', ['minutes' => $quester->last_pump_at->addHour()->diffInMinutes(now())])]);
         }
         if (!$quester->completed_at) {
             throw ValidationException::withMessages(['code' => 'Complete all tasks before pumping!']);
         }
+
         $quester->pump += 1;
         $quester->sleep += 100;
         $quester->last_pump_at = now();
@@ -61,7 +105,7 @@ class QuestersController extends Controller
     {
         $this->authorize('update', $quester);
         if (!$quester->completed_at) {
-            return ['error' => 'Complete all tasks before pumping!'];
+            return ['error' => 'Complete all tasks before claiming!'];
         }
         if ($quester->status == QuesterStatus::CLAIMED) {
             return ['error' => 'You already claimed this prize'];
@@ -106,6 +150,79 @@ class QuestersController extends Controller
         $quester->save();
         return  $quester;
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function claimSleep(Request $request)
+    {
+        $query = Quester::query()
+            ->where('user_id', $request->user()->id)
+            ->whereNull('sleep_signature')
+            ->whereNotNull('sleep')
+            ->where('sleep', '>=', 0)
+            ->whereNotNull('completed_at');
+        $quester =  $query->clone()->with(['giveaway'])->first();
+        $total =  $query->clone()->sum('sleep');
+        if ($total == 0) return ['error' => 'Nothing to claim'];
+        $address = Utils::toChecksumAddress($request->address);
+        if (!$request->user()->accounts()->where('address', $address)->exists())
+            return ['error' => 'Invalid or unregistered address!'];
+        $prizeClaim = json_decode(\File::get(resource_path('js/abi/SleepClaim.json')), true);
+        $contract =  $prizeClaim['addresses'][$quester->giveaway->chainId];
+        $wei = Web3Utils::toSatoshi($total, 18);
+        $uuid = Str::uuid();
+        $prizeInfo = [
+            'to' =>  $address,
+            'amount' => $wei,
+            'uuid' => $uuid->getInteger()->toString(),
+            'name' => "PrizeClaim", // embedded in contract
+            'contract' => $contract,
+            'chainId' => $quester->giveaway->chainId,
+            'version' => "1",
+            'pvk' => config('app.pvk'),
+        ];
+        $prize = new Prize($prizeInfo);
+        $signature = $prize->getSignature();
+        $query->clone()->update([
+            'sleep_claim' => [
+                'to' =>  $address,
+                'amount' => $wei,
+                'uuid' => $uuid->getInteger()
+            ],
+            'sleep_signature' => $signature
+        ]);
+        $quester = Quester::query()
+            ->where('sleep_signature', $signature)
+            ->first();
+        return  $quester;
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function claimedSleep(Request $request, Quester $quester)
+    {
+        $this->authorize('update', $quester);
+        Quester::query()
+            ->where('user_id', $request->user()->id)
+            ->where('sleep_signature', $quester->sleep_signature)
+            ->update([
+                'sleep_hash' => $request->txhash,
+                'sleep_claimed_at' => now()
+            ]);
+        return  back();
+    }
+
     /**
      * Update the specified resource in storage.
      *

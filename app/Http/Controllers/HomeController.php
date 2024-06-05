@@ -20,46 +20,44 @@ class HomeController extends Controller
     {
         return Inertia::render('Home', [
             // projects
-            'projects' => function () use ($request) {
-                $projects = Project::query()->withSum([
-                    'giveaways as totalPrize' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('sleep_balance', '>=', 0)
-                ], 'prize')
-                    ->withCount(['questers as totalParticipants'])
+            'popular' => function () use ($request) {
+                $list = Project::with(['logo'])
+                    ->withCount([
+                        'questers as followers',
+                        'giveaways as totalGiveaways',
+                        'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
+                    ])
+                    ->withSum('giveaways as sleep', 'sleep')
+                    ->withSum('giveaways as totalPrize', 'fee')
+                    ->latest()
                     ->take(10)
                     ->get();
-                return  ResourcesProject::collection($projects);
+                return ResourcesProject::collection($list);
             },
             // giveaways
             'giveaways' =>  function () use ($request) {
                 $keyword = $request->get('search');
-                $q = $request->get('q');
+                $order = $request->get('order', 'created');
+                $by = $request->get('by', 'latest');
                 $perPage = 25;
-                $query =  Giveaway::query()
-                    ->with([
-                        'project.logo'
-                    ])
-                    ->withCount(['questers as totalParticipants']);
-                if (auth()->check()) {
-                    $user = $request->user();
-                    $query->withExists([
-                        'questers as quested' => fn (Builder $q) => $q->where('user_id', $user->id),
-                    ]);
-                    if ($q == 'mine') $query->whereHas('project', fn (Builder $query) => $query->where('user_id', $user->id));
-                }
+                $query = Giveaway::with(['project.logo'])
+                    ->withCount('questers as totalParticipants');
                 if (!empty($keyword)) {
-                    $query->whereHas('project', function (Builder $query) use ($keyword) {
-                        $query->orWhere('name', 'LIKE', "%$keyword%")
-                            ->orWhere('description', 'LIKE', "%$keyword%");
-                    });
+                    $query->whereHas('project', fn (Builder $q) => $q->where('name', 'LIKE', "%$keyword%")->where('description', 'LIKE', "%$keyword%"));
                 }
-                match ($q) {
-                    'top' => $query->latest('prize'),
-                    'sleep' => $query->latest('sleep'),
-                    'popular' => $query->latest('totalParticipants'),
-                    default => $query->latest()
+                $orderColumn = match ($order) {
+                    'prize' => 'prize',
+                    'winners' => 'num_winners',
+                    'joined' => 'totalParticipants',
+                    default => 'created_at',
                 };
-                $giveaways = $query->paginate($perPage);
-                return ResourcesGiveaway::collection($giveaways);
+                if ($by == 'oldest') {
+                    $query->oldest($orderColumn);
+                } else {
+                    $query->latest($orderColumn);
+                }
+                $giveawaysItems = $query->paginate($perPage);
+                return ResourcesGiveaway::collection($giveawaysItems);
             }
         ]);
     }

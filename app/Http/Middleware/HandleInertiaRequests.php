@@ -69,6 +69,7 @@ class HandleInertiaRequests extends Middleware
             'ref' =>  $user?->referral ?? $request->cookie('referral') ?? '0x1c3cAB3A544c06306e6934902474dE0d88709f96',
             'user' => $user ? new UserResource($user) : null,
             'locale' => App::getLocale(),
+            'sleepChainId' => config('app.sleepChainId'),
             'chainId' => $request->session()->get('chainId', 56),
             'coinId' => $request->session()->get('coinId', null),
             'coin' => fn () => Coin::find($request->session()->get('coinId', 2)),

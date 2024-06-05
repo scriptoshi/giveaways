@@ -34,7 +34,7 @@ defineEmits(["verify"]);
 					:class="{'text-emerald-500': quest.complete}"
 					class="text-sm"
 				>
-					{{ $t("Join @{name} server on discord", {name: giveaway.project.name}) }}
+					{{ $t("Join {name} server on discord", {name: `@${giveaway.project.name}`}) }}
 				</h3>
 			</div>
 		</div>

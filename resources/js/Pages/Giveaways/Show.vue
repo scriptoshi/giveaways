@@ -240,7 +240,7 @@ const type = computed(() => types[props.giveaway.type]);
 								link
 								:href="route('giveaways.edit', {giveaway: giveaway.uuid})"
 							>
-								Edit Giveaway</PrimaryButton
+								{{ $t("Edit Giveaway") }}</PrimaryButton
 							>
 							<PrimaryButton
 								class="!py-1 !text-xs uppercase"
@@ -248,7 +248,7 @@ const type = computed(() => types[props.giveaway.type]);
 								link
 								:href="route('projects.edit', {project: giveaway.project.uuid})"
 							>
-								Edit Project</PrimaryButton
+								{{ $t("Edit Project") }}</PrimaryButton
 							>
 						</div>
 					</div>
@@ -342,7 +342,7 @@ const type = computed(() => types[props.giveaway.type]);
 										v-if="quester?.isComplete"
 										class="text-emerald-600"
 									>
-										You are Queued for the Draw
+										{{ $t("You are Queued for the Draw") }}
 									</p>
 								</div>
 								<div class="border"></div>
@@ -362,15 +362,18 @@ const type = computed(() => types[props.giveaway.type]);
 								</ConnectWalletLink>
 								<PrimaryButton
 									secondary
+									link
+									:href="route('questers.sleep')"
 									v-if="quester?.isComplete"
 									class="!py-1 !px-2 !text-emerald-500"
-									>CLAIM {{ quester?.sleep * 1 }} SLEEP
+									>{{ $t("CLAIM") }} {{ quester?.sleep * 1 }} SLEEP
 								</PrimaryButton>
 								<PrimaryButton
 									secondary
 									v-else
 									class="!py-1 !px-2"
-									>{{
+									>{{ $t("EARNED") }}
+									{{
 										quester?.sleep
 											? quester?.sleep * 1
 											: useBillions(giveaway.sleep)
@@ -389,24 +392,13 @@ const type = computed(() => types[props.giveaway.type]);
 						<div class="border rounded-sm dark:border-gray-600 p-4">
 							<div class="flex flex-col gap-3 lg:flex-row justify-between">
 								<div class="flex items-center justify-between space-x-2">
-									<h3>Reward</h3>
+									<h3>{{ $t("Reward") }}</h3>
 									<div
 										class="rounded-2xl border dark:border-gray-700 px-3 py-1 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-100 text-md font-Walsheim-Bold"
 									>
 										{{ giveaway.num_winners - giveaway.num_claimed }} /
 										{{ giveaway.num_winners }}
 									</div>
-								</div>
-								<div
-									v-if="false"
-									class="rounded-sm border dark:border-gray-700 px-3 py-1 text-gray-800 dark:text-gray-100 text-md font-Walsheim-Bold"
-								>
-									<VueIcon
-										class="w-5 h-5"
-										:icon="HiSolidGift"
-									/>
-
-									Raffle
 								</div>
 								<a
 									v-tippy="type.info"
@@ -425,7 +417,9 @@ const type = computed(() => types[props.giveaway.type]);
 
 							<WinningInfoBox :giveaway="giveaway" />
 							<div class="mt-8">
-								<p v-if="quester?.status === 'claimed'">You claimed your prize</p>
+								<p v-if="quester?.status === 'claimed'">
+									{{ $t("You claimed your prize") }}
+								</p>
 								<TxHash
 									v-if="quester?.comment"
 									:txhash="quester?.comment"
