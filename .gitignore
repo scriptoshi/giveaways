@@ -1,3 +1,7 @@
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
 /node_modules
 /public/build
 /public/hot
