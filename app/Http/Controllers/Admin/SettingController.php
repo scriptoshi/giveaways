@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Chain as ResourcesChain;
-use App\Http\Resources\Factory as ResourcesFactory;
+
 use App\Models\Chain;
-use App\Models\Factory;
 use Artisan;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Jackiedo\DotenvEditor\Facades\DotenvEditor;
+
 use Storage;
 
 class SettingController extends Controller
@@ -129,7 +127,7 @@ class SettingController extends Controller
             'PINATA_API_KEY' => config('services.pinata.api_key'),
             'PINATA_API_SECRET' => config('services.pinata.secret_key'),
         ];
-        $editor = DotenvEditor::load();
+        $editor = (object)[]; //DotenvEditor::load();
         foreach ($keys as $key => $default) {
             if ($request->has($key)) {
                 if ($key === 'LOGO') {

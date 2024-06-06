@@ -180,7 +180,7 @@ class GiveawaysController extends Controller
         $giveaway->type = $request->type;
         $giveaway->draw_size = 100;
         $giveaway->live = false;
-        $giveaway->paid = $amount;
+        $giveaway->paid = $amount ?? 0;
         $giveaway->status = $status;
         $giveaway->chainId = $request->chainId;
         $giveaway->account = $request->account;
