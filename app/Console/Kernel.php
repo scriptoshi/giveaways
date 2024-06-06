@@ -16,12 +16,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('cache:prune-stale-tags')->hourly();
-        $schedule->command('app:update-twitter-connections')->twiceDaily(1, 13);
-        $schedule->command('app:giveaway-status')->everyFourMinutes();
-        //$schedule->command('etherscan:update')->everyThirtyMinutes();
-        //$schedule->command('update:galxemints')->everyFifteenMinutes();
-        //$schedule->command('leader:board')->hourly();
-        //$schedule->command('nftscan:mints')->everyThirtyMinutes();
+        $schedule->command('app:giveaway-status')->everyFiveMinutes();
+        $schedule->command('coinlayer:prices')->hourly();
+        $schedule->command('app:update-launchpads')->everyTenMinutes();
+        $schedule->command('site:map')->daily();
     }
 
     /**

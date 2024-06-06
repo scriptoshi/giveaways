@@ -55,7 +55,16 @@ const showHowItWorks = ref(false);
 			<div
 				class="grid relative grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
 			>
-				<div class="lg:col-span-2 mt-8">
+				<div class="lg:col-span-3 mt-4">
+					<h1 class="text-base">Sleep Finance Giveaways</h1>
+					<p>
+						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
+						done. Prize giveaway is decentralized and instant!. If you dont win, no
+						worries, we dont give XPS, we give you sleep tokens. withdraw your sleep
+						tokens and trade theme for USDT.
+					</p>
+				</div>
+				<div class="lg:col-span-2 mt-4">
 					<div class="grid sm:grid-cols-2 w-full mb-2 -mt-2">
 						<FormInput
 							class="max-w-xs"
@@ -178,6 +187,44 @@ const showHowItWorks = ref(false);
 					</div>
 					<PopularEvents :projects="popular" />
 				</div>
+			</div>
+			<div>
+				<h3 class="text-sm">What is a crypto giveaway</h3>
+				<p>
+					A Crypto giveaway or Crypto quest is when projects provide crypto rewards and
+					prizes to users who complete simple social tasks. These tasks can include
+					following accounts, sharing posts, or joining groups. Giveaways provide a risk
+					free way for users to earn some crypto without investing or spending.
+				</p>
+				<h3 class="text-sm">How can you join a giveaway?</h3>
+				<p>
+					Basically, joining a crypto giveway will require you to have an account on
+					twitter, telegram and discord. Find the giveway on sleepfinance, and enroll by
+					folling the project. After the giveaway ends and you are selected , you will
+					claim your prize.
+				</p>
+				<h3 class="text-sm">How can I avoid giveaway/ quest scams?</h3>
+				<ul>
+					<li>Dont try to claim giveaways from unknown projects.</li>
+					<li>Ensure the claim contract is verified on etherscan.</li>
+					<li>Never accept to approve any action in your wallet during claims</li>
+					<li>Ensure the address claiming giveaways has no valuable assets</li>
+					<li>
+						Only participate in giveways on sleep finance. Sleep finance only hosts USDT
+						giveaways
+					</li>
+				</ul>
+				<h3 class="text-sm">How long does it take to complete giveaways quests or tasks?</h3>
+				<ul>
+					<li>Dont try to claim giveaways from unknown projects.</li>
+					<li>Ensure the claim contract is verified on etherscan.</li>
+					<li>Never accept to approve any action in your wallet during claims</li>
+					<li>Ensure the address claiming giveaways has no valuable assets</li>
+					<li>
+						Only participate in giveways on sleep finance. Sleep finance only hosts USDT
+						giveaways
+					</li>
+				</ul>
 			</div>
 		</main>
 		<DialogModal

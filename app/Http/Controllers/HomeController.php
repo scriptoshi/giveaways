@@ -6,6 +6,7 @@ use App;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Giveaway as ResourcesGiveaway;
 use App\Http\Resources\Project as ResourcesProject;
+use App\Http\Tags\Meta;
 use App\Models\Giveaway;
 use App\Models\Project;
 use Inertia\Inertia;
@@ -18,6 +19,9 @@ class HomeController extends Controller
 
     public function home(Request $request)
     {
+        Meta::addMeta('title', __('Sleep Finance Giveways'));
+        Meta::addMeta('keywords', __('crypto giveaway, crypto quest, crypto tasks, campaigns, quests, crypto, prize fair launch, sleep tokens, boost tokens'));
+        Meta::addMeta('description', __('Dive into the latest crypto quests  and win crypto giveaways at Sleep Finance. Be a part of our community and discover the latest projects that a looking for you. Start your journey into the crypto verse without breakings a sweat!"'));
         return Inertia::render('Home', [
             // projects
             'popular' => function () use ($request) {

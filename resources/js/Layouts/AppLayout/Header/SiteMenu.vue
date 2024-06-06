@@ -5,10 +5,10 @@ import {Link} from "@inertiajs/vue3";
 import {uid} from "uid";
 
 const menus = reactive([
-	{uid: uid(), name: "Docs", url: "https://docs.sleep.finance", route: null},
 	{uid: uid(), name: "Give aways", url: null, route: "giveaways.index", current: "giveaways.*"},
 	// {uid: uid(), name: "Services", url: null, route: "services.index"},
 	{uid: uid(), name: "Projects", url: null, route: "projects.index", current: "projects.*"},
+	{uid: uid(), name: "Docs", url: "https://docs.sleep.finance", route: null},
 ]);
 </script>
 <template>

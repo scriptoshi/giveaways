@@ -18,6 +18,7 @@ use App\Http\Resources\Giveaway as GiveawayResource;
 use App\Http\Resources\Launchpad;
 use App\Http\Resources\Quest as ResourcesQuest;
 use App\Http\Resources\Quester as QuesterResource;
+use App\Http\Tags\Meta;
 use App\Models\Coin;
 use App\Models\Giveaway;
 use Inertia\Inertia;
@@ -65,6 +66,9 @@ class GiveawaysController extends Controller
             $query->latest($orderColumn);
         }
         $giveawaysItems = $query->paginate($perPage);
+        Meta::addMeta('title', __('Latest Giveaways'));
+        Meta::addMeta('keywords', __('audited crypto giveaway, usdt giveaway, crypto giveaway reviews and comments, questing campaigns, Like, follow retweet giveaway, simple giveaway tasks, sleep, tokens'));
+        Meta::addMeta('description', __('Grab the newests crypto giveaways on sleepfinance.  Sleep finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
         return Inertia::render('Giveaways/Index', [
             'giveaways' => GiveawayResource::collection($giveawaysItems),
             'popular' => function () use ($request) {
@@ -249,11 +253,15 @@ class GiveawaysController extends Controller
      */
     public function show(Request $request, Giveaway  $giveaway)
     {
+
         $giveaway->load([
             'project.logo',
             'questers' => fn (HasMany $q) => $q->limit(10),
         ]);
-        $giveaway->loadCount(['questers as totalParticipants']);
+        $giveaway->loadCount([
+            'questers as totalParticipants',
+            'quests as totalTasks'
+        ]);
         $select = ["*", \DB::raw("RANK() OVER (ORDER BY sleep DESC) as 'rank'")];
         $quests = auth()->check()
             ?  $giveaway->quests()->withExists([
@@ -287,6 +295,20 @@ class GiveawaysController extends Controller
         };
         $questers = $query->with('user.account')->take(5)->get();
         $launchpad = $giveaway->project->launchpad()->first();
+        $summary = value(function () use ($giveaway) {
+            $total = $giveaway->prize * $giveaway->num_winners * 2;
+            $tasks = $giveaway->totalTasks ?? 0;
+            return  "@{$giveaway->project->name} giveaway on sleepfinance. Total {$total} USDT for {$giveaway->num_winners} winners each taking {$giveaway->prize} USDT.  Only {$tasks} Tasks to join";
+        });
+        $title = value(function () use ($giveaway) {
+            $total = $giveaway->prize * $giveaway->num_winners * 2;
+            return  "{$total} USDT giveaway by @{$giveaway->project->name}";
+        });
+        $prize = $giveaway->prize * 1;
+        $sleep =  $giveaway->sleep * 1;
+        Meta::addMeta('title', $title);
+        Meta::addMeta('keywords', "$prize USDT, $sleep SLEEP, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, sleep.finance'));
+        Meta::addMeta('description', $summary);
         return Inertia::render('Giveaways/Show', [
             'giveaway' =>  new GiveawayResource($giveaway),
             'questers' =>   QuesterResource::collection($questers),
