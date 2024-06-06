@@ -39,4 +39,19 @@ enum QuestType: string
             default => app(TaskVerifier::class)
         };
     }
+
+    function min()
+    {
+        return match ($this) {
+            static::CONTRIBUTE => 100,
+            static::TWITTER => 0,
+            static::TWEET => 50,
+            static::TELEGRAM => 0,
+            static::DISCORD => 0,
+            static::API => 50,
+            static::TOKEN => 200,
+            static::NFT => 200,
+            default => 100
+        };
+    }
 }

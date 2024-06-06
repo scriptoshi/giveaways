@@ -17,6 +17,7 @@ import {isAddress} from "@/Wagmi/utils/utils";
 const props = defineProps({
 	giveaway: Object,
 	quest: Object,
+	min: Number,
 });
 const chains = useChains();
 const form = useForm({
@@ -73,7 +74,8 @@ watch([name, symbol, decimals], ([name, symbol, decimals]) => {
 </script>
 <template>
 	<div
-		class="p-2 bg-white hover:bg-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 border rounded-sm border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600"
+		:class="giveaway.prize < min ? 'bg-gray-50 dark:bg-gray-800' : 'bg-white dark:bg-gray-900'"
+		class="p-2 hover:bg-gray-50 dark:hover:bg-gray-800 border rounded-sm border-gray-200 hover:border-gray-300 dark:border-gray-700 dark:hover:border-gray-600"
 	>
 		<div class="flex justify-between items-center">
 			<div class="flex items-center">
@@ -81,17 +83,29 @@ watch([name, symbol, decimals], ([name, symbol, decimals]) => {
 					class="w-10 h-10 mr-4 text-emerald-500"
 					:icon="MdGeneratingtokensOutlined"
 				/>
-				<h3 class="text-sm">
-					{{ $t("ERC20 Token Balance") }}
-					<span
-						v-if="!form.live || !questId"
-						class="bg-gray-500 text-xs text-white px-3 py-0.5 ml-2 rounded-xl"
-						>{{ $t("Off") }}</span
+				<div>
+					<h3 class="text-sm">
+						{{ $t("ERC20 Token Balance") }}
+						<span
+							v-if="!form.live || !questId"
+							class="bg-gray-500 text-xs text-white px-3 py-0.5 ml-2 rounded-xl"
+							>{{ $t("Off") }}</span
+						>
+					</h3>
+					<p
+						v-if="giveaway.prize < min"
+						class="text-xs text-red-500"
 					>
-				</h3>
+						{{ $t("Minimum prize amount is ") }} {{ min }} USDT
+					</p>
+				</div>
 			</div>
 			<div class="flex items-center justify-end space-x-3">
-				<Switch v-model="form.live">{{ $t("Enable") }}</Switch>
+				<Switch
+					:disabled="giveaway.prize < min"
+					v-model="form.live"
+					>{{ $t("Enable") }}</Switch
+				>
 				<PrimaryButton
 					class="!p-1"
 					secondary

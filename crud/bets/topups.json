@@ -1,0 +1,61 @@
+{
+    "fields": [
+        {
+            "name": "giveaway_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:giveaways,id"
+        },
+        {
+            "name": "paid",
+            "type": "decimal:12,4|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "paid_before",
+            "type": "decimal:12,4|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "prize_before",
+            "type": "decimal:12,4|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "fee_before",
+            "type": "decimal:12,4|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "sleep_before",
+            "type": "decimal:24,16|nullable|default:0",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "hash",
+            "type": "string|nullable",
+            "rules": "nullable|string"
+        },
+        {
+            "name": "num_winners",
+            "type": "integer|nullable",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "num_winners_before",
+            "type": "integer|nullable",
+            "rules": "required|numeric"
+        },
+        {
+            "name": "status",
+            "type": "string|default:'unpaid'",
+            "rules": "required|string"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "giveaway",
+            "type": "belongsTo",
+            "class": "Giveaway|giveaway_id|id"
+        }
+    ]
+}

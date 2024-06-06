@@ -24,6 +24,7 @@ defineProps({
 	token: Object,
 	api: Object,
 	nft: Object,
+	mins: Object,
 });
 </script>
 <template>
@@ -58,36 +59,44 @@ defineProps({
 					<div class="max-w-3xl mx-auto grid gap-6">
 						<TwitterFollow
 							:quest="twitter"
+							:min="mins.twitter"
 							:giveaway="giveaway"
 						/>
 						<TweetTask
 							:quest="tweet"
 							:giveaway="giveaway"
+							:min="mins.tweet"
 						/>
 						<JoinTelegramGroup
 							:quest="telegram"
+							:min="mins.telegram"
 							:giveaway="giveaway"
 						/>
 						<JoinDiscord
 							:quest="discord"
+							:min="mins.discord"
 							:giveaway="giveaway"
 						/>
 						<ContributeCard
 							:launchpad="launchpad"
 							:quest="contribute"
+							:min="mins.contribute"
 							:giveaway="giveaway"
 						/>
 
 						<TokenBalance
 							:quest="token"
+							:min="mins.token"
 							:giveaway="giveaway"
 						/>
 						<NftBalance
 							:quest="nft"
+							:min="mins.nft"
 							:giveaway="giveaway"
 						/>
 						<ApiTask
 							:quest="api"
+							:min="mins.api"
 							:giveaway="giveaway"
 						/>
 

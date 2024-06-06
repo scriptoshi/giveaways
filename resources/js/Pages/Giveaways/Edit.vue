@@ -11,14 +11,17 @@ import {DatePicker} from "v-calendar";
 import {useI18n} from "vue-i18n";
 
 import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
+import CollapseTransition from "@/Components/CollapseTransition.vue";
 import FormInput from "@/Components/FormInput.vue";
 import Loading from "@/Components/Loading.vue";
 import RadioCards from "@/Components/RadioCards.vue";
+import Switch from "@/Components/Switch.vue";
 import VueIcon from "@/Components/VueIcon.vue";
 import JetConfirmationModal from "@/Jetstream/ConfirmationModal.vue";
 import JetDangerButton from "@/Jetstream/DangerButton.vue";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton.vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
+import TopUp from "@/Pages/Giveaways/Edit/TopUp.vue";
 const props = defineProps({
 	hasProject: Boolean,
 	prizeClaim: Object,
@@ -88,6 +91,7 @@ const endform = useForm({
 const endGiveWay = () => {
 	endform.post(window.route("giveaways.stop", {giveaway: props.giveaway.uuid}));
 };
+const top = ref(false);
 </script>
 <template>
 	<AppLayout>
@@ -233,25 +237,46 @@ const endGiveWay = () => {
 								/>
 							</div>
 						</div>
-						<div class="mt-3 w-full flex space-x-3 items-center justify-end">
-							<PrimaryButton
-								@click.prevent="stopGiveAway = true"
-								error
+						<CollapseTransition>
+							<TopUp
+								v-show="top"
+								:prize-claim="prizeClaim"
+								:giveaway="giveaway"
+							/>
+						</CollapseTransition>
+						<CollapseTransition>
+							<div
+								v-show="top"
+								class="mt-3 w-full flex space-x-3 items-center justify-end"
 							>
-								STOP GIVEAWAY
-							</PrimaryButton>
-							<PrimaryButton
-								@click.prevent="draft"
-								secondary
-								:disabled="form.processing"
+								<Switch v-model="top"> Adjust Prize</Switch>
+							</div>
+						</CollapseTransition>
+						<CollapseTransition>
+							<div
+								v-show="!top"
+								class="mt-3 w-full flex space-x-3 items-center justify-end"
 							>
-								<Loading
-									class="mr-2 -ml-1"
-									v-if="form.processing"
-								/>
-								{{ $t("Update Giveaway") }}
-							</PrimaryButton>
-						</div>
+								<Switch v-model="top"> Adjust Prize</Switch>
+								<PrimaryButton
+									@click.prevent="stopGiveAway = true"
+									error
+								>
+									STOP GIVEAWAY
+								</PrimaryButton>
+								<PrimaryButton
+									@click.prevent="draft"
+									secondary
+									:disabled="form.processing"
+								>
+									<Loading
+										class="mr-2 -ml-1"
+										v-if="form.processing"
+									/>
+									{{ $t("Update Giveaway") }}
+								</PrimaryButton>
+							</div>
+						</CollapseTransition>
 					</div>
 				</div>
 			</div>

@@ -25,11 +25,11 @@ class Giveaway extends JsonResource
             'period' => $this->period,
             'starts_at' => $this->starts_at,
             'ends_at' => $this->ends_at,
-            'prize' => $this->prize,
+            'prize' => $this->prize * 1,
             'totalPrize' => $this->prize * $this->num_winners * 2,
-            'fee' => $this->fee,
-            'sleep' => $this->sleep,
-            'sleep_balance' => $this->sleep_balance,
+            'fee' => $this->fee * 1,
+            'sleep' => $this->sleep * 1,
+            'sleep_balance' => $this->sleep_balance * 1,
             'symbol' => $this->symbol,
             'hash' => $this->hash,
             'status' => $this->status,
@@ -41,6 +41,8 @@ class Giveaway extends JsonResource
             'type' => $this->type,
             'draw_size' => $this->draw_size,
             'live' => $this->live,
+            'is_topup' => $this->is_topup,
+            'paid' => $this->paid * 1,
             'summary' => value(function () {
                 $total = $this->prize * $this->num_winners * 2;
                 $tasks = $this->totalTasks ?? 0;

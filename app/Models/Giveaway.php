@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use \App\Enums\Period;
 use \App\Enums\GiveawayType;
 use App\Traits\HasUuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -19,7 +18,6 @@ class Giveaway extends Model
     use SoftDeletes;
 
     use HasUuid;
-    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -44,6 +42,7 @@ class Giveaway extends Model
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
         'live' => 'boolean',
+        'is_topup' => 'boolean',
         'period' => Period::class,
         'type' => GiveawayType::class,
         'status' => GiveawayStatus::class,
@@ -57,6 +56,7 @@ class Giveaway extends Model
     protected $fillable = [
         'project_id',
         'uuid',
+        'topup_uuid',
         'slug',
         'brief',
         'duration',
@@ -77,7 +77,9 @@ class Giveaway extends Model
         'num_claimed',
         'type',
         'draw_size',
-        'live'
+        'live',
+        'is_topup',
+        'paid',
     ];
 
 
@@ -107,16 +109,24 @@ class Giveaway extends Model
     {
         return $this->hasManyThrough(Pump::class, Quester::class);
     }
-    /**
 
+    /**
      * Get the questers the giveaway Owns.
      */
     public function quests(): HasMany
     {
         return $this->hasMany(Quest::class, 'giveaway_id', 'id');
     }
-    /**
 
+    /**
+     * Get the topups the giveaway Owns.
+     */
+    public function topups(): HasMany
+    {
+        return $this->hasMany(Topup::class, 'giveaway_id', 'id');
+    }
+
+    /**
      * Get the questers the giveaway Owns.
      */
     public function tasks(): HasMany

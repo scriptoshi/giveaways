@@ -70,6 +70,11 @@ class QuestsController extends Controller
         $username = null;
         $data = null;
         $min = 0;
+        $questType = QuestType::from($request->type);
+        $isLive = $request->live;
+        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() < $giveaway->prize) {
+            $isLive = false;
+        }
         if ($request->type == 'discord') {
             $username =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($username);
@@ -88,6 +93,7 @@ class QuestsController extends Controller
             if (!$added) if (!$added) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
         }
         if (in_array($request->type, ['token', 'contribute'])) {
+            if ($isLive && $questType->min() < $giveaway->prize) $isLive = false;
             $min = $request->min;
         }
         if ($request->type == 'token') {
@@ -108,8 +114,8 @@ class QuestsController extends Controller
             'connection_id' => $connection?->id,
             'username' => $request->username,
             'groupId' => $username ?? $request->groupId ?? null,
-            'status' => $request->live ? QuestStatus::ACTIVE : QuestStatus::PENDING,
-            'live' => $request->live,
+            'status' => $isLive ? QuestStatus::ACTIVE : QuestStatus::PENDING,
+            'live' => $isLive,
             'data' => $data,
             'min' => $min,
             'sleep' => 500
@@ -124,6 +130,8 @@ class QuestsController extends Controller
      */
     public function update(Request $request, Quest $quest)
     {
+        $quest->load('giveaway');
+        $this->authorize('update', $quest);
         $request->validate([
             'username' => 'required|string',
             'live' => 'required|boolean',
@@ -159,6 +167,11 @@ class QuestsController extends Controller
         $username = null;
         $data = null;
         $min = 0;
+        $questType = QuestType::from($request->type);
+        $isLive = $request->live;
+        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() < $quest->giveaway->prize) {
+            $isLive = false;
+        }
         if ($request->type == 'discord') {
             $username =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($username);

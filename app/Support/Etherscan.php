@@ -15,6 +15,7 @@ use App\Models\Launchpad;
 use App\Models\Mint;
 use App\Models\Package;
 use App\Models\Ticket;
+use App\Models\Topup;
 use App\Models\User;
 use App\Web3\Utils as Web3Utils;
 use Cache;
@@ -171,6 +172,36 @@ class Etherscan
             $giveaway->status = GiveawayStatus::PAID;
             $giveaway->save();
         }
+    }
+
+    public static function updateTopupStatus(Topup $topup)
+    {
+        $giveaway = $topup->giveaway;
+        $prizeClaim = json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')), true);
+        $usdt = [
+            11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',
+            56 => '0x55d398326f99059fF775485246999027B3197955',
+        ];
+        $claimAddress = $prizeClaim['addresses'][$giveaway->chainId];
+        $tx = Etherscan::getTokenTransfer($giveaway->chainId, $usdt[(int) $giveaway->chainId], $topup->hash, $topup->account);
+        if (!isset($tx->to)) return;
+        if (Utils::toChecksumAddress($tx->to) != Utils::toChecksumAddress($claimAddress)) return back()->with('error', 'Invalid transaction hash');
+        $topup->paid = Web3Utils::toBTC($tx->value, $tx->tokenDecimal);
+        $topup->status = GiveawayStatus::PAID;
+        $topup->paid_before = $giveaway->paid;
+        $topup->prize_before = $giveaway->prize;
+        $topup->fee_before = $giveaway->fee;
+        $topup->sleep_before = $giveaway->sleep;
+        $topup->num_winners_before = $giveaway->num_winners;
+        $topup->save();
+        $sleepPrice = 1000;
+        $amount = $giveaway->paid + $topup->paid;
+        $giveaway->prize = $amount / ($topup->num_winners * 2);
+        $giveaway->fee =  $amount / 2;
+        $giveaway->sleep = $giveaway->fee * $sleepPrice;
+        $giveaway->num_winners = $topup->num_winners;
+        $giveaway->paid = $amount;
+        $giveaway->save();
     }
 
     public static function getTokenBalance($chainId, $contract, $address): string

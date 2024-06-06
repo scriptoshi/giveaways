@@ -176,6 +176,7 @@ class GiveawaysController extends Controller
         $giveaway->type = $request->type;
         $giveaway->draw_size = 100;
         $giveaway->live = false;
+        $giveaway->paid = $amount;
         $giveaway->status = $status;
         $giveaway->chainId = $request->chainId;
         $giveaway->account = $request->account;
@@ -357,7 +358,8 @@ class GiveawaysController extends Controller
         $giveaway->load(['project', 'quests']);
         $this->authorize('update', $giveaway->project);
         return Inertia::render('Giveaways/Edit', [
-            'giveaway' => new GiveawayResource($giveaway)
+            'giveaway' => new GiveawayResource($giveaway),
+            'prizeClaim' => json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')), true)
         ]);
     }
 
@@ -367,6 +369,7 @@ class GiveawaysController extends Controller
         if (!$quest) return null;
         return  new ResourcesQuest($quest);
     }
+
     /**
      * Show the form for editing the specified resource.
      * @param  int  $id
@@ -412,6 +415,7 @@ class GiveawaysController extends Controller
         ];
         $abi = json_decode(File::get(resource_path('js/abi/FairFactory.json')));
         return Inertia::render('Giveaways/Tasks', [
+            'mins' => collect(QuestType::cases())->mapWithKeys(fn (QuestType $q) => [$q->value => $q->min()]),
             'giveaway' => new GiveawayResource($giveaway),
             'twitter' => fn () => static::findQuest($quests, QuestType::TWITTER),
             'telegram' => fn () => static::findQuest($quests, QuestType::TELEGRAM),

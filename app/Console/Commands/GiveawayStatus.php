@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Giveaway;
 use Illuminate\Console\Command;
 use App\Enums\GiveawayStatus as GiveawayStatusEnum;
+use App\Models\Topup;
 use App\Support\Etherscan;
 
 class GiveawayStatus extends Command
@@ -28,10 +29,15 @@ class GiveawayStatus extends Command
      */
     public function handle()
     {
-        //
+        // hassle giveaways
         $pending = Giveaway::query()->where('status', GiveawayStatusEnum::UNPAID)->get();
         $pending->each(function (Giveaway $giveaway) {
             Etherscan::updateGiveAwayStatus($giveaway);
+        });
+        // hassle topups
+        $pendingTops = Topup::query()->where('status', GiveawayStatusEnum::UNPAID)->get();
+        $pendingTops->each(function (Topup $topup) {
+            Etherscan::updateTopupStatus($topup);
         });
     }
 }

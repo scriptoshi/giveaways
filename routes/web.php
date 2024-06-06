@@ -12,6 +12,7 @@ use App\Http\Controllers\QuestsController;
 use App\Http\Controllers\S3Controller;
 use App\Http\Controllers\SocialsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\TopupsController;
 use App\Http\Controllers\Web3Controller;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -183,3 +184,10 @@ Route::name('launchpads.')->controller(LaunchpadsController::class)->group(funct
 Route::name('contributions.')->controller(ContributionsController::class)->group(function () {
     Route::post('/contributions/store/{launchpad}', 'store')->name('store');
 });
+
+
+#topups
+Route::name('topups.')->controller(TopupsController::class)->group(function () {
+    Route::post('/topups/store/{giveaway}', 'store')->name('store');
+});
+#topups

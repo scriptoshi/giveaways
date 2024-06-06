@@ -13,6 +13,7 @@ import VueIcon from "@/Components/VueIcon.vue";
 const props = defineProps({
 	giveaway: Object,
 	quest: Object,
+	min: Number,
 });
 const form = useForm({
 	id: props.quest?.id ?? null,
