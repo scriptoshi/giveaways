@@ -1,35 +1,5 @@
 [
     {
-        "id": "1",
-        "name": "Admin",
-        "email": "ofuzak@gmail.com",
-        "email_verified_at": "2023-09-19 12:09:50",
-        "referral": "0x1c3cAB3A544c06306e6934902474dE0d88709f96",
-        "user_id": "1",
-        "provider": "MetaMask",
-        "address": "0x781a793bb5390bc7DA0879d9b626985D13c61501"
-    },
-    {
-        "id": "1",
-        "name": "Admin",
-        "email": "ofuzak@gmail.com",
-        "email_verified_at": "2023-09-19 12:09:50",
-        "referral": "0x1c3cAB3A544c06306e6934902474dE0d88709f96",
-        "user_id": "1",
-        "provider": "MetaMask",
-        "address": "0xae4Da149AebdEd6e0a93b0646f8cbA5A614FD6A4"
-    },
-    {
-        "id": "2",
-        "name": "Admin",
-        "email": "admin@sleep.finance",
-        "email_verified_at": "2023-09-17 21:22:13",
-        "referral": "0x1c3cAB3A544c06306e6934902474dE0d88709f96",
-        "user_id": "2",
-        "provider": "MetaMask",
-        "address": "0x91F708a8D27F2BCcCe8c00A5f812e59B1A5e48E6"
-    },
-    {
         "id": "5",
         "name": "bandit",
         "email": "0rahmawant0@gmail.com",
