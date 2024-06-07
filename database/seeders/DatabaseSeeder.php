@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ChainsTableSeeder::class);
         $this->call(CoinsTableSeeder::class);
         $this->call(BadgesTableSeeder::class);
-        $this->call(SleepUsersTableSeeder::class);
+        // $this->call(SleepUsersTableSeeder::class);
     }
 }
