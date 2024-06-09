@@ -15,6 +15,7 @@ class Telegram extends Verifier
             ->where('user_id', $task->user_id)
             ->where('provider', ConnectionProvider::TELEGRAM)
             ->first();
+        if (!$connection) return false;
         $groupName =  str(str($task->quest->username)->explode('/')->last())->explode('?')->first();
         return SupportTelegram::checkUserJoined($groupName, $connection->userId);
     }

@@ -83,8 +83,8 @@ const userNavigation = [
 		active: window.route().current("account.*"),
 	},
 	{
-		name: t("Accumulator Tickets"),
-		href: "#",
+		name: t("Withdraw Sleep"),
+		href: window.route("questers.sleep"),
 		icon: HiTicket,
 		active: false,
 	},
@@ -95,8 +95,8 @@ const userNavigation = [
 		active: false,
 	},
 	{
-		name: t("Your Farms"),
-		href: "#",
+		name: t("Your Giveaways"),
+		href: window.route("projects.mine"),
 		icon: RiAwardLine,
 		active: false,
 	},

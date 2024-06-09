@@ -40,8 +40,6 @@ Route::controller(HomeController::class)
         Route::get('/trending', 'trending')->name('home.trending');
         Route::get('/explore/{item?}', 'home')->name('explore');
     });
-Route::name('user.profile')
-    ->get('/@{project:slug}', [InfluencersController::class, 'show']);
 
 Route::name('socials.')->controller(SocialsController::class)
     ->group(function () {
@@ -108,6 +106,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::name('projects.')->controller(ProjectsController::class)->group(function () {
     Route::get('/projects', 'index')->name('index');
+    Route::get('/me', 'mine')->name('mine')->middleware(['auth:sanctum', 'verified']);
     Route::get('/@{project:slug}', 'show')->name('show');
     Route::get('/projects/create', 'create')->name('create');
     Route::post('projects/check-username', 'checkUsername')->name('check.username');
@@ -136,6 +135,9 @@ Route::name('giveaways.')->controller(GiveawaysController::class)->group(functio
     Route::get('/crypto-give-away/{giveaway:slug}', 'show')->name('show');
     Route::get('/crypto-give-aways/create', 'create')->name('create');
     Route::post('/giveaways/store', 'store')->name('store')->middleware(['auth:sanctum', 'verified']);
+    Route::post('/giveaways/code/{giveaway:uuid}', 'bonusCode')
+        ->name('bonus.code')
+        ->middleware(['auth:sanctum', 'verified']);;
     Route::post('/giveaways/messages/{giveaway:uuid}/{uuid?}', 'saveMessages')->name('messages.save')->middleware(['auth:sanctum', 'verified']);;
     Route::put('/giveaways/{giveaway:uuid}/update', 'update')->name('update')->middleware(['auth:sanctum', 'verified']);
     Route::put('/giveaways/{giveaway:uuid}/stop', 'stop')->name('stop')->middleware(['auth:sanctum', 'verified']);

@@ -58,7 +58,45 @@ const order = computed(() => params.order);
 
 <template>
 	<Layout>
-		<main class="w-full relative container">
+		<main
+			v-if="!project"
+			class="w-full relative container"
+		>
+			<div class="mx-auto mt-8 py-4 sm:py-6 md:py-12 container">
+				<div class="flex-1 lg:flex-[2] w-full relative">
+					<div
+						class="flex shadow-sm items-center border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 rounded-md justify-center w-full h-64"
+					>
+						<div class="flex flex-col items-center">
+							<VueIcon
+								class="w-12 h-12 text-gray-400"
+								:icon="HiSolidCubeTransparent"
+							/>
+							<div class="text-gray-400 text-2xl font-semibold">
+								{{ $t("It seems you havent created a project yet") }}
+							</div>
+							<p class="mt-2">
+								Create a giveaway
+								<strong class="text-emerald-500">to host your project</strong>
+							</p>
+							<div class="mt-5">
+								<PrimaryButton
+									link
+									:href="route('giveaways.create')"
+									secondary
+								>
+									Create a giveaway
+								</PrimaryButton>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<main
+			v-else
+			class="w-full relative container"
+		>
 			<div class="mx-auto mt-8 py-4 sm:py-6 md:py-12 container">
 				<div class="flex-1 lg:flex-[2] w-full relative">
 					<div class="flex items-center justify-between gap-2 ml-[20%] md:ml-[17%]">
@@ -306,7 +344,10 @@ const order = computed(() => params.order);
 					</div>
 				</div>
 				<div class="dark:bg-gray-800 h-[calc(100vh-40px)] bg-white/90 sticky top-16">
-					<BuyCard :launchpad="project.launchpad" />
+					<BuyCard
+						v-if="project.launchpad"
+						:launchpad="project.launchpad"
+					/>
 					<div
 						class="bg-gray-300/40 dark:bg-gray-700/40 text-gray-900 dark:text-white p-3 text-sm font-semibold"
 					>

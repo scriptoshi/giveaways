@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\GiveawayStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Giveaway as ResourcesGiveaway;
+use App\Http\Resources\PublicUser;
 use App\Http\Resources\User as ResourcesUser;
+use App\Models\Giveaway;
+use App\Models\Project;
 use App\Models\User;
+use App\Support\Utils;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 
@@ -68,25 +75,51 @@ class UsersController extends Controller
     function referrals(Request $request)
     {
         $perPage = 25;
-        $accounts = $request->user()->accounts->pluck('address');
-        $referralItems = User::with(['account'])
-            ->whereIn('referral', $accounts->all())
+        $request->user()->accounts()->whereNull('code')->update([
+            'code' => Utils::uniqidID(10)
+        ]);
+        $codes = $request->user()->accounts()->pluck('code');
+        $giveaways = Giveaway::query()
+            ->with('project')
+            /* ->whereHas('project', function (Builder $query) use ($codes) {
+                $query->whereIn('code', $codes->all());
+            })*/
             ->latest()
             ->paginate($perPage);
-        $referrals = ResourcesUser::collection($referralItems);
-        $counts  = User::whereIn('referral', $accounts->all())
-            ->groupBy('referral')
-            ->selectRaw('count(*) as total, referral')
+        $referrals = ResourcesGiveaway::collection($giveaways);
+        $counts  = Project::query()
+            ->whereIn('code', $codes->all())
+            ->groupBy('code')
+            ->selectRaw('count(*) as total, code')
             ->get();
-        $refLinks = $accounts->map(function ($account) use ($counts) {
-            $count = $counts->first(fn ($c) => $c->referral == $account);
+        $total = Project::query()
+            ->whereIn('code', $codes->all())
+            ->count();
+        $totalGiveways = Giveaway::query()
+            ->where('status', GiveawayStatus::PAID)
+            ->whereHas('project', function (Builder $query) use ($codes) {
+                $query->whereIn('code', $codes->all());
+            })->count();
+        $sumGiveways = Giveaway::query()
+            ->where('status', GiveawayStatus::PAID)
+            ->whereHas('project', function (Builder $query) use ($codes) {
+                $query->whereIn('code', $codes->all());
+            })->sum('paid');
+        $refLinks = $codes->map(function ($account) use ($counts) {
+            $count = $counts->first(fn ($c) => $c->code == $account);
             return [
-                'refLink' => route('home', ['r' => $account]),
-                'account' => $account,
+                'refLink' => route('home', ['bonus' => $account]),
+                'code' => $account,
                 'count' => $count?->total ?? 0,
             ];
         });
-        return Inertia::render('Referrals/Index', compact('referrals', 'refLinks'));
+        return Inertia::render('Referrals/Index', compact(
+            'referrals',
+            'refLinks',
+            'total',
+            'totalGiveways',
+            'sumGiveways',
+        ));
     }
 
     public function setChain(Request $request)

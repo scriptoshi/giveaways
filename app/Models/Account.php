@@ -41,4 +41,11 @@ class Account extends Model
         return $query->where('address', $account)
             ->exists();
     }
+
+    // Scopes
+    public static function scopeCodeExists(Builder $query, $code)
+    {
+        return $query->where('code', $code)
+            ->exists();
+    }
 }

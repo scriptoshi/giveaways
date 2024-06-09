@@ -19,6 +19,7 @@ use App\Http\Resources\Launchpad;
 use App\Http\Resources\Quest as ResourcesQuest;
 use App\Http\Resources\Quester as QuesterResource;
 use App\Http\Tags\Meta;
+use App\Models\Account;
 use App\Models\Coin;
 use App\Models\Giveaway;
 use Inertia\Inertia;
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
+use Illuminate\Validation\ValidationException;
 use Str;
 use SWeb3\Utils as SWeb3Utils;
 
@@ -94,6 +96,7 @@ class GiveawaysController extends Controller
                 if (!auth()->check()) return false;
                 return $request->user()->project()->exists();
             },
+            'usdtContracts' => config('app.usdt'),
             'prizeClaim' => fn () => json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')))
         ]);
     }
@@ -113,10 +116,7 @@ class GiveawaysController extends Controller
             return back()->with('error', 'Invalid transaction hash. Only BNB supported');
         }
         $prizeClaim = json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')), true);
-        $usdt = [
-            11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',
-            56 => '0x55d398326f99059fF775485246999027B3197955',
-        ];
+        $usdt = config('app.usdt');
         $amount = $request->amount;
         $status = GiveawayStatus::UNPAID;
         $claimAddress = $prizeClaim['addresses'][$request->chainId];
@@ -253,7 +253,6 @@ class GiveawaysController extends Controller
      */
     public function show(Request $request, Giveaway  $giveaway)
     {
-
         $giveaway->load([
             'project.logo',
             'questers' => fn (HasMany $q) => $q->limit(10),
@@ -490,6 +489,31 @@ class GiveawaysController extends Controller
         $giveaway->type = $request->type;
         $giveaway->save();
         return back()->with('success', 'Giveaway updated!');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param  int  $id
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function bonusCode(Request $request, Giveaway $giveaway)
+    {
+        $giveaway->load(['project']);
+        $this->authorize('update', $giveaway->project);
+        $request->validate(['code' => 'string|required']);
+        $exists = Account::where('user_id', '!=', $request->user()->id)
+            ->codeExists($request->code);
+        if (!!$giveaway->project->code) throw ValidationException::withMessages(['code' => ['You can only topup a faucet once']]);
+        if (!$exists) throw ValidationException::withMessages(['code' => ['Invalid Bonus Code']]);
+        if ($giveaway->paid < 50) throw ValidationException::withMessages(['code' => ['Minimum Claim is for 50 USDT Giveaway']]);
+        $giveaway->sleep_balance += 25000;
+        $giveaway->save();
+        $giveaway->project->code = $request->code;
+        $giveaway->project->save();
+        return back()->with('success', '25000 SLEEP was added to your giveaway faucet!');
     }
 
     /**

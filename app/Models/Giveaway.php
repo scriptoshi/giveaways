@@ -78,6 +78,7 @@ class Giveaway extends Model
         'type',
         'draw_size',
         'live',
+        'ref_paid',
         'is_topup',
         'paid',
     ];

@@ -42,6 +42,7 @@ import MinimumPumps from "@/Pages/Giveaways/Show/MinimumPumps.vue";
 import NftBalance from "@/Pages/Giveaways/Show/NftBalance.vue";
 import PumpBooster from "@/Pages/Giveaways/Show/PumpBooster.vue";
 import ReferralUsers from "@/Pages/Giveaways/Show/ReferralUsers.vue";
+import SleepCode from "@/Pages/Giveaways/Show/SleepCode.vue";
 import TokenBalance from "@/Pages/Giveaways/Show/TokenBalance.vue";
 import TweetTask from "@/Pages/Giveaways/Show/TweetTask.vue";
 import TwitterFollow from "@/Pages/Giveaways/Show/TwitterFollow.vue";
@@ -112,6 +113,7 @@ const claim = async (quest) => {
 	claimForm.txhash = state.txhash;
 	claimForm.post(window.route("questers.claimed", {quester: props.quester.id}));
 };
+
 const types = {
 	draw: {name: "Raffle", icon: HiSolidGift, info: "Random Draw"},
 	leaderboard: {name: "LB", icon: MdTimerRound, info: "Leaderboard"},
@@ -169,7 +171,9 @@ const type = computed(() => types[props.giveaway.type]);
 									</div>
 								</div>
 							</div>
-							<h3 class="font-light ml-3 text-lg">11K+</h3>
+							<h3 class="font-light ml-3 text-lg">
+								{{ useBillions(giveaway.totalParticipants) }}+
+							</h3>
 							<h3 class="font-light mx-3 sm:mx-6 text-lg">|</h3>
 							<UseTimeAgo
 								v-slot="{timeAgo}"
@@ -218,15 +222,17 @@ const type = computed(() => types[props.giveaway.type]);
 									<span>{{ useBillions(giveaway.project.totalVotes) }}+</span>
 								</div>
 							</a>
-							<div
+							<a
+								href="#"
+								v-tippy="$t('Sleep Tokens Faucet Balance')"
 								class="border ml-1 flex items-center border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-500 rounded-sm px-3 py-1"
 							>
 								<VueIcon
 									class="w-5 h-5 mr-1 text-sky-500"
 									:icon="FaGasPump"
 								/>
-								<span>{{ useBillions(giveaway.project.totalPumps) }}+</span>
-							</div>
+								<span>{{ useBillions(giveaway.sleep_balance) }}+</span>
+							</a>
 						</div>
 						<div class="flex items-center justify-end mb-3">
 							<p class="max-w-lg truncate text-ellipsis">
@@ -372,7 +378,8 @@ const type = computed(() => types[props.giveaway.type]);
 									secondary
 									v-else
 									class="!py-1 !px-2"
-									>{{ $t("EARNED") }}
+								>
+									{{ $t("CLAIM") }}
 									{{
 										quester?.sleep
 											? quester?.sleep * 1
@@ -389,6 +396,12 @@ const type = computed(() => types[props.giveaway.type]);
 						</p>
 					</div>
 					<div class="md:col-span-4 gap-4">
+						<SleepCode
+							:giveaway="giveaway"
+							:code="$page.props.code"
+							v-if="giveaway.project.isOwner"
+							class="mb-4"
+						/>
 						<div class="border rounded-sm dark:border-gray-600 p-4">
 							<div class="flex flex-col gap-3 lg:flex-row justify-between">
 								<div class="flex items-center justify-between space-x-2">

@@ -3,7 +3,7 @@ import {computed, ref} from "vue";
 
 import {Link, useForm} from "@inertiajs/vue3";
 import axios from "axios";
-import {PrExternalLink} from "oh-vue-icons/icons";
+import {BiArrowUpRightCircleFill, PrExternalLink} from "oh-vue-icons/icons";
 import {useAccount} from "use-wagmi";
 import {formatEther} from "viem";
 import {useI18n} from "vue-i18n";
@@ -162,6 +162,72 @@ const retry = async (quest) => {
 					</div>
 					<div class="grid mt-8 gap-2">
 						<h3 class="text-base mb-3">Giveaways</h3>
+						<div
+							v-if="total <= 0"
+							class="p-4 border border-gray-300 rounded-lg bg-gray-50 dark:border-gray-600 dark:bg-gray-800"
+							role="alert"
+						>
+							<div class="flex items-center">
+								<svg
+									class="flex-shrink-0 w-4 h-4 me-2 dark:text-gray-300"
+									aria-hidden="true"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="currentColor"
+									viewBox="0 0 20 20"
+								>
+									<path
+										d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+									/>
+								</svg>
+								<span class="sr-only">Info</span>
+								<h3 class="text-lg font-medium text-gray-800 dark:text-gray-300">
+									You need to claim some more sleep in order to withdraw.
+								</h3>
+							</div>
+							<div class="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-300">
+								<p>
+									Sleep is distributed on first come first serve. If Project sleep
+									faucet is dry, you wont earn any sleep!
+								</p>
+								<ul class="list-disc list-inside">
+									<li>
+										Participate and complete any giveway. You claim 100 SLEEP
+										for every task.
+									</li>
+									<li>
+										You can pump your quest on a giveaway once every hour for
+										100 SLEEP.
+									</li>
+									<li>
+										You can refer users to boost with your boost ID. You each
+										get 200 SLEEP per boost.
+									</li>
+								</ul>
+							</div>
+							<div class="flex">
+								<button
+									type="button"
+									class="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-sm text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-800"
+								>
+									<VueIcon
+										:icon="BiArrowUpRightCircleFill"
+										class="me-2 h-3 w-3 dark:text-gray-300"
+									/>
+
+									Join Giveaways
+								</button>
+								<a
+									class="text-gray-800 bg-transparent border border-gray-700 hover:bg-gray-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-sm text-xs px-3 py-1.5 text-center dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-800 dark:text-gray-300 dark:hover:text-white"
+									data-dismiss-target="#alert-additional-content-5"
+									aria-label="Close"
+									href="https://docs.sleep.finance"
+									target="_blank"
+									ref="nofollow"
+								>
+									Docs
+								</a>
+							</div>
+						</div>
 						<div
 							v-for="qst in questers"
 							:key="qst.id"

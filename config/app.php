@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    'usdt' => [
+        11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',
+        56 => '0x55d398326f99059fF775485246999027B3197955',
+    ],
     'walletConnectProjectId' => env('WALLETCONNET_PROJECT_ID'),
     'description' => env('APP_DESCRIPTION'),
     'logo' => env('LOGO'),

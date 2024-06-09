@@ -41,16 +41,17 @@ class Giveaway extends JsonResource
             'type' => $this->type,
             'draw_size' => $this->draw_size,
             'live' => $this->live,
+            'ref_paid' => $this->ref_paid,
             'is_topup' => $this->is_topup,
             'paid' => $this->paid * 1,
             'summary' => value(function () {
+                $prize = $this->prize * 1;
                 $total = $this->prize * $this->num_winners * 2;
                 $tasks = $this->totalTasks ?? 0;
-                return  "Total {$total} USDT | {$this->num_winners} winners | {$this->prize} USDT each. | {$tasks} Tasks";
+                return  "Total {$total} USDT | {$this->num_winners} winners | {$prize} USDT each | {$tasks} Tasks";
             }),
             'short_summary' => value(function () {
                 $total = $this->prize * $this->num_winners * 2;
-                $tasks = $this->totalTasks ?? 0;
                 return  "{$total} USDT | {$this->num_winners} WINS";
             }),
             'startTime' => $this->starts_at,
@@ -64,6 +65,7 @@ class Giveaway extends JsonResource
             'timeAgo' => $this->starts_at->diffForHumans(),
             'endTimeTs' => $this->ends_at->timestamp,
             'totalParticipants' => $this->totalParticipants ?? 0,
+            'created_at' => $this->created_at->toDateTimeString(),
             'project' => new Project($this->whenLoaded('project')),
             'questers' => Quester::collection($this->whenLoaded('questers')),
         ];

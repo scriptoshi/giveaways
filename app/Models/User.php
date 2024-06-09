@@ -15,6 +15,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use SWeb3\Utils;
 
@@ -148,6 +149,16 @@ class User extends Authenticatable implements MustVerifyEmail, ReactsInterface
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+
+     * Get the accounts the user Owns.
+     *
+     */
+    public function giveaways(): HasManyThrough
+    {
+        return $this->hasManyThrough(Giveaway::class, Project::class);
     }
 
 

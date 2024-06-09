@@ -118,7 +118,7 @@ class QuestsController extends Controller
             'live' => $isLive,
             'data' => $data,
             'min' => $min,
-            'sleep' => 500
+            'sleep' => 100
         ]);
         return  back();
     }

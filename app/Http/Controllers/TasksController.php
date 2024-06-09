@@ -63,10 +63,12 @@ class TasksController extends Controller
         $task->sleep = $quest->sleep;
         $task->save();
         $giveaway = $task->giveaway;
-        $giveaway->sleep_balance  -=  $quest->sleep;
-        $giveaway->save();
-        $quester->sleep += $quest->sleep;
-        $quester->save();
+        if ($giveaway->sleep_balance >= $quest->sleep) {
+            $giveaway->sleep_balance  -=  $quest->sleep;
+            $giveaway->save();
+            $quester->sleep += $quest->sleep;
+            $quester->save();
+        }
         return back()->with('message', __("Task has been marked as complete"));
     }
 
@@ -85,6 +87,8 @@ class TasksController extends Controller
             'percent' => 0,
             'qid' => Utils::uniqidID(16),
             'pump' => 0,
+            'sleep' => 0,
+            'address' => null,
             'status' => QuesterStatus::PENDING,
             'comment' => '',
             'completed_at' => null,
@@ -114,10 +118,12 @@ class TasksController extends Controller
             $task->sleep = $quest->sleep;
             $task->save();
             $giveaway = $task->giveaway;
-            $giveaway->sleep_balance  -=  $quest->sleep;
-            $giveaway->save();
-            $quester->sleep += $quest->sleep;
-            $quester->save();
+            if ($giveaway->sleep_balance  >=  $quest->sleep) {
+                $giveaway->sleep_balance  -=  $quest->sleep;
+                $giveaway->save();
+                $quester->sleep += $quest->sleep;
+                $quester->save();
+            }
         }
         $quester->status = QuesterStatus::COMPLETED;
         $quester->completed_at = now();

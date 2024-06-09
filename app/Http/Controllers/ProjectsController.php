@@ -144,6 +144,81 @@ class ProjectsController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function mine(Request $request)
+    {
+        $project = Project::where('user_id', $request->user()->id)
+            ->with(['logo', 'socials', 'launchpad'])
+            ->withCount([
+                'questers as followers',
+                'giveaways as totalGiveaways',
+                'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
+            ])
+            ->withSum('giveaways as totalPrize', 'fee')
+            ->withSum('giveaways as sleep', 'sleep')
+            ->first();
+        if (!$project)
+            return Inertia::render('Projects/Show', [
+                'project' => null,
+                'giveaways' => [],
+                'popular' => function () use ($request) {
+                    $list = Giveaway::with(['project.logo'])
+                        ->withCount([
+                            'questers as totalParticipants',
+                            'quests as totalTasks',
+                        ])
+                        ->latest()
+                        ->take(10)
+                        ->get();
+                    return ResourcesGiveaway::collection($list);
+                }
+            ]);
+        $keyword = $request->get('search');
+        $order = $request->get('order', 'created');
+        $by = $request->get('by', 'latest');
+        $perPage = 25;
+        $query = $project->giveaways()
+            ->withCount([
+                'questers as totalParticipants',
+                'quests as totalTasks',
+            ]);
+        if (!empty($keyword)) {
+            $query->where('brief', 'LIKE', "%$keyword%");
+        }
+        $orderColumn = match ($order) {
+            'prize' => 'prize',
+            'winners' => 'num_winners',
+            'joined' => 'totalParticipants',
+            default => 'created_at',
+        };
+        if ($by == 'oldest') {
+            $query->oldest($orderColumn);
+        } else {
+            $query->latest($orderColumn);
+        }
+        $giveawaysItems = $query->paginate($perPage);
+
+        return Inertia::render('Projects/Show', [
+            'project' => new ProjectResource($project),
+            'giveaways' => ResourcesGiveaway::collection($giveawaysItems),
+            'popular' => function () use ($request) {
+                $list = Giveaway::with(['project.logo'])
+                    ->withCount([
+                        'questers as totalParticipants',
+                        'quests as totalTasks',
+                    ])
+                    ->latest()
+                    ->take(10)
+                    ->get();
+                return ResourcesGiveaway::collection($list);
+            }
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      * @param  int  $id
      * @return \Illuminate\View\View

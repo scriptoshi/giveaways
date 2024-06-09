@@ -3,11 +3,13 @@
 namespace App\Http\Middleware;
 
 use App;
+use App\Http\Resources\Account;
 use App\Http\Resources\Chain as ResourcesChain;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 use App\Http\Resources\User as UserResource;
+use App\Models\Account as ModelsAccount;
 use App\Models\Chain;
 use App\Models\Coin;
 use Illuminate\Support\Collection;
@@ -66,7 +68,14 @@ class HandleInertiaRequests extends Middleware
             'verified' => $user ? $user->hasVerifiedEmail() : null,
             'chains' => fn () => ResourcesChain::collection(Chain::with('coins')->where('active', 1)->get()),
             'login' => $request->session()->get('login', false),
-            'ref' =>  $user?->referral ?? $request->cookie('referral') ?? '0x1c3cAB3A544c06306e6934902474dE0d88709f96',
+            'code' => function () use ($request, $user) {
+                if (!auth()->check()) return null;
+                if ($request->hasCookie('referral')) return $request->cookie('referral');
+                if (!$user?->referral) return null;
+                $account = ModelsAccount::where('address', $user?->referral)->first();
+                if (!$account) return null;
+                return $account->code;
+            },
             'user' => $user ? new UserResource($user) : null,
             'locale' => App::getLocale(),
             'sleepChainId' => config('app.sleepChainId'),

@@ -199,6 +199,7 @@ class Etherscan
         $giveaway->prize = $amount / ($topup->num_winners * 2);
         $giveaway->fee =  $amount / 2;
         $giveaway->sleep = $giveaway->fee * $sleepPrice;
+        $giveaway->sleep_balance = $giveaway->fee * $sleepPrice;
         $giveaway->num_winners = $topup->num_winners;
         $giveaway->paid = $amount;
         $giveaway->save();

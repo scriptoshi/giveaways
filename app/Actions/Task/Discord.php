@@ -15,6 +15,7 @@ class Discord extends Verifier
             ->where('user_id', $task->user_id)
             ->where('provider', ConnectionProvider::DISCORD)
             ->first();
+        if (!$connection) return false;
         $inviteId =  str(str($task->quest->username)->explode('/')->last())->explode('?')->first();
         return DiscordSupport::userJoinedByInvite($inviteId, $connection->userId);
     }

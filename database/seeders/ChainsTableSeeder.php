@@ -99,8 +99,8 @@ class ChainsTableSeeder extends Seeder
                 'explorer' => 'https://sepolia.etherscan.io/',
                 'testnet' => '1',
                 'active' => '0',
-                'https' => ['https://rpc.ankr.com/zksync_era/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'https://rpc2.sepolia.org', 'https://rpc.sepolia.org', 'https://eth-sepolia.public.blastapi.io'],
-                'websockets' => ['wss://rpc.ankr.com/zksync_era/ws/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'wss://sepolia.gateway.tenderly.co', 'wss://ethereum-sepolia-rpc.publicnode.com'],
+                'https' => ['https://rpc.ankr.com/eth_sepolia/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'https://rpc2.sepolia.org', 'https://rpc.sepolia.org', 'https://eth-sepolia.public.blastapi.io'],
+                'websockets' => ['wss://rpc.ankr.com/eth_sepolia/ws/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'wss://sepolia.gateway.tenderly.co', 'wss://ethereum-sepolia-rpc.publicnode.com'],
             ],
             [
                 'name' => 'Bsc Testnet',

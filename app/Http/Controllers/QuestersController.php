@@ -84,7 +84,11 @@ class QuestersController extends Controller
         if (!$quester->completed_at) {
             throw ValidationException::withMessages(['code' => 'Complete all tasks before pumping!']);
         }
-
+        $giveaway =  $quester->giveaway;
+        if ($giveaway->sleep_balance < 100)
+            throw ValidationException::withMessages(['code' => 'Giveaway sleep faucet is dry']);
+        $giveaway->sleep_balance -= 100;
+        $giveaway->save();
         $quester->pump += 1;
         $quester->sleep += 100;
         $quester->last_pump_at = now();
@@ -271,6 +275,9 @@ class QuestersController extends Controller
         if ($quester->boosted_at) {
             throw ValidationException::withMessages(['boostId' => 'You can only boost Once']);
         }
+        $giveaway = $quester->giveaway;
+        if ($giveaway->sleep_balance < 400)
+            throw ValidationException::withMessages(['boostId' => 'Giveaway sleep faucet is dry']);
         $quester->pump += 1;
         $quester->sleep += 200;
         $quester->boosted_at = now();

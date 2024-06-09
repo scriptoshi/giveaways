@@ -54,9 +54,9 @@ watch(
 	{immediate: true},
 );
 const form = useForm({
-	name: "Pepe",
-	symbol: "PEPE",
-	supply: "100000000000",
+	name: "",
+	symbol: "",
+	supply: "",
 	chainId: null,
 	address: null,
 	contract: null,

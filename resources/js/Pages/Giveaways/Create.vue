@@ -11,7 +11,7 @@ import {AiCeur, HiSolidCheck} from "oh-vue-icons/icons";
 import {uid} from "uid";
 import {useAccount, usePublicClient} from "use-wagmi";
 import {DatePicker} from "v-calendar";
-import {erc20Abi, parseUnits, zeroAddress} from "viem";
+import {erc20Abi, parseUnits} from "viem";
 import {useI18n} from "vue-i18n";
 
 import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
@@ -43,23 +43,20 @@ const props = defineProps({
 		type: Object,
 		default: () => ({}),
 	},
+	usdtContracts: Object,
 });
 
 const {chainId} = useChainId();
 const prizeContract = computed(() => props.prizeClaim.addresses[chainId.value]);
+const usdtContract = computed(() => props.usdtContracts[chainId.value]);
 const usdt = reactive({
-	address: zeroAddress,
+	address: usdtContract,
 	abi: erc20Abi,
 	decimals: 6,
 	symbol: "USDT",
 });
 const publicClient = usePublicClient();
 const updateUsdt = async (prizeContract) => {
-	usdt.address = await publicClient.value.readContract({
-		address: prizeContract,
-		abi: props.prizeClaim.abi,
-		functionName: "usdt",
-	});
 	usdt.decimals = await publicClient.value.readContract({
 		address: usdt.address,
 		abi: usdt.abi,

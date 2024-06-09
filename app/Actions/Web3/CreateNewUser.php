@@ -14,7 +14,7 @@ use App\Support\Galxe;
 use Illuminate\Support\Facades\DB;
 use Laravel\Jetstream\Jetstream;
 use SWeb3\Utils;
-
+use App\Web3\AddressValidator;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -53,7 +53,12 @@ class CreateNewUser implements CreatesNewUsers
             $dumm_pass = Str::random(20);
             $referral = '0x1c3cAB3A544c06306e6934902474dE0d88709f96';
             if (request()->hasCookie('referral')) {
-                $referral = request()->cookie('referral');
+                $ref = request()->cookie('referral');
+                $referral = AddressValidator::getCanonicalAddress($ref);
+                if (!$referral) {
+                    $refAccount = Account::where('code', $ref)->first();
+                    $referral = $refAccount->address;
+                }
             }
             return tap(User::create([
                 'name' => $input['username'],
