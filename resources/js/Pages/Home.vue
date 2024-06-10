@@ -200,7 +200,7 @@ const showHowItWorks = ref(false);
 				<p>
 					Basically, joining a crypto giveway will require you to have an account on
 					twitter, telegram and discord. Find the giveway on sleepfinance, and enroll by
-					folling the project. After the giveaway ends and you are selected , you will
+					following the project. After the giveaway ends and you are selected , you will
 					claim your prize.
 				</p>
 				<h3 class="text-sm">How can I avoid giveaway/ quest scams?</h3>
@@ -218,7 +218,7 @@ const showHowItWorks = ref(false);
 					How long does it take to complete giveaways quests or tasks?
 				</h3>
 				<ul>
-					<li>Dont try to claim giveaways from unknown projects.</li>
+					<li>Do not try to claim giveaways from unknown projects.</li>
 					<li>Ensure the claim contract is verified on etherscan.</li>
 					<li>Never accept to approve any action in your wallet during claims</li>
 					<li>Ensure the address claiming giveaways has no valuable assets</li>
