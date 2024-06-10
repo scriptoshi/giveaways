@@ -57,7 +57,7 @@ const verifyTask = () => {
 						:icon="HiRefresh"
 					/>
 				</ConnectWalletLink>
-				<ExternalLink :href="giveaway.twitter_follow">
+				<ExternalLink :href="quest.username">
 					<PrimaryButton
 						v-if="quest.complete"
 						secondary
