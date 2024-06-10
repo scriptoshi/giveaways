@@ -14,7 +14,7 @@ const form = useForm({});
 const connect = () => {
 	form.post(window.route("connections.connect", "twitter"));
 };
-defineProps({
+const props = defineProps({
 	giveaway: Object,
 	quest: Object,
 	connected: Boolean,
@@ -25,6 +25,12 @@ const emit = defineEmits(["verify"]);
 const verifyTask = () => {
 	emit("verify");
 	verify.value = false;
+};
+const showPopup = () => {
+	const username = props.quest.groupId;
+	const url = `https://x.com/intent/follow?screen_name=${username}`;
+	window.open(url, "newwindow", "width=550,height=420,resizable=yes,scrollbars=yes");
+	return false;
 };
 </script>
 <template>
@@ -57,23 +63,26 @@ const verifyTask = () => {
 						:icon="HiRefresh"
 					/>
 				</ConnectWalletLink>
-				<ExternalLink :href="quest.username">
+				<ExternalLink
+					v-if="quest.complete"
+					:href="quest.username"
+				>
 					<PrimaryButton
-						v-if="quest.complete"
 						secondary
 						class="!py-1 !px-2 !text-emerald-500"
 					>
 						<VueIcon :icon="HiSolidCheck"></VueIcon>
 						{{ $t("Done") }}
 					</PrimaryButton>
-					<PrimaryButton
-						v-else
-						secondary
-						class="!py-1 !px-2"
-						>[ Follow On X ]
-					</PrimaryButton>
-				</ExternalLink></template
-			>
+				</ExternalLink>
+				<PrimaryButton
+					v-else
+					secondary
+					class="!py-1 !px-2"
+					@click.prevent="showPopup"
+					>[ Follow On X ]
+				</PrimaryButton>
+			</template>
 			<ConnectWalletLink
 				type="button"
 				v-else
