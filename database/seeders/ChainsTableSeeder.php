@@ -49,8 +49,8 @@ class ChainsTableSeeder extends Seeder
                 'explorer' => 'https://polygonscan.com',
                 'testnet' => '0',
                 'active' => '1',
-                'https' => ['https://rpc.ankr.com/polygon', 'https://polygon-mainnet.public.blastapi.io'],
-                'websockets' => ['wss://polygon-bor-rpc.publicnode.com'],
+                'https' => ['https://rpc.ankr.com/polygon/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'https://rpc.ankr.com/polygon', 'https://polygon-mainnet.public.blastapi.io'],
+                'websockets' => ['wss://rpc.ankr.com/polygon/ws/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'wss://polygon-bor-rpc.publicnode.com'],
             ],
             [
                 'name' => 'Binance Smart Chain',
@@ -59,8 +59,8 @@ class ChainsTableSeeder extends Seeder
                 'explorer' => 'https://www.bscscan.com/',
                 'testnet' => '0',
                 'active' => '1',
-                'https' => ['https://rpc.ankr.com/polygon/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'https://rpc.ankr.com/bsc', 'https://binance.llamarpc.com', 'https://bsc-dataseed1.defibit.io'],
-                'websockets' => ['wss://rpc.ankr.com/polygon/ws/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'wss://bsc-rpc.publicnode.com'],
+                'https' => ['https://rpc.ankr.com/bsc/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'https://rpc.ankr.com/bsc', 'https://binance.llamarpc.com', 'https://bsc-dataseed1.defibit.io'],
+                'websockets' => ['wss://rpc.ankr.com/bsc/ws/a2e2e0ee70153e9f9ea6eca45dbdce42021037389167d0e56825030f04213d1c', 'wss://bsc-rpc.publicnode.com'],
             ],
             [
                 'name' => 'Fantom',

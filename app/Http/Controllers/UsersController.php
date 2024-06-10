@@ -11,6 +11,7 @@ use App\Http\Resources\User as ResourcesUser;
 use App\Models\Giveaway;
 use App\Models\Project;
 use App\Models\User;
+use App\Models\Account;
 use App\Support\Utils;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Validation\ValidationException;
@@ -75,9 +76,15 @@ class UsersController extends Controller
     function referrals(Request $request)
     {
         $perPage = 25;
-        $request->user()->accounts()->whereNull('code')->update([
-            'code' => Utils::uniqidID(10)
-        ]);
+        $accounts = $request->user()
+            ->accounts()
+            ->whereNull('code')
+            ->get();
+        $accounts->each(function (Account $account) {
+            $account->update([
+                'code' => Utils::uniqidID(10)
+            ]);
+        });
         $codes = $request->user()->accounts()->pluck('code');
         $giveaways = Giveaway::query()
             ->with('project')

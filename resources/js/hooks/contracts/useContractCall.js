@@ -163,13 +163,24 @@ export const useReactiveContractCall = (
                 return error.value = err.shortMessage;
             }
         });
+        const gas = await publicClient.value.estimateContractGas({
+            address: get(contract),
+            abi: get(abi),
+            functionName: method,
+            account: account.value,
+            args,
+            value: value ?? 0,
+        });
         console.log(response);
         simulation.value = null;
         if (error.value && !response?.request) {
             busy.value = null;
             return;
         }
-        txhash.value = await walletClient.value.writeContract(response.request).catch((err) => {
+        txhash.value = await walletClient.value.writeContract({
+            ...response.request,
+            gas,
+        }).catch((err) => {
             error.value = err.shortMessage ?? err.detials;
         });
         if (error.value) {
