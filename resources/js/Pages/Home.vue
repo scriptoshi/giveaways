@@ -218,13 +218,10 @@ const showHowItWorks = ref(false);
 					How long does it take to complete giveaways quests or tasks?
 				</h3>
 				<ul>
-					<li>Do not try to claim giveaways from unknown projects.</li>
-					<li>Ensure the claim contract is verified on etherscan.</li>
-					<li>Never accept to approve any action in your wallet during claims</li>
-					<li>Ensure the address claiming giveaways has no valuable assets</li>
+					<li>It should take you under 15 minutes to complete most giveaways</li>
 					<li>
-						Only participate in giveways on sleep finance. Sleep finance only hosts USDT
-						giveaways
+						The reward determination will take from 5 hours to 12 days depending on the
+						giveaway settings.
 					</li>
 				</ul>
 			</div>
