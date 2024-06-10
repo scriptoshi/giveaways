@@ -383,13 +383,7 @@ const type = computed(() => types[props.giveaway.type]);
 									v-else
 									class="!py-1 !px-2"
 								>
-									{{ $t("VERIFY ") }}
-									{{
-										quester?.sleep
-											? quester?.sleep * 1
-											: useBillions(giveaway.sleep)
-									}}
-									SLEEP
+									{{ $t("VERIFY COMPLETION") }}
 								</PrimaryButton>
 							</div>
 						</div>

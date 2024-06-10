@@ -11,7 +11,7 @@ use App\Models\Task;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use App\Models\Quest;
-
+use App\Support\Galxe;
 use App\Support\Utils;
 use Illuminate\Http\Request;
 
@@ -94,8 +94,13 @@ class TasksController extends Controller
             'completed_at' => null,
             'last_pump_at' => null,
         ]);
-        if ($quester->status == QuesterStatus::COMPLETED)
+        if ($quester->status == QuesterStatus::COMPLETED) {
+            if ($giveaway->galxe) {
+                Galxe::giveaway($quester);
+            }
             return back()->with('message', __("All tasks marked as completed :timeAgo", ['timeAgo' => $quester->completed_at->diffForHumans()]));
+        }
+
         foreach ($giveaway->quests as $quest) {
             $task = Task::query()->firstOrCreate([
                 'giveaway_id' => $quest->giveaway_id,
@@ -128,6 +133,10 @@ class TasksController extends Controller
         $quester->status = QuesterStatus::COMPLETED;
         $quester->completed_at = now();
         $quester->save();
+        $quester->load('giveaway');
+        if ($giveaway->galxe) {
+            Galxe::giveaway($quester);
+        }
         return back()->with('message', __("All Tasks completed. Your SLEEP Token was allocated"));
     }
 }
