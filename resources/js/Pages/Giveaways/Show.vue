@@ -239,7 +239,10 @@ const type = computed(() => types[props.giveaway.type]);
 								{{ giveaway.project.description }}
 							</p>
 						</div>
-						<div class="flex items-end space-x-2 justify-end">
+						<div
+							v-if="giveaway.project.isOwner"
+							class="flex items-end space-x-2 justify-end"
+						>
 							<PrimaryButton
 								class="!py-1 !text-xs uppercase"
 								secondary
@@ -375,11 +378,12 @@ const type = computed(() => types[props.giveaway.type]);
 									>{{ $t("CLAIM") }} {{ quester?.sleep * 1 }} SLEEP
 								</PrimaryButton>
 								<PrimaryButton
+									@click.prevent="verifyAll"
 									secondary
 									v-else
 									class="!py-1 !px-2"
 								>
-									{{ $t("CLAIM") }}
+									{{ $t("VERIFY ") }}
 									{{
 										quester?.sleep
 											? quester?.sleep * 1
@@ -427,7 +431,6 @@ const type = computed(() => types[props.giveaway.type]);
 									{{ type.name }}
 								</a>
 							</div>
-
 							<WinningInfoBox :giveaway="giveaway" />
 							<div class="mt-8">
 								<p v-if="quester?.status === 'claimed'">

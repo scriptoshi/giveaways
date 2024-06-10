@@ -93,7 +93,9 @@ class QuestersController extends Controller
         $quester->sleep += 100;
         $quester->last_pump_at = now();
         $quester->save();
-        $quester->pumps()->create([]);
+        $quester->pumps()->create([
+            'user_id' => $request->user()->id
+        ]);
         return back();
     }
 
@@ -282,12 +284,16 @@ class QuestersController extends Controller
         $quester->sleep += 200;
         $quester->boosted_at = now();
         $quester->save();
-        $quester->pumps()->create([]);
+        $quester->pumps()->create([
+            'user_id' => $request->user()->id,
+        ]);
         // update booster
         $boost->pump += 1;
         $boost->sleep += 200;
         $boost->save();
-        $boost->pumps()->create([]);
+        $boost->pumps()->create([
+            'user_id' => $request->user()->id,
+        ]);
         $boost->questers()->attach($quester);
         return back();
     }

@@ -153,6 +153,7 @@ export const useReactiveContractCall = (
         }).catch((err) => {
             console.log(err);
             status.value = null;
+            busy.value = null;
             if (err instanceof BaseError) {
                 const revertError = err.walk(err => err instanceof ContractFunctionRevertedError);
                 if (revertError instanceof ContractFunctionRevertedError) {
@@ -163,6 +164,10 @@ export const useReactiveContractCall = (
                 return error.value = err.shortMessage;
             }
         });
+        if (error.value && !response?.request) {
+            busy.value = null;
+            return;
+        }
         const gas = await publicClient.value.estimateContractGas({
             address: get(contract),
             abi: get(abi),
@@ -173,10 +178,6 @@ export const useReactiveContractCall = (
         });
         console.log(response);
         simulation.value = null;
-        if (error.value && !response?.request) {
-            busy.value = null;
-            return;
-        }
         txhash.value = await walletClient.value.writeContract({
             ...response.request,
             gas,

@@ -81,11 +81,11 @@ const retry = async (quest) => {
 					<div class="p-6 mt-6 border grid gap-3 dark:border-gray-600">
 						<div class="flex items-center justify-between">
 							<h3 class="text-xl text-gray-500">All Time Claims</h3>
-							<h3 class="text-xl">{{ total }} SLEEP</h3>
+							<h3 class="text-xl">{{ total * 1 }} SLEEP</h3>
 						</div>
 						<div class="flex items-center justify-between">
 							<h3 class="text-sm text-gray-500">Available</h3>
-							<h3 class="font-Walsheim-Bold text-base">{{ available }} SLEEP</h3>
+							<h3 class="font-Walsheim-Bold text-base">{{ available * 1 }} SLEEP</h3>
 						</div>
 
 						<div class="flexitems-center justify-end">
@@ -249,7 +249,7 @@ const retry = async (quest) => {
 								v-if="qst.sleep_hash"
 								:txhash="qst.sleep_hash"
 								:chainId="sleepChainId"
-								>{{ qst.sleep }} SLEEP
+								>{{ qst.sleep * 1 }} SLEEP
 								<VueIcon
 									class="w-4 h-4 text-emerald-500"
 									:icon="PrExternalLink"
@@ -259,7 +259,7 @@ const retry = async (quest) => {
 								v-else
 								class="flex items-end uppercase"
 							>
-								{{ qst.sleep }} SLEEP
+								{{ qst.sleep * 1 }} SLEEP
 							</div>
 						</div>
 					</div>

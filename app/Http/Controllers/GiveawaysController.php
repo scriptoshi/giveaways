@@ -208,7 +208,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::DISCORD,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' => 500
+                    'sleep' => 100
                 ]);
             } else {
                 $errors['discord'] = 'Discord Quest was not saved. Bot not authorized';
@@ -224,7 +224,7 @@ class GiveawaysController extends Controller
                 'type' => QuestType::TWITTER,
                 'status' => QuestStatus::ACTIVE,
                 'min' => 0,
-                'sleep' => 500
+                'sleep' => 100
             ]);
         }
         if ($request->filled('telegram')) {
@@ -239,7 +239,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::TELEGRAM,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' => 500
+                    'sleep' => 100
                 ]);
             } else {
                 $errors['telegram'] = 'Telegram Quest was not saved. Bot not authorized';
