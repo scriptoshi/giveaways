@@ -45,7 +45,10 @@ class HomeController extends Controller
                 $by = $request->get('by', 'latest');
                 $perPage = 25;
                 $query = Giveaway::with(['project.logo'])
-                    ->withCount('questers as totalParticipants');
+                    ->withCount([
+                        'questers as totalParticipants',
+                        'quests as totalTasks',
+                    ]);
                 if (!empty($keyword)) {
                     $query->whereHas('project', fn (Builder $q) => $q->where('name', 'LIKE', "%$keyword%")->where('description', 'LIKE', "%$keyword%"));
                 }

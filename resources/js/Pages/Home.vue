@@ -61,7 +61,7 @@ const showHowItWorks = ref(false);
 						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
 						done. Prize giveaway is decentralized and instant!. If you dont win, no
 						worries, we dont give XPS, we give you sleep tokens. withdraw your sleep
-						tokens and trade theme for USDT.
+						tokens and trade them for USDT.
 					</p>
 				</div>
 				<div class="lg:col-span-2 mt-4">
@@ -214,7 +214,9 @@ const showHowItWorks = ref(false);
 						giveaways
 					</li>
 				</ul>
-				<h3 class="text-sm">How long does it take to complete giveaways quests or tasks?</h3>
+				<h3 class="text-sm">
+					How long does it take to complete giveaways quests or tasks?
+				</h3>
 				<ul>
 					<li>Dont try to claim giveaways from unknown projects.</li>
 					<li>Ensure the claim contract is verified on etherscan.</li>
