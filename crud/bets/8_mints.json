@@ -1,0 +1,45 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "foreignId|constrained|onUpdate:'cascade'|onDelete:'cascade'",
+            "rules": "required|integer|exists:users,id"
+        },
+        {
+            "name": "owner",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "nft_contract",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "nft",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "tokenId",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "txhash",
+            "type": "string|nullable",
+            "rules": "required|string"
+        },
+        {
+            "name": "verified",
+            "type": "boolean|default:false"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "User|user_id|id"
+        }
+    ]
+}

@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    'sleep' => [
+        'referral' => env('SLEEP_PER_REFERRAL'),
+        'quest' => env('SLEEP_PER_QUEST'),
+        'pump' => env('SLEEP_PER_PUMP'),
+    ],
     'usdt' => [
         11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',
         56 => '0x55d398326f99059fF775485246999027B3197955',
@@ -32,6 +37,7 @@ return [
     'nftBaseURI' => env('D3_SPACES_CDN', env('D3_SPACES_ENDPOINT', null)),
     'nftscanApiKey' => env('NFTSCAN_APIKEY'),
     'sleepChainId' => env('SLEEP_CHAINID'),
+    'galxeApiKey' => env('GALXE_APIKEY'),
 
     /*
     |--------------------------------------------------------------------------

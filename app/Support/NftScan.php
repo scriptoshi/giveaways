@@ -48,4 +48,23 @@ class NftScan
             ->get();
         return $response->data->total > 0;
     }
+
+    /**
+     * get the mint TX for an nft
+     */
+    public static function verifyMint(Mint $mint): void
+    {
+        $apiKey = config('app.nftscanApiKey');
+        $url = static::url($mint->chainId) . "assets/{$mint->nft_contract}/{$mint->tokenId}";
+        $response = Curl::to($url)
+            ->withData([
+                'show_attribute' => 'false',
+            ])
+            ->withHeader("X-API-KEY: $apiKey")
+            ->asJson()
+            ->get();
+        if (!$response?->code != 200 || $response?->data?->owner !== $mint->owner) return;
+        $mint->verified = true;
+        $mint->save();
+    }
 }

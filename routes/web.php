@@ -6,6 +6,7 @@ use App\Http\Controllers\ContributionsController;
 use App\Http\Controllers\GiveawaysController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LaunchpadsController;
+use App\Http\Controllers\MintsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\QuestersController;
 use App\Http\Controllers\QuestsController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\TopupsController;
 use App\Http\Controllers\Web3Controller;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -193,3 +194,13 @@ Route::name('topups.')->controller(TopupsController::class)->group(function () {
     Route::post('/topups/store/{giveaway}', 'store')->name('store');
 });
 #topups
+
+#NFT
+
+Route::name('mints.')
+    ->middleware(['auth:sanctum', 'verified'])
+    ->controller(MintsController::class)
+    ->group(function () {
+        Route::get('/access', 'access')->name('access');
+        Route::post('/mints/store', 'store')->name('store');
+    });

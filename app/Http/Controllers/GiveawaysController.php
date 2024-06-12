@@ -195,6 +195,7 @@ class GiveawaysController extends Controller
         });
         $giveaway->slug = $giveaway->slug . '-' . $giveaway->id . '-' . $brief;
         $giveaway->save();
+        $sleep_per_quest = config('app.sleep.quest', 100);
         if ($request->filled('discord')) {
             $inviteId =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($inviteId);
@@ -208,7 +209,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::DISCORD,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' => 100
+                    'sleep' => $sleep_per_quest
                 ]);
             } else {
                 $errors['discord'] = 'Discord Quest was not saved. Bot not authorized';
@@ -224,7 +225,7 @@ class GiveawaysController extends Controller
                 'type' => QuestType::TWITTER,
                 'status' => QuestStatus::ACTIVE,
                 'min' => 0,
-                'sleep' => 100
+                'sleep' =>  $sleep_per_quest
             ]);
         }
         if ($request->filled('telegram')) {
@@ -239,7 +240,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::TELEGRAM,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' => 100
+                    'sleep' =>  $sleep_per_quest
                 ]);
             } else {
                 $errors['telegram'] = 'Telegram Quest was not saved. Bot not authorized';

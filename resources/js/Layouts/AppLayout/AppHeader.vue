@@ -182,16 +182,16 @@ defineProps({
 					<InertiaLink
 						href="#"
 						@click="logout"
-						class="group text-gray-700 dark:text-gray-300 flex items-center px-6 py-3 text-sm hover:bg-gray-200 dark:hover:bg-gray-700/30 sm:rounded-b-xl rounded-b-none"
+						class="group text-gray-700 hover:text-red-500 dark:text-gray-300 flex items-center px-6 py-3 text-base hover:bg-red-200/20 dark:hover:bg-gray-700/30 sm:rounded-b-sm rounded-b-none"
 					>
 						<Loading
 							v-if="load"
-							class="!text-emerald-500 !mr-3 !h-5 !w-5"
+							class="!text-red-500 !mr-3 !h-5 !w-5"
 						/>
 						<VueIcon
 							:icon="FaPowerOff"
 							v-else
-							class="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-300"
+							class="mr-3 h-5 w-5 text-gray-400 group-hover:text-red-500 dark:group-hover:text-gray-300"
 							aria-hidden="true"
 						/>
 						{{ $t("Sign out") }}

@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Mint extends Model
 {
     use SoftDeletes;
+
+    use HasFactory;
 
     /**
      * The database table used by the model.
@@ -29,7 +32,9 @@ class Mint extends Model
      *
      * @var string
      */
-
+    protected $casts = [
+        'verified' => 'boolean',
+    ];
 
     /**
      * Attributes that should be mass-assignable.
@@ -37,20 +42,25 @@ class Mint extends Model
      * @var array
      */
     protected $fillable = [
-        'nfts_id',
+        'user_id',
         'owner',
+        'nft_contract',
+        'nft',
         'tokenId',
-        'txhash'
+        'chainId',
+        'txhash',
+        'verified'
     ];
 
 
     /**
 
-     * Get the nft the mint Belongs To.
+     * Get the user the mint Belongs To.
      *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
      */
-    public function nft(): BelongsTo
+    public function user()
     {
-        return $this->belongsTo(Nft::class, 'nft_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

@@ -33,7 +33,7 @@ class Galxe
 
     public static function updateCredential(string $account, string $credId)
     {
-        $apiKey = config('app.galxe.apiKey');
+        $apiKey = config('app.galxeApiKey');
         $query = 'mutation credentialItems {
           credentialItems(input:{
             credId:"' . $credId . '",
@@ -52,7 +52,7 @@ class Galxe
 
     public static function updateCredentials(array $accounts, string $credId)
     {
-        $apiKey = config('app.galxe.apiKey');
+        $apiKey = config('app.galxeApiKey');
         $list = collect($accounts)->implode('","');
         $query = 'mutation credentialItems {
           credentialItems(input:{
