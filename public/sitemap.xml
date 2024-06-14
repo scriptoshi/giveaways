@@ -1,37 +1,37 @@
 HTTP/1.0 200 OK
 Cache-Control: no-cache, private
 Content-Type:  text/xml
-Date:          Thu, 06 Jun 2024 09:08:12 GMT
+Date:          Thu, 13 Jun 2024 00:00:08 GMT
 
 <?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
             >
     <url>
     <loc>http://localhost</loc>
-        <lastmod>2024-06-06T09:08:12+00:00</lastmod>
+        <lastmod>2024-06-13T00:00:08+00:00</lastmod>
                 <changefreq>daily</changefreq>
             <priority>1</priority>
                             </url>
     <url>
     <loc>http://localhost/crypto-give-aways</loc>
-        <lastmod>2024-06-06T09:08:12+00:00</lastmod>
+        <lastmod>2024-06-13T00:00:08+00:00</lastmod>
                 <changefreq>daily</changefreq>
             <priority>0.8</priority>
                             </url>
     <url>
     <loc>http://localhost/projects</loc>
-        <lastmod>2024-06-06T09:08:12+00:00</lastmod>
+        <lastmod>2024-06-13T00:00:08+00:00</lastmod>
                 <changefreq>daily</changefreq>
             <priority>0.8</priority>
                             </url>
     <url>
-    <loc>http://localhost/crypto-give-away/sleep-extravaganza-5-2024-05-27</loc>
-        <lastmod>2024-05-27T13:12:41+00:00</lastmod>
+    <loc>http://localhost/crypto-give-away/sleepstravaganza-nova-1-0usdt-prize-for-100-winners-to-claim-0usdt-each</loc>
+        <lastmod>2024-06-08T06:39:06+00:00</lastmod>
                 <changefreq>daily</changefreq>
             <priority>0.8</priority>
                             </url>
     <url>
     <loc>http://localhost/@sleepfinance</loc>
-        <lastmod>2024-05-26T02:57:26+00:00</lastmod>
+        <lastmod>2024-06-08T06:39:06+00:00</lastmod>
                 <changefreq>daily</changefreq>
             <priority>0.8</priority>
                             </url>

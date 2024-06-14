@@ -41,6 +41,7 @@ class Giveaway extends Model
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
+        'winner_selected_at' => 'datetime',
         'live' => 'boolean',
         'is_topup' => 'boolean',
         'period' => Period::class,
@@ -63,6 +64,7 @@ class Giveaway extends Model
         'period',
         'starts_at',
         'ends_at',
+        'winner_selected_at',
         'prize',
         'fee',
         'sleep',

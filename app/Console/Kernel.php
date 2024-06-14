@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('coinlayer:prices')->hourly();
         $schedule->command('app:update-launchpads')->everyTenMinutes();
         $schedule->command('site:map')->daily();
+        $schedule->command('select:winners')->everyTenMinutes();
     }
 
     /**

@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
     'sleep' => [
-        'referral' => env('SLEEP_PER_REFERRAL'),
-        'quest' => env('SLEEP_PER_QUEST'),
-        'pump' => env('SLEEP_PER_PUMP'),
+        'referral' => env('SLEEP_PER_REFERRAL', 100),
+        'quest' => env('SLEEP_PER_QUEST', 50),
+        'pump' => env('SLEEP_PER_PUMP', 50),
     ],
     'usdt' => [
         11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',

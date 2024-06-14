@@ -15,4 +15,5 @@ echo "build complete!"
 echo "# Run fresh database migrations and seed" 
 php artisan migrate --force
 php artisan db:seed
+php artisan site:map
 echo "Deployment finished!"

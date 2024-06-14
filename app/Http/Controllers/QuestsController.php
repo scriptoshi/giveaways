@@ -76,21 +76,21 @@ class QuestsController extends Controller
             $isLive = false;
         }
         if ($request->type == 'discord') {
-            $username =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($username);
             $connection = $request->user()->connections->where('provider', ConnectionProvider::DISCORD)->first();
             if (!$added || !$connection) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
         }
         if ($request->type == 'twitter') {
-            $username =  str(str($request->twitter)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
         }
         if ($request->type == 'tweet' && $request->comment) {
             $username =  'comment';
         }
         if ($request->type == 'telegram') {
-            $username =  str(str($request->telegram)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
             $added = Telegram::checkBotAccess($username);
-            if (!$added) if (!$added) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
+            if (!$added) throw ValidationException::withMessages(['username' => ['Telegram Quest cannot be saved. Bot not authorized']]);
         }
         if (in_array($request->type, ['token', 'contribute'])) {
             if ($isLive && $questType->min() < $giveaway->prize) $isLive = false;
@@ -173,21 +173,21 @@ class QuestsController extends Controller
             $isLive = false;
         }
         if ($request->type == 'discord') {
-            $username =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($username);
             $connection = $request->user()->connections->where('provider', ConnectionProvider::DISCORD)->first();
             if (!$added || !$connection) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
         }
         if ($request->type == 'twitter') {
-            $username =  str(str($request->twitter)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
         }
         if ($request->type == 'tweet' && $request->comment) {
             $username =  'comment';
         }
         if ($request->filled('telegram')) {
-            $username =  str(str($request->telegram)->explode('/')->last())->explode('?')->first();
+            $username =  str(str($request->username)->explode('/')->last())->explode('?')->first();
             $added = Telegram::checkBotAccess($username);
-            if (!$added) if (!$added) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
+            if (!$added) throw ValidationException::withMessages(['username' => ['Discord Quest cannot be saved. Bot not authorized']]);
         }
 
         if (in_array($request->type, ['token', 'contribute'])) {

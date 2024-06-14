@@ -535,7 +535,7 @@ class GiveawaysController extends Controller
         $this->authorize('update', $giveaway->project);
         $giveaway->stopped_at = now();
         $giveaway->save();
-        app(SelectWinners::class)->selectWinnerFor($giveaway, 50);
+        app(SelectWinners::class)->selectWinnerFor($giveaway);
         return back()->with('success', 'Giveaway Stopped and Possible winners selected!');
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Actions\SelectWinners;
 use App\Enums\QuesterStatus;
+use App\Models\Giveaway;
 use App\Models\Quester;
 use App\Support\Galxe;
 use App\Support\LangCleanup;
@@ -30,15 +32,29 @@ Artisan::command('site:map', function () {
     Site::map();
 });
 
+/**
+ * select winners
+ */
+Artisan::command('select:winners', function () {
+    $giveways = Giveaway::query()
+        ->where('ends_at', '<', now())
+        ->whereNull('winner_selected_at')
+        ->get();
+    $giveways->each(function (Giveaway $giveaway) {
+        app(SelectWinners::class)->selectWinnerFor($giveaway);
+    });
+});
+
+
+
 Artisan::command('update:galxe', function () {
     $questers = Quester::query()
         ->where('status', QuesterStatus::COMPLETED)
         ->with(['giveaway', 'user.account'])
         ->get();
-    foreach ($questers as $quester) {
-        $res = Galxe::giveaway($quester);
-        dump($res);
-    }
+    $questers->each(function (Quester $quester) {
+        Galxe::giveaway($quester);
+    });
 });
 
 Artisan::command('access:json', function () {

@@ -25,6 +25,7 @@ class Giveaway extends JsonResource
             'period' => $this->period,
             'starts_at' => $this->starts_at,
             'ends_at' => $this->ends_at,
+            'winner_selected_at' => $this->winner_selected_at,
             'prize' => $this->prize * 1,
             'totalPrize' => $this->prize * $this->num_winners * 2,
             'fee' => $this->fee * 1,
