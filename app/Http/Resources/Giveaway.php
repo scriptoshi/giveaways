@@ -29,7 +29,7 @@ class Giveaway extends JsonResource
             'prize' => $this->prize * 1,
             'totalPrize' => $this->prize * $this->num_winners * 2,
             'fee' => $this->fee * 1,
-            'gas' => $this->sleep * 1,
+            'gas' => $this->gas * 1,
             'gas_balance' => $this->gas_balance * 1,
             'symbol' => $this->symbol,
             'hash' => $this->hash,

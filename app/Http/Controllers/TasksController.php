@@ -60,13 +60,13 @@ class TasksController extends Controller
             return back()->with('error', __("We could not verify this task was completed. Give it a few minutes or contact support"));
         }
         $task->status =  TaskStatus::COMPLETE;
-        $task->sleep = $quest->sleep;
+        $task->gas = $quest->gas;
         $task->save();
         $giveaway = $task->giveaway;
-        if ($giveaway->gas_balance >= $quest->sleep) {
-            $giveaway->gas_balance  -=  $quest->sleep;
+        if ($giveaway->gas_balance >= $quest->gas) {
+            $giveaway->gas_balance  -=  $quest->gas;
             $giveaway->save();
-            $quester->sleep += $quest->sleep;
+            $quester->gas += $quest->gas;
             $quester->save();
         }
         return back()->with('message', __("Task has been marked as complete"));
@@ -120,13 +120,13 @@ class TasksController extends Controller
                 return back()->with('error', __("Some tasks are still incomplete"));
             }
             $task->status =  TaskStatus::COMPLETE;
-            $task->sleep = $quest->sleep;
+            $task->gas = $quest->gas;
             $task->save();
             $giveaway = $task->giveaway;
-            if ($giveaway->gas_balance  >=  $quest->sleep) {
-                $giveaway->gas_balance  -=  $quest->sleep;
+            if ($giveaway->gas_balance  >=  $quest->gas) {
+                $giveaway->gas_balance  -=  $quest->gas;
                 $giveaway->save();
-                $quester->sleep += $quest->sleep;
+                $quester->gas += $quest->gas;
                 $quester->save();
             }
         }

@@ -23,7 +23,7 @@ class Quester extends JsonResource
             'uuid' => $this->uuid,
             'qid' => $this->qid,
             'pump' => $this->pump,
-            'gas' => $this->sleep,
+            'gas' => $this->gas,
             'address' => $this->address,
             'status' => $this->status,
             'comment' => $this->comment,

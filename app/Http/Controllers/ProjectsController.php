@@ -39,7 +39,7 @@ class ProjectsController extends Controller
                 'giveaways as totalGiveaways',
                 'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
             ])
-            ->withSum('giveaways as sleep', 'gas')
+            ->withSum('giveaways as gas', 'gas')
             ->withSum(['giveaways as totalPrize' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true)], 'fee');
         if (!empty($keyword)) {
             $query
@@ -66,7 +66,7 @@ class ProjectsController extends Controller
                         'giveaways as totalGiveaways',
                         'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
                     ])
-                    ->withSum('giveaways as sleep', 'gas')
+                    ->withSum('giveaways as gas', 'gas')
                     ->withSum('giveaways as totalPrize', 'fee')
                     ->latest()
                     ->take(10)
@@ -100,7 +100,7 @@ class ProjectsController extends Controller
             'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
         ]);
         $project->loadSum('giveaways as totalPrize', 'fee');
-        $project->loadSum('giveaways as sleep', 'gas');
+        $project->loadSum('giveaways as gas', 'gas');
         $keyword = $request->get('search');
         $order = $request->get('order', 'created');
         $by = $request->get('by', 'latest');
@@ -158,7 +158,7 @@ class ProjectsController extends Controller
                 'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
             ])
             ->withSum('giveaways as totalPrize', 'fee')
-            ->withSum('giveaways as sleep', 'gas')
+            ->withSum('giveaways as gas', 'gas')
             ->first();
         if (!$project)
             return Inertia::render('Projects/Show', [

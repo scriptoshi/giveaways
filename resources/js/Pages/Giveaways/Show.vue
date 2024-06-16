@@ -372,10 +372,10 @@ const type = computed(() => types[props.giveaway.type]);
 								<PrimaryButton
 									secondary
 									link
-									:href="route('questers.sleep')"
+									:href="route('questers.gas')"
 									v-if="quester?.isComplete"
 									class="!py-1 !px-2 !text-emerald-500"
-									>{{ $t("CLAIM") }} {{ quester?.sleep * 1 }} GAS
+									>{{ $t("CLAIM") }} {{ quester?.gas * 1 }} GAS
 								</PrimaryButton>
 								<PrimaryButton
 									@click.prevent="verifyAll"

@@ -106,7 +106,7 @@ class QuestsController extends Controller
         if ($request->type == 'api') {
             $data = $request->only(['url', 'instruction']);
         }
-        $gas_per_quest = config('app.sleep.quest', 100);
+        $gas_per_quest = config('app.quest', 100);
         $giveaway->quests()->updateOrCreate([
             'type' => $request->type,
         ], [

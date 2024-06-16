@@ -27,7 +27,7 @@ class Project extends JsonResource
             'promoted_at' => $this->promoted_at,
             'followers' => $this->followers,
             'totalPrize' => ($this->totalPrize ?? 0) * 2,
-            'gas' => $this->sleep ?? 0,
+            'gas' => $this->gas ?? 0,
             'sale' => $this->sale ?? false,
             'totalGiveaways' => $this->totalGiveaways ?? 0,
             'activeGiveaways' => $this->activeGiveaways ?? 0,

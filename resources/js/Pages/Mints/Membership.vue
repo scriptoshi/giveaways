@@ -26,7 +26,7 @@ const nft = {
 	description:
 		"The giveaways.finance access badge grants you limited access to claim sleep tokens earned via the quest rewards system ",
 	external_url: "https://giveaways.finance/access",
-	image: "https://nft.giveaways.finance/sleep-finance-access.png",
+	image: "https://nft.giveaways.finance/gas-finance-access.png",
 	attributes: [
 		{
 			trait_type: "Access",
@@ -47,7 +47,7 @@ const nft = {
 		},
 	],
 };
-const membersContract = computed(() => props.membership.addresses[props.sleepChainId]);
+const membersContract = computed(() => props.membership.addresses[props.gasChainId]);
 const {address} = useAccount();
 const uuidBigInt = () => {
 	const uuid = uuidv4();
@@ -59,7 +59,7 @@ const form = useForm({
 	owner: address.value,
 	nft_contract: membersContract,
 	tokenId: uuidBigInt(),
-	chainId: props.sleepChainId,
+	chainId: props.gasChainId,
 	txhash: null,
 });
 

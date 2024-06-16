@@ -84,7 +84,7 @@ const userNavigation = [
 	},
 	{
 		name: t("Withdraw Gas"),
-		href: window.route("questers.sleep"),
+		href: window.route("questers.gas"),
 		icon: HiTicket,
 		active: false,
 	},

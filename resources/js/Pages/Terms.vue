@@ -22,7 +22,7 @@ defineProps({
 					(“you”, “your”, “User”) The Terms regulate your access to and use of our website
 					(“Platform”), its features and associated content on the Platform.
 					<br />
-					By clicking “I agree” or using any of sleep's services, you agree that you have
+					By clicking “I agree” or using any of gas's services, you agree that you have
 					read, understood, and accepted all of the terms and conditions stipulated in
 					these Terms as well as our Privacy Policy. <br />
 					Additionally, when using some features of the Platform, you may be subject to
@@ -93,22 +93,23 @@ defineProps({
 				<h3 class="my-3">COMMUNICATIONS</h3>
 				<div class="mb-3">
 					By entering into these Terms, you agree to receive electronic communications and
-					notifications from sleep. These Terms are provided to you and concluded in
-					English. We will communicate with you in English for all matters related to your
-					use of our Services and the English version of these Terms will govern your use
-					of the Services. If you missed any communication, vital information or update
-					from us, we will not be held liable or any losses or damages which may arise
-					from you missing the information. Please take the responsibility to update your
-					email. PRIVACY POLICY We are committed to protecting your personal information
-					and to helping you understand exactly how your personal information is being
-					used. You should carefully read our Privacy Policy which provides details on how
-					your personal information is collected, stored, protected, and used. OWNERSHIP
-					OF DIGITAL ASSETS You herewith represent and warrant to us that any Digital
-					Assets used by you in connection with the Platform are either owned by you or
-					that you have been authorized to carry out transactions using such Digital
-					Assets and that all transactions initiated with your Account are for your own
-					Account and not on behalf of any other person or entity. For the avoidance of
-					doubt, sleep does not own any Digital Assets held by Users on the platform.
+					notifications from giveaways finance. These Terms are provided to you and
+					concluded in English. We will communicate with you in English for all matters
+					related to your use of our Services and the English version of these Terms will
+					govern your use of the Services. If you missed any communication, vital
+					information or update from us, we will not be held liable or any losses or
+					damages which may arise from you missing the information. Please take the
+					responsibility to update your email. PRIVACY POLICY We are committed to
+					protecting your personal information and to helping you understand exactly how
+					your personal information is being used. You should carefully read our Privacy
+					Policy which provides details on how your personal information is collected,
+					stored, protected, and used. OWNERSHIP OF DIGITAL ASSETS You herewith represent
+					and warrant to us that any Digital Assets used by you in connection with the
+					Platform are either owned by you or that you have been authorized to carry out
+					transactions using such Digital Assets and that all transactions initiated with
+					your Account are for your own Account and not on behalf of any other person or
+					entity. For the avoidance of doubt, sleep does not own any Digital Assets held
+					by Users on the platform.
 				</div>
 				<h3 class="mb-3">RESTRICTED ACTIVITIES</h3>
 				<p>You agree that in connection with your use of the Platform, you shall not:</p>

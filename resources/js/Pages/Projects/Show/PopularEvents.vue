@@ -86,7 +86,7 @@ defineProps({
 							{{ $t("GAS TOKENS:") }}
 							<span
 								class="text-emerald-600 dark:text-emerald-500 whitespace-nowrap"
-								>{{ useBillions(giveaway.sleep) }}</span
+								>{{ useBillions(giveaway.gas) }}</span
 							>
 						</div>
 						<div

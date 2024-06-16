@@ -78,7 +78,7 @@ class HandleInertiaRequests extends Middleware
             },
             'user' => $user ? new UserResource($user) : null,
             'locale' => App::getLocale(),
-            'sleepChainId' => config('app.sleepChainId'),
+            'gasChainId' => config('app.gasChainId'),
             'chainId' => $request->session()->get('chainId', 56),
             'coinId' => $request->session()->get('coinId', null),
             'coin' => fn () => Coin::find($request->session()->get('coinId', 2)),

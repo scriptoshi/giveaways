@@ -32,7 +32,7 @@ const chain = computed(() =>
 			<div class="flex items-center space-x-2">
 				<SiteLogo class="w-5 h-5" />
 				<h3 class="text-base">
-					{{ useBillions(giveaway.gas_balance) }} / {{ useBillions(giveaway.sleep) }} GAS
+					{{ useBillions(giveaway.gas_balance) }} / {{ useBillions(giveaway.gas) }} GAS
 				</h3>
 			</div>
 		</div>

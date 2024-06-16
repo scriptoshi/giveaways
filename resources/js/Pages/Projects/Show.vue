@@ -196,7 +196,7 @@ const order = computed(() => params.order);
 												<div
 													class="font-bold font-Walsheim-Bold text-2xl mt-0.5"
 												>
-													{{ useBillions(project.sleep) }} +
+													{{ useBillions(project.gas) }} +
 												</div>
 											</li>
 											<div

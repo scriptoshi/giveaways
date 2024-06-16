@@ -36,7 +36,7 @@ return [
     'telegram_channel' => env('TELEGRAM_CHANNEL', null),
     'nftBaseURI' => env('D3_SPACES_CDN', env('D3_SPACES_ENDPOINT', null)),
     'nftscanApiKey' => env('NFTSCAN_APIKEY'),
-    'sleepChainId' => env('GAS_CHAINID'),
+    'gasChainId' => env('GAS_CHAINID'),
     'galxeApiKey' => env('GALXE_APIKEY'),
 
     /*

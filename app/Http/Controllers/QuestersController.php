@@ -84,14 +84,14 @@ class QuestersController extends Controller
         if (!$quester->completed_at) {
             throw ValidationException::withMessages(['code' => 'Complete all tasks before pumping!']);
         }
-        $pump =  config('app.sleep.pump', 100);
+        $pump =  config('app.pump', 100);
         $giveaway =  $quester->giveaway;
         if ($giveaway->gas_balance < $pump)
             throw ValidationException::withMessages(['code' => 'Giveaway sleep faucet is dry']);
         $giveaway->gas_balance -= $pump;
         $giveaway->save();
         $quester->pump += 1;
-        $quester->sleep += $pump;
+        $quester->gas += $pump;
         $quester->last_pump_at = now();
         $quester->save();
         $quester->pumps()->create([
@@ -279,11 +279,11 @@ class QuestersController extends Controller
             throw ValidationException::withMessages(['boostId' => 'You can only boost Once']);
         }
         $giveaway = $quester->giveaway;
-        $boost =  config('app.sleep.referral', 200);
+        $boost =  config('app.referral', 200);
         if ($giveaway->gas_balance < ($boost * 2))
             throw ValidationException::withMessages(['boostId' => 'Giveaway sleep faucet is dry']);
         $quester->pump += 1;
-        $quester->sleep += $boost;
+        $quester->gas += $boost;
         $quester->boosted_at = now();
         $quester->save();
         $quester->pumps()->create([
@@ -291,7 +291,7 @@ class QuestersController extends Controller
         ]);
         // update booster
         $boost->pump += 1;
-        $boost->sleep += $boost;
+        $boost->gas += $boost;
         $boost->save();
         $boost->pumps()->create([
             'user_id' => $request->user()->id,

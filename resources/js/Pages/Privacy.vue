@@ -281,9 +281,9 @@ defineProps({
 				</p>
 				<h3 class="my-3">Contact Information</h3>
 				<p class="text-gray-500 dark:text-gray-300">
-					Our data protection officer can be contacted at dpo@sleep.com, and will work to
-					address any questions or issues that you have with respect to the collection and
-					processing of your personal information.
+					Our data protection officer can be contacted at dpo@giveaways.finance, and will
+					work to address any questions or issues that you have with respect to the
+					collection and processing of your personal information.
 				</p>
 				<h3 class="my-3">Conditions of Use, Notices, and Revisions</h3>
 				<p class="text-gray-500 dark:text-gray-300">

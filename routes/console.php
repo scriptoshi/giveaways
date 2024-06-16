@@ -62,7 +62,7 @@ Artisan::command('access:json', function () {
         'name' => 'Gas Finance Access Badge',
         'description' => ' The giveawaysfinance access badge grants you limited access to claim sleep tokens earned via the quest rewards system from the sleep rewards contract',
         'external_url' => 'https://giveaways.finance/access',
-        'image' => 'https://nft.giveaways.finance/sleep-finance-access.png',
+        'image' => 'https://nft.giveaways.finance/gas-finance-access.png',
         'attributes' => [
             ["trait_type" => "Access", "value" => 'Quest Claims'],
             ["trait_type" => "Level", "value" => 1, 'display_type' => 'number'],
@@ -70,5 +70,5 @@ Artisan::command('access:json', function () {
             ["trait_type" => "Validity", "value" => 'One Year'],
         ]
     ];
-    file_put_contents('sleep-finance-access.json', json_encode($data));
+    file_put_contents('gas-finance-access.json', json_encode($data));
 });

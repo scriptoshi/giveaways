@@ -32,7 +32,7 @@ const claimForm = useForm({
 	txhash: null,
 });
 const {t} = useI18n();
-const prizeContract = computed(() => props.prizeClaim.addresses[props.sleepChainId]);
+const prizeContract = computed(() => props.prizeClaim.addresses[props.gasChainId]);
 const state = useReactiveContractCall(props.prizeClaim.abi, prizeContract);
 const loading = ref(false);
 const claiming = ref("claim");
@@ -40,7 +40,7 @@ const claim = async () => {
 	loading.value = true;
 	claiming.value = "claim";
 	claimForm.address = address.value;
-	const {data} = await axios.post(window.route("questers.claim.sleep"), {
+	const {data} = await axios.post(window.route("questers.claim.gas"), {
 		address: address.value,
 	});
 	loading.value = false;
@@ -51,7 +51,7 @@ const claim = async () => {
 	await state.call("withdrawPrize", [data.gas_claim, data.gas_signature], null, t("Claim Prize"));
 	if (state.error) return;
 	claimForm.txhash = state.txhash;
-	claimForm.post(window.route("questers.claimed.sleep", {quester: data.id}));
+	claimForm.post(window.route("questers.claimed.gas", {quester: data.id}));
 };
 
 const retry = async (quest) => {
@@ -64,7 +64,7 @@ const retry = async (quest) => {
 	);
 	if (state.error) return;
 	claimForm.txhash = state.txhash;
-	claimForm.post(window.route("questers.claimed.sleep", {quester: quest.id}));
+	claimForm.post(window.route("questers.claimed.gas", {quester: quest.id}));
 };
 </script>
 <template>
@@ -241,7 +241,7 @@ const retry = async (quest) => {
 								v-if="qst.gas_hash"
 								:txhash="qst.gas_hash"
 								:chainId="sleepChainId"
-								>{{ qst.sleep * 1 }} GAS
+								>{{ qst.gas * 1 }} GAS
 								<VueIcon
 									class="w-4 h-4 text-emerald-500"
 									:icon="PrExternalLink"
@@ -251,7 +251,7 @@ const retry = async (quest) => {
 								v-else
 								class="flex items-end uppercase"
 							>
-								{{ qst.sleep * 1 }} GAS
+								{{ qst.gas * 1 }} GAS
 							</div>
 						</div>
 					</div>

@@ -163,7 +163,7 @@ class GiveawaysController extends Controller
         ]);
         // save project logo
         if (!$projectExists) $upload->upload($request,  $project, 'logo');
-        $sleepPrice = 1000;
+        $gasPrice = 1000;
         $giveaway = new Giveaway;
         $giveaway->project_id =  $project->id;
         $giveaway->brief = $request->brief;
@@ -175,8 +175,8 @@ class GiveawaysController extends Controller
         $giveaway->prize = $amount / ($request->num_winners * 2);
         $giveaway->slug = Str::slug($request->brief);
         $giveaway->fee =  $amount / 2;
-        $giveaway->sleep = $giveaway->fee * $sleepPrice;
-        $giveaway->gas_balance = $giveaway->sleep;
+        $giveaway->gas = $giveaway->fee * $gasPrice;
+        $giveaway->gas_balance = $giveaway->gas;
         $giveaway->symbol = 'USDT';
         $giveaway->hash = $request->hash;
         $giveaway->num_winners = $request->num_winners;
@@ -195,7 +195,7 @@ class GiveawaysController extends Controller
         });
         $giveaway->slug = $giveaway->slug . '-' . $giveaway->id . '-' . $brief;
         $giveaway->save();
-        $gas_per_quest = config('app.sleep.quest', 100);
+        $gas_per_quest = config('app.quest', 100);
         if ($request->filled('discord')) {
             $inviteId =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($inviteId);
@@ -309,9 +309,9 @@ class GiveawaysController extends Controller
             return  "{$total} USDT giveaway by @{$giveaway->project->name}";
         });
         $prize = $giveaway->prize * 1;
-        $sleep =  $giveaway->sleep * 1;
+        $gas =  $giveaway->gas * 1;
         Meta::addMeta('title', $title);
-        Meta::addMeta('keywords', "$prize USDT, $sleep GAS, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, giveaways.finance'));
+        Meta::addMeta('keywords', "$prize USDT, $gas GAS, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, giveaways.finance'));
         Meta::addMeta('description', $summary);
         return Inertia::render('Giveaways/Show', [
             'giveaway' =>  new GiveawayResource($giveaway),

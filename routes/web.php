@@ -158,11 +158,11 @@ Route::name('questers.')
     ->middleware(['auth:sanctum', 'verified'])
     ->controller(QuestersController::class)
     ->group(function () {
-        Route::get('/sleep', 'gas')->name('gas');
+        Route::get('/gas', 'gas')->name('gas');
         Route::post('/questers/pump/{quester}', 'pump')->name('pump');
         Route::post('/questers/boost/{quester}', 'boost')->name('boost');
-        Route::post('/questers/claim-sleep', 'claimGas')->name('claim.sleep');
-        Route::post('/questers/claimed-sleep/{quester}', 'claimedGas')->name('claimed.sleep');
+        Route::post('/questers/claim-gas', 'claimGas')->name('claim.gas');
+        Route::post('/questers/claimed-gas/{quester}', 'claimedGas')->name('claimed.gas');
         Route::post('/questers/claim/{quester}', 'claim')->name('claim');
         Route::post('/questers/claimed/{quester}', 'claimed')->name('claimed');
     });
