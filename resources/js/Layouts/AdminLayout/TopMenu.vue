@@ -63,7 +63,7 @@ const userNavigation = [
 	},
 	{
 		name: t("Manage Bookies"),
-		href: "https://docs.sleep.finance",
+		href: "https://docs.giveaways.finance",
 		icon: RiAwardLine,
 		active: false,
 	},

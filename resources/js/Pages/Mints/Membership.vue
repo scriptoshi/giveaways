@@ -26,7 +26,7 @@ const nft = {
 	description:
 		"The giveaways.finance access badge grants you limited access to claim sleep tokens earned via the quest rewards system ",
 	external_url: "https://giveaways.finance/access",
-	image: "https://nft.sleep.finance/sleep-finance-access.png",
+	image: "https://nft.giveaways.finance/sleep-finance-access.png",
 	attributes: [
 		{
 			trait_type: "Access",

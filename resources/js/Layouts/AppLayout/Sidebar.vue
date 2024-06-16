@@ -255,7 +255,7 @@ const menus = computed(() => [
 	},
 	{
 		name: "Docs",
-		url: "https://docs.sleep.finance",
+		url: "https://docs.giveaways.finance",
 		icon: RiMacbookLine,
 	},
 	{

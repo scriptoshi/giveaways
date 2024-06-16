@@ -102,7 +102,7 @@ const userNavigation = [
 	},
 	{
 		name: t("Documentation"),
-		href: "https://docs.sleep.finance",
+		href: "https://docs.giveaways.finance",
 		icon: HiSolidGift,
 		active: false,
 	},

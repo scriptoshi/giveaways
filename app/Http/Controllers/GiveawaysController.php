@@ -311,7 +311,7 @@ class GiveawaysController extends Controller
         $prize = $giveaway->prize * 1;
         $sleep =  $giveaway->sleep * 1;
         Meta::addMeta('title', $title);
-        Meta::addMeta('keywords', "$prize USDT, $sleep GAS, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, sleep.finance'));
+        Meta::addMeta('keywords', "$prize USDT, $sleep GAS, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, giveaways.finance'));
         Meta::addMeta('description', $summary);
         return Inertia::render('Giveaways/Show', [
             'giveaway' =>  new GiveawayResource($giveaway),

@@ -82,7 +82,7 @@ const isHovered = useElementHover(hover);
 }
 
 .clickToCopy .label::after {
-	content: url("https://static.sleep.finance/copyicon.svg");
+	content: url("https://static.giveaways.finance/copyicon.svg");
 	color: #d16c25;
 	display: inline-block;
 	position: absolute;

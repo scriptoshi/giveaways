@@ -130,14 +130,14 @@ const link = computed(() => {
 					:label="$t('Task Instructions')"
 					v-model="form.instruction"
 					:error="form.errors.instruction"
-					:placeholder="$t('E.g Register for an account at sleep.finance')"
+					:placeholder="$t('E.g Register for an account at giveaways.finance')"
 				/>
 				<FormInput
 					class="my-4 max-w-sm"
 					:label="$t('Task URL')"
 					v-model="form.url"
 					:error="form.errors.url"
-					:placeholder="$t('https://sleep.finance/register')"
+					:placeholder="$t('https://giveaways.finance/register')"
 				/>
 				<p>
 					We shall perform a <span class="font-bold">GET</span> request on the url you

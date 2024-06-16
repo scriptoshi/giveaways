@@ -8,7 +8,7 @@ const menus = reactive([
 	{uid: uid(), name: "Give aways", url: null, route: "giveaways.index", current: "giveaways.*"},
 	// {uid: uid(), name: "Services", url: null, route: "services.index"},
 	{uid: uid(), name: "Projects", url: null, route: "projects.index", current: "projects.*"},
-	{uid: uid(), name: "Docs", url: "https://docs.sleep.finance", route: null},
+	{uid: uid(), name: "Docs", url: "https://docs.giveaways.finance", route: null},
 ]);
 </script>
 <template>

@@ -212,7 +212,7 @@ const retry = async (quest) => {
 									class="text-gray-800 bg-transparent border border-gray-700 hover:bg-gray-800 hover:text-white focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-sm text-xs px-3 py-1.5 text-center dark:border-gray-600 dark:hover:bg-gray-600 dark:focus:ring-gray-800 dark:text-gray-300 dark:hover:text-white"
 									data-dismiss-target="#alert-additional-content-5"
 									aria-label="Close"
-									href="https://docs.sleep.finance"
+									href="https://docs.giveaways.finance"
 									target="_blank"
 									ref="nofollow"
 								>
