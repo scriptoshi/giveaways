@@ -29,7 +29,7 @@ class Quest extends JsonResource
             'status' => $this->status,
             'live' => $this->status == QuestStatus::ACTIVE,
             'min' => $this->min * 1,
-            'sleep' => $this->sleep,
+            'gas' => $this->sleep,
             'data' => $this->data,
             'giveaway' => new Giveaway($this->whenLoaded('giveaway')),
             'user' => new User($this->whenLoaded('user')),

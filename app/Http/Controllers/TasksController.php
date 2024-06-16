@@ -49,7 +49,7 @@ class TasksController extends Controller
             'type' =>  $quest->type,
         ], [
             'status' =>  TaskStatus::PENDING,
-            'sleep' => 0,
+            'gas' => 0,
             'response' => $request->response,
         ]);
         // verify contribution
@@ -63,8 +63,8 @@ class TasksController extends Controller
         $task->sleep = $quest->sleep;
         $task->save();
         $giveaway = $task->giveaway;
-        if ($giveaway->sleep_balance >= $quest->sleep) {
-            $giveaway->sleep_balance  -=  $quest->sleep;
+        if ($giveaway->gas_balance >= $quest->sleep) {
+            $giveaway->gas_balance  -=  $quest->sleep;
             $giveaway->save();
             $quester->sleep += $quest->sleep;
             $quester->save();
@@ -87,7 +87,7 @@ class TasksController extends Controller
             'percent' => 0,
             'qid' => Utils::uniqidID(16),
             'pump' => 0,
-            'sleep' => 0,
+            'gas' => 0,
             'address' => null,
             'status' => QuesterStatus::PENDING,
             'comment' => '',
@@ -110,7 +110,7 @@ class TasksController extends Controller
                 'type' =>  $quest->type,
             ], [
                 'status' =>  TaskStatus::PENDING,
-                'sleep' => 0
+                'gas' => 0
             ]);
             // verify contribution
             if ($task->status == TaskStatus::COMPLETE) continue;
@@ -123,8 +123,8 @@ class TasksController extends Controller
             $task->sleep = $quest->sleep;
             $task->save();
             $giveaway = $task->giveaway;
-            if ($giveaway->sleep_balance  >=  $quest->sleep) {
-                $giveaway->sleep_balance  -=  $quest->sleep;
+            if ($giveaway->gas_balance  >=  $quest->sleep) {
+                $giveaway->gas_balance  -=  $quest->sleep;
                 $giveaway->save();
                 $quester->sleep += $quest->sleep;
                 $quester->save();

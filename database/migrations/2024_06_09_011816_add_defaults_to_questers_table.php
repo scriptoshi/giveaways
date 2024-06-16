@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('questers', function (Blueprint $table) {
             //
             $table->decimal('percent')->default(0)->change();
-            $table->decimal('sleep', 24, 8)->default(0)->change();;
+            $table->decimal('gas', 24, 8)->default(0)->change();;
             $table->string('qid')->nullable()->change();
             $table->string('address')->nullable()->change();
         });

@@ -26,7 +26,7 @@
             "rules": "required|numeric"
         },
         {
-            "name": "sleep_before",
+            "name": "gas_before",
             "type": "decimal:24,16|nullable|default:0",
             "rules": "required|numeric"
         },

@@ -36,11 +36,11 @@ class Quester extends Model
     protected $casts = [
         'status' => QuesterStatus::class,
         'completed_at' => 'datetime',
-        'sleep_claimed_at' => 'datetime',
+        'gas_claimed_at' => 'datetime',
         'boosted_at' => 'datetime',
         'last_pump_at' => 'datetime',
         'claim' => 'array',
-        'sleep_claim' => 'array',
+        'gas_claim' => 'array',
     ];
 
     /**
@@ -56,15 +56,15 @@ class Quester extends Model
         'uuid',
         'address',
         'pump',
-        'sleep',
+        'gas',
         'status',
         'comment',
         'signature',
         'claim',
-        'sleep_signature',
-        'sleep_hash',
-        'sleep_claim',
-        'sleep_claimed_at',
+        'gas_signature',
+        'gas_hash',
+        'gas_claim',
+        'gas_claimed_at',
         'completed_at',
         'boosted_at',
         'last_pump_at'

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('type');
             $table->string('response')->nullable();
             $table->string('status')->nullable()->default('pending');
-            $table->decimal('sleep', 16, 8)->default(1);
+            $table->decimal('gas', 16, 8)->default(1);
             $table->boolean('validated')->default(false);
             $table->timestamps();
             $table->softDeletes();

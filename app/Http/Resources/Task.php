@@ -25,7 +25,7 @@ class Task extends JsonResource
             'type' => $this->type,
             'status' => $this->status,
             'response' => $this->response,
-            'sleep' => $this->sleep,
+            'gas' => $this->sleep,
             'validated' => $this->validated,
             'giveaway' => new Giveaway($this->whenLoaded('giveaway')),
             'quest' => new Quest($this->whenLoaded('quest')),

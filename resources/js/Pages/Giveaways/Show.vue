@@ -231,7 +231,7 @@ const type = computed(() => types[props.giveaway.type]);
 									class="w-5 h-5 mr-1 text-sky-500"
 									:icon="FaGasPump"
 								/>
-								<span>{{ useBillions(giveaway.sleep_balance) }}+</span>
+								<span>{{ useBillions(giveaway.gas_balance) }}+</span>
 							</a>
 						</div>
 						<div class="flex items-center justify-end mb-3">

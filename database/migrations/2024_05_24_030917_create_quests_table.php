@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('type')->nullable()->default('twitter');
             $table->string('status')->nullable()->default('pending');
             $table->decimal('min', 16, 8)->default(0);
-            $table->integer('sleep')->default(1);
+            $table->integer('gas')->default(1);
             $table->json('data')->nullable()->default(NULL);
             $table->timestamps();
             $table->softDeletes();

@@ -24,8 +24,8 @@ return new class extends Migration
             $table->timestamp('ends_at')->nullable();
             $table->decimal('prize');
             $table->decimal('fee');
-            $table->decimal('sleep');
-            $table->decimal('sleep_balance');
+            $table->decimal('gas');
+            $table->decimal('gas_balance');
             $table->string('symbol')->default('USDT');
             $table->string('hash')->nullable();
             $table->integer('chainId')->nullable();

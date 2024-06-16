@@ -22,7 +22,7 @@ class Topup extends JsonResource
             'paid_before' => $this->paid_before,
             'prize_before' => $this->prize_before,
             'fee_before' => $this->fee_before,
-            'sleep_before' => $this->sleep_before,
+            'gas_before' => $this->gas_before,
             'hash' => $this->hash,
             'num_winners' => $this->num_winners,
             'num_winners_before' => $this->num_winners_before,

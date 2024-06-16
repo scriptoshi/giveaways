@@ -168,7 +168,7 @@ class Etherscan
             $giveaway->prize = $amount / ($giveaway->num_winners * 2);
             $giveaway->fee =  $amount / 2;
             $giveaway->sleep = $giveaway->fee * $sleepPrice;
-            $giveaway->sleep_balance = $giveaway->sleep;
+            $giveaway->gas_balance = $giveaway->sleep;
             $giveaway->status = GiveawayStatus::PAID;
             $giveaway->save();
         }
@@ -191,7 +191,7 @@ class Etherscan
         $topup->paid_before = $giveaway->paid;
         $topup->prize_before = $giveaway->prize;
         $topup->fee_before = $giveaway->fee;
-        $topup->sleep_before = $giveaway->sleep;
+        $topup->gas_before = $giveaway->sleep;
         $topup->num_winners_before = $giveaway->num_winners;
         $topup->save();
         $sleepPrice = 1000;
@@ -199,7 +199,7 @@ class Etherscan
         $giveaway->prize = $amount / ($topup->num_winners * 2);
         $giveaway->fee =  $amount / 2;
         $giveaway->sleep = $giveaway->fee * $sleepPrice;
-        $giveaway->sleep_balance = $giveaway->fee * $sleepPrice;
+        $giveaway->gas_balance = $giveaway->fee * $sleepPrice;
         $giveaway->num_winners = $topup->num_winners;
         $giveaway->paid = $amount;
         $giveaway->save();

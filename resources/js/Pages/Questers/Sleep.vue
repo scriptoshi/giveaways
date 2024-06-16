@@ -48,12 +48,7 @@ const claim = async () => {
 		claimForm.setError("quester", data.error);
 		return;
 	}
-	await state.call(
-		"withdrawPrize",
-		[data.sleep_claim, data.sleep_signature],
-		null,
-		t("Claim Prize"),
-	);
+	await state.call("withdrawPrize", [data.gas_claim, data.gas_signature], null, t("Claim Prize"));
 	if (state.error) return;
 	claimForm.txhash = state.txhash;
 	claimForm.post(window.route("questers.claimed.sleep", {quester: data.id}));
@@ -63,7 +58,7 @@ const retry = async (quest) => {
 	claiming.value = "retry";
 	await state.call(
 		"withdrawPrize",
-		[quest.sleep_claim, quest.sleep_signature],
+		[quest.gas_claim, quest.gas_signature],
 		null,
 		t("Claim Prize"),
 	);
@@ -153,7 +148,7 @@ const retry = async (quest) => {
 										class="mr-2 -ml-2"
 										v-if="claiming == 'retry' && state.busy"
 									/>{{
-										formatEther(qst.sleep_claim.amount) * 1
+										formatEther(qst.gas_claim.amount) * 1
 									}}
 									SLEEP</PrimaryButton
 								>
@@ -246,8 +241,8 @@ const retry = async (quest) => {
 								</Link>
 							</div>
 							<TxHash
-								v-if="qst.sleep_hash"
-								:txhash="qst.sleep_hash"
+								v-if="qst.gas_hash"
+								:txhash="qst.gas_hash"
 								:chainId="sleepChainId"
 								>{{ qst.sleep * 1 }} SLEEP
 								<VueIcon

@@ -31,7 +31,7 @@ class HomeController extends Controller
                         'giveaways as totalGiveaways',
                         'giveaways as activeGiveaways' => fn (Builder $q) => $q->where('ends_at', '>=', now())->where('live', true),
                     ])
-                    ->withSum('giveaways as sleep', 'sleep')
+                    ->withSum('giveaways as sleep', 'gas')
                     ->withSum('giveaways as totalPrize', 'fee')
                     ->latest()
                     ->take(10)

@@ -40,23 +40,23 @@ class QuestersController extends Controller
                 'giveaway.project.logo'
             ]);
         $questers = $query->clone()->latest()->take(100)->get();
-        $signed = $query->whereNull('sleep_hash')
-            ->whereNotNull('sleep_signature')
+        $signed = $query->whereNull('gas_hash')
+            ->whereNotNull('gas_signature')
             ->latest()
             ->take(100)
             ->get()
-            ->unique('sleep_signature');
+            ->unique('gas_signature');
         return Inertia::render('Questers/Sleep', [
             'total' => fn () => Quester::query()
                 ->where('user_id', $request->user()->id)
-                ->sum('sleep'),
+                ->sum('gas'),
             'available' => fn () => Quester::query()
                 ->where('user_id', $request->user()->id)
-                ->whereNull('sleep_signature')
+                ->whereNull('gas_signature')
                 ->whereNotNull('completed_at')
-                ->whereNotNull('sleep')
-                ->where('sleep', '>=', 0)
-                ->sum('sleep'),
+                ->whereNotNull('gas')
+                ->where('gas', '>=', 0)
+                ->sum('gas'),
             'questers' => fn () =>  QuesterResource::collection($questers),
             'signed' => fn () =>  QuesterResource::collection($signed),
             'prizeClaim' => json_decode(\File::get(resource_path('js/abi/SleepClaim.json')), true)
@@ -75,7 +75,7 @@ class QuestersController extends Controller
     public function pump(Request $request, Quester $quester)
     {
         $this->authorize('update', $quester);
-        if ($quester->sleep_signature) {
+        if ($quester->gas_signature) {
             throw ValidationException::withMessages(['code' => 'You already claimed your sleep tokens']);
         }
         if ($quester->last_pump_at > now()->subHour()) {
@@ -86,9 +86,9 @@ class QuestersController extends Controller
         }
         $pump =  config('app.sleep.pump', 100);
         $giveaway =  $quester->giveaway;
-        if ($giveaway->sleep_balance < $pump)
+        if ($giveaway->gas_balance < $pump)
             throw ValidationException::withMessages(['code' => 'Giveaway sleep faucet is dry']);
-        $giveaway->sleep_balance -= $pump;
+        $giveaway->gas_balance -= $pump;
         $giveaway->save();
         $quester->pump += 1;
         $quester->sleep += $pump;
@@ -170,12 +170,12 @@ class QuestersController extends Controller
     {
         $query = Quester::query()
             ->where('user_id', $request->user()->id)
-            ->whereNull('sleep_signature')
-            ->whereNotNull('sleep')
-            ->where('sleep', '>=', 0)
+            ->whereNull('gas_signature')
+            ->whereNotNull('gas')
+            ->where('gas', '>=', 0)
             ->whereNotNull('completed_at');
         $quester =  $query->clone()->with(['giveaway'])->first();
-        $total =  $query->clone()->sum('sleep');
+        $total =  $query->clone()->sum('gas');
         if ($total == 0) return ['error' => 'Nothing to claim'];
         $address = Utils::toChecksumAddress($request->address);
         if (!$request->user()->accounts()->where('address', $address)->exists())
@@ -197,15 +197,15 @@ class QuestersController extends Controller
         $prize = new Prize($prizeInfo);
         $signature = $prize->getSignature();
         $query->clone()->update([
-            'sleep_claim' => [
+            'gas_claim' => [
                 'to' =>  $address,
                 'amount' => $wei,
                 'uuid' => $uuid->getInteger()
             ],
-            'sleep_signature' => $signature
+            'gas_signature' => $signature
         ]);
         $quester = Quester::query()
-            ->where('sleep_signature', $signature)
+            ->where('gas_signature', $signature)
             ->first();
         return  $quester;
     }
@@ -222,10 +222,10 @@ class QuestersController extends Controller
         $this->authorize('update', $quester);
         Quester::query()
             ->where('user_id', $request->user()->id)
-            ->where('sleep_signature', $quester->sleep_signature)
+            ->where('gas_signature', $quester->gas_signature)
             ->update([
-                'sleep_hash' => $request->txhash,
-                'sleep_claimed_at' => now()
+                'gas_hash' => $request->txhash,
+                'gas_claimed_at' => now()
             ]);
         return  back();
     }
@@ -280,7 +280,7 @@ class QuestersController extends Controller
         }
         $giveaway = $quester->giveaway;
         $boost =  config('app.sleep.referral', 200);
-        if ($giveaway->sleep_balance < ($boost * 2))
+        if ($giveaway->gas_balance < ($boost * 2))
             throw ValidationException::withMessages(['boostId' => 'Giveaway sleep faucet is dry']);
         $quester->pump += 1;
         $quester->sleep += $boost;

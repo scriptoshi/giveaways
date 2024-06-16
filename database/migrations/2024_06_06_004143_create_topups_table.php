@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('paid_before', 12, 4)->nullable()->default(0);
             $table->decimal('prize_before', 12, 4)->nullable()->default(0);
             $table->decimal('fee_before', 12, 4)->nullable()->default(0);
-            $table->decimal('sleep_before', 24, 16)->nullable()->default(0);
+            $table->decimal('gas_before', 24, 16)->nullable()->default(0);
             $table->string('hash')->unique()->nullable();
             $table->string('account')->nullable();
             $table->integer('num_winners')->nullable();

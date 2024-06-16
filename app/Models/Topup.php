@@ -44,7 +44,7 @@ class Topup extends Model
         'paid_before',
         'prize_before',
         'fee_before',
-        'sleep_before',
+        'gas_before',
         'hash',
         'num_winners',
         'num_winners_before',

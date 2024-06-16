@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
-    'sleep' => [
+    'gas' => [
         'referral' => env('SLEEP_PER_REFERRAL', 100),
         'quest' => env('SLEEP_PER_QUEST', 50),
         'pump' => env('SLEEP_PER_PUMP', 50),

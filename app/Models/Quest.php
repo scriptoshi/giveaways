@@ -58,7 +58,7 @@ class Quest extends Model
         'status',
         'data',
         'min',
-        'sleep'
+        'gas'
     ];
 
 

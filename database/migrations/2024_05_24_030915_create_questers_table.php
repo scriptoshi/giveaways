@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->uuid('uuid')->unique()->nullable();
             $table->decimal('percent');
-            $table->decimal('sleep', 24, 8);
+            $table->decimal('gas', 24, 8);
             $table->string('qid');
             $table->string('address');
             $table->integer('pump')->default(1);
@@ -26,10 +26,10 @@ return new class extends Migration
             $table->string('comment')->nullable();
             $table->string('signature')->nullable();
             $table->json('claim')->nullable();
-            $table->string('sleep_signature')->nullable();
-            $table->string('sleep_hash')->nullable();
-            $table->json('sleep_claim')->nullable();
-            $table->timestamp('sleep_claimed_at')->nullable();
+            $table->string('gas_signature')->nullable();
+            $table->string('gas_hash')->nullable();
+            $table->json('gas_claim')->nullable();
+            $table->timestamp('gas_claimed_at')->nullable();
             $table->timestamp('boosted_at')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('last_pump_at')->nullable();

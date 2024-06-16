@@ -55,7 +55,7 @@ class Task extends Model
         'type',
         'status',
         'response',
-        'sleep',
+        'gas',
         'validated'
     ];
 

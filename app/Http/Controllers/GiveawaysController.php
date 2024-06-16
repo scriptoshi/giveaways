@@ -176,7 +176,7 @@ class GiveawaysController extends Controller
         $giveaway->slug = Str::slug($request->brief);
         $giveaway->fee =  $amount / 2;
         $giveaway->sleep = $giveaway->fee * $sleepPrice;
-        $giveaway->sleep_balance = $giveaway->sleep;
+        $giveaway->gas_balance = $giveaway->sleep;
         $giveaway->symbol = 'USDT';
         $giveaway->hash = $request->hash;
         $giveaway->num_winners = $request->num_winners;
@@ -195,7 +195,7 @@ class GiveawaysController extends Controller
         });
         $giveaway->slug = $giveaway->slug . '-' . $giveaway->id . '-' . $brief;
         $giveaway->save();
-        $sleep_per_quest = config('app.sleep.quest', 100);
+        $gas_per_quest = config('app.sleep.quest', 100);
         if ($request->filled('discord')) {
             $inviteId =  str(str($request->discord)->explode('/')->last())->explode('?')->first();
             $added = Discord::botWasAddedToInviteGuild($inviteId);
@@ -209,7 +209,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::DISCORD,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' => $sleep_per_quest
+                    'gas' => $gas_per_quest
                 ]);
             } else {
                 $errors['discord'] = 'Discord Quest was not saved. Bot not authorized';
@@ -225,7 +225,7 @@ class GiveawaysController extends Controller
                 'type' => QuestType::TWITTER,
                 'status' => QuestStatus::ACTIVE,
                 'min' => 0,
-                'sleep' =>  $sleep_per_quest
+                'gas' =>  $gas_per_quest
             ]);
         }
         if ($request->filled('telegram')) {
@@ -240,7 +240,7 @@ class GiveawaysController extends Controller
                     'type' => QuestType::TELEGRAM,
                     'status' => QuestStatus::ACTIVE,
                     'min' => 0,
-                    'sleep' =>  $sleep_per_quest
+                    'gas' =>  $gas_per_quest
                 ]);
             } else {
                 $errors['telegram'] = 'Telegram Quest was not saved. Bot not authorized';
@@ -514,7 +514,7 @@ class GiveawaysController extends Controller
         if (!!$giveaway->project->code) throw ValidationException::withMessages(['code' => ['You can only topup a faucet once']]);
         if (!$exists) throw ValidationException::withMessages(['code' => ['Invalid Bonus Code']]);
         if ($giveaway->paid < 50) throw ValidationException::withMessages(['code' => ['Minimum Claim is for 50 USDT Giveaway']]);
-        $giveaway->sleep_balance += 25000;
+        $giveaway->gas_balance += 25000;
         $giveaway->save();
         $giveaway->project->code = $request->code;
         $giveaway->project->save();
