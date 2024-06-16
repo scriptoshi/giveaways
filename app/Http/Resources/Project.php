@@ -38,7 +38,7 @@ class Project extends JsonResource
             'user' => new User($this->whenLoaded('user')),
             'giveaways' => Giveaway::collection($this->whenLoaded('giveaways')),
             'questers' => Quester::collection($this->whenLoaded('questers')),
-            'nfts' => Nft::collection($this->whenLoaded('nfts')),
+            //'nfts' => Nft::collection($this->whenLoaded('nfts')),
             'launchpad' => new Launchpad($this->whenLoaded('launchpad')),
             'uploads' => Upload::collection($this->whenLoaded('uploads')),
             'socials' => Social::collection($this->whenLoaded('socials')),
