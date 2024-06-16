@@ -65,7 +65,7 @@ defineEmits(["verify"]);
 			<TelegramButton
 				mode="redirect"
 				v-else
-				telegram-login="SleepQuestBot"
+				telegram-login="GasQuestBot"
 				requestAccess="write"
 				@loaded="loading = false"
 				size="medium"

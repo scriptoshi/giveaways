@@ -21,11 +21,11 @@ const props = defineProps({
 	hasAccess: Boolean,
 });
 const nft = {
-	name: "Sleep Finance Access Badge",
+	name: "Gas Finance Access Badge",
 	symbol: "ACCESS",
 	description:
-		"The sleepfinance.io access badge grants you limited access to claim sleep tokens earned via the quest rewards system ",
-	external_url: "https://sleepfinance.io/access",
+		"The giveaways.finance access badge grants you limited access to claim sleep tokens earned via the quest rewards system ",
+	external_url: "https://giveaways.finance/access",
 	image: "https://nft.sleep.finance/sleep-finance-access.png",
 	attributes: [
 		{
@@ -39,7 +39,7 @@ const nft = {
 		},
 		{
 			trait_type: "Reward",
-			value: "SLEEP Tokens",
+			value: "GAS Tokens",
 		},
 		{
 			trait_type: "Validity",

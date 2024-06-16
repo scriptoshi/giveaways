@@ -36,7 +36,7 @@ defineProps({
 				>
 					Refer {{ giveaway.referrals ?? 1 }} users to boost with your BOOST ID
 				</h3>
-				<p class="text-sms">Earn 200 SLEEP each when someone uses your BOOST ID</p>
+				<p class="text-sms">Earn 200 GAS each when someone uses your BOOST ID</p>
 			</div>
 		</div>
 

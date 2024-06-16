@@ -25,9 +25,9 @@ class ProjectsController extends Controller
      */
     public function index(Request $request)
     {
-        Meta::addMeta('title', __('Projects Building on sleepfinance.io'));
+        Meta::addMeta('title', __('Projects Building on giveaways.finance'));
         Meta::addMeta('keywords', __('crypto, projects, giveaway, reviewed, audited, get twitter followers, get telegram users, build crypto community'));
-        Meta::addMeta('description', __(' The fastest way to build your projects social media following, Get thousand of active followers in days by running simple giveaway campaign on sleepfinance.io. With over 200K members and growing join the huge list of projects growing sleepfinance.io '));
+        Meta::addMeta('description', __(' The fastest way to build your projects social media following, Get thousand of active followers in days by running simple giveaway campaign on giveaways.finance. With over 200K members and growing join the huge list of projects growing giveaways.finance '));
         $keyword = $request->get('search');
         $order = $request->get('order', 'created');
         $by = $request->get('by', 'latest');
@@ -86,9 +86,9 @@ class ProjectsController extends Controller
      */
     public function show(Request $request, Project $project)
     {
-        Meta::addMeta('title', __(':name is on sleepfinance.io', ['name' => $project->name]));
+        Meta::addMeta('title', __(':name is on giveaways.finance', ['name' => $project->name]));
         Meta::addMeta('keywords', __(':name crypto, projects, giveaway, reviewed, audited, get twitter followers, get telegram users, build crypto community', ['name' => $project->name]));
-        Meta::addMeta('description', __(' :description . sleepfinance.io hosts the latest audited and reviewed crypto givaways.', ['description' => $project->description]));
+        Meta::addMeta('description', __(' :description . giveaways.finance hosts the latest audited and reviewed crypto givaways.', ['description' => $project->description]));
         $project->load([
             'logo',
             'socials',

@@ -19,7 +19,7 @@ class MintsController extends Controller
         foreach ($mints as $mint) {
             NftScan::verifyMint($mint);
         }
-        $membership = json_decode(\File::get(resource_path('js/abi/SleepfinanceMembership.json')), true);
+        $membership = json_decode(\File::get(resource_path('js/abi/GasfinanceMembership.json')), true);
         return Inertia::render('Mints/Membership', [
             'hasAccess' => function () use ($request, $membership) {
                 if (!auth()->check()) return false;
@@ -28,7 +28,7 @@ class MintsController extends Controller
                     ->where('verified', true)
                     ->exists();
             },
-            'membership' => json_decode(\File::get(resource_path('js/abi/SleepfinanceMembership.json')), true),
+            'membership' => json_decode(\File::get(resource_path('js/abi/GasfinanceMembership.json')), true),
         ]);
     }
     /**

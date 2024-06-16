@@ -28,12 +28,10 @@ import Loading from "@/Components/Loading.vue";
 import TxHash from "@/Components/TxHash.vue";
 import TxStatus from "@/Components/TxStatus.vue";
 import VueIcon from "@/Components/VueIcon.vue";
-import {useReactiveContractCall} from "@/hooks/contracts/useContractCall";
-import {useBillions} from "@/hooks/useBillions";
-import UsdtLogo from "@/images/usdt.svg";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import ApiTask from "@/Pages/Giveaways/Show/ApiTask.vue";
 import ContributeCard from "@/Pages/Giveaways/Show/ContributeCard.vue";
+import GasCode from "@/Pages/Giveaways/Show/GasCode.vue";
 import GiveawayWinners from "@/Pages/Giveaways/Show/GiveawayWinners.vue";
 import JoinDiscord from "@/Pages/Giveaways/Show/JoinDiscord.vue";
 import JoinTelegramGroup from "@/Pages/Giveaways/Show/JoinTelegramGroup.vue";
@@ -42,11 +40,13 @@ import MinimumPumps from "@/Pages/Giveaways/Show/MinimumPumps.vue";
 import NftBalance from "@/Pages/Giveaways/Show/NftBalance.vue";
 import PumpBooster from "@/Pages/Giveaways/Show/PumpBooster.vue";
 import ReferralUsers from "@/Pages/Giveaways/Show/ReferralUsers.vue";
-import SleepCode from "@/Pages/Giveaways/Show/SleepCode.vue";
 import TokenBalance from "@/Pages/Giveaways/Show/TokenBalance.vue";
 import TweetTask from "@/Pages/Giveaways/Show/TweetTask.vue";
 import TwitterFollow from "@/Pages/Giveaways/Show/TwitterFollow.vue";
 import WinningInfoBox from "@/Pages/Giveaways/Show/WinningInfoBox.vue";
+import {useReactiveContractCall} from "@/hooks/contracts/useContractCall";
+import {useBillions} from "@/hooks/useBillions";
+import UsdtLogo from "@/images/usdt.svg";
 
 const props = defineProps({
 	giveaway: Object,
@@ -201,7 +201,7 @@ const type = computed(() => types[props.giveaway.type]);
 								<h3 class="text-xl">{{ giveaway.project.name }}</h3>
 								<Verified
 									v-if="giveaway.project.isVerified"
-									v-tippy="$t('Verified by Sleep Team')"
+									v-tippy="$t('Verified by Gas Team')"
 									class="w-5 h-5 cursor-pointer"
 								/>
 								<div
@@ -224,7 +224,7 @@ const type = computed(() => types[props.giveaway.type]);
 							</a>
 							<a
 								href="#"
-								v-tippy="$t('Sleep Tokens Faucet Balance')"
+								v-tippy="$t('Gas Tokens Faucet Balance')"
 								class="border ml-1 flex items-center border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-500 rounded-sm px-3 py-1"
 							>
 								<VueIcon
@@ -375,7 +375,7 @@ const type = computed(() => types[props.giveaway.type]);
 									:href="route('questers.sleep')"
 									v-if="quester?.isComplete"
 									class="!py-1 !px-2 !text-emerald-500"
-									>{{ $t("CLAIM") }} {{ quester?.sleep * 1 }} SLEEP
+									>{{ $t("CLAIM") }} {{ quester?.sleep * 1 }} GAS
 								</PrimaryButton>
 								<PrimaryButton
 									@click.prevent="verifyAll"
@@ -394,7 +394,7 @@ const type = computed(() => types[props.giveaway.type]);
 						</p>
 					</div>
 					<div class="md:col-span-4 gap-4">
-						<SleepCode
+						<GasCode
 							:giveaway="giveaway"
 							:code="$page.props.code"
 							v-if="giveaway.project.isOwner"

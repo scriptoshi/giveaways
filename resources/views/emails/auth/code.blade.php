@@ -26,17 +26,17 @@
 @component('mail::code',['align'=>'left'])
 {{ $codeText }}
 @endcomponent
-@lang("The activation code will be valid for 30 minutes. Please do not share this code with anyone. Don't recognize this activity?") <span class="break-all"><a href="@route('password.request')">@lang("Please reset your password")</a href="https://t.me/sleepfinance"> @lang('and') <a>@lang('contact customer support immediately')</a></span>
+@lang("The activation code will be valid for 30 minutes. Please do not share this code with anyone. Don't recognize this activity?") <span class="break-all"><a href="@route('password.request')">@lang("Please reset your password")</a href="https://t.me/giveawaysfinance"> @lang('and') <a>@lang('contact customer support immediately')</a></span>
 @endisset
 
 {{-- Action Button --}}
 @isset($actionText)
 
 <?php
-    $color = match ($level) {
-        'success', 'error' => $level,
-        default => 'primary',
-    };
+$color = match ($level) {
+    'success', 'error' => $level,
+    default => 'primary',
+};
 ?>
 
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])

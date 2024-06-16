@@ -4,7 +4,7 @@ namespace App\Web3;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Validator;
-use SleepFinance\Eip712;
+use GasFinance\Eip712;
 use kornrunner\Secp256k1;
 
 class Prize extends Fluent

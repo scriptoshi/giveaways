@@ -184,14 +184,14 @@ const winOptions = reactive([
 	{
 		key: uid(),
 		value: "leaderboard",
-		title: "SLEEP Leaderboard",
-		subtitle: "Select the users who claimed the most SLEEP token",
+		title: "GAS Leaderboard",
+		subtitle: "Select the users who claimed the most GAS token",
 	},
 	{
 		key: uid(),
 		value: "draw_leaderboard",
 		title: "Draw Leaderboard",
-		subtitle: "Draw from 100 users who claimed the most SLEEP",
+		subtitle: "Draw from 100 users who claimed the most GAS",
 	},
 	{
 		key: uid(),
@@ -241,7 +241,7 @@ debouncedWatch(
 								v-model="form.brief"
 								class="col-span-3"
 								:error="form.errors.brief"
-								:placeholder="$t('Sleep finance Takeover 2024')"
+								:placeholder="$t('Gas finance Takeover 2024')"
 							/>
 							<div>
 								<label
@@ -358,7 +358,7 @@ debouncedWatch(
 											<template #lead>$</template>
 											<template #trail
 												><span class="text-emerald-500"
-													>{{ (totalPrize * 1000) / 2 }} SLEEP</span
+													>{{ (totalPrize * 1000) / 2 }} GAS</span
 												></template
 											>
 										</FormInput>
@@ -414,7 +414,7 @@ debouncedWatch(
 									:disabled="giveaway?.live"
 									:label="$t('Telegram Group to Join')"
 									:placeholder="$t('Enter Telegram Group url')"
-									:help="$t('Eg https://t.me/sleepfinance')"
+									:help="$t('Eg https://t.me/giveawaysfinance')"
 									v-model="form.telegram"
 									:error="form.errors.telegram"
 									class="mt-1"
@@ -444,17 +444,17 @@ debouncedWatch(
 										class="max-w-xs"
 										inputClasses="!pl-28"
 										v-model="form.name"
-										:label="$t('Create a Username / Sleep unique url')"
+										:label="$t('Create a Username / Gas unique url')"
 										:error="error ?? form.errors.name"
 										:help="
 											form.name
-												? `https://sleepfinance.io/@${form.name}`
+												? `https://giveaways.finance/@${form.name}`
 												: 'Cannot be changed later'
 										"
 									>
 										<template #lead>
 											<span class="text-xs font-semibold text-green-600"
-												>sleepfinance.io/@</span
+												>giveaways.finance/@</span
 											>
 										</template>
 										<template #trail>

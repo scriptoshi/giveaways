@@ -26,12 +26,12 @@ class Meta
     public static function meta()
     {
         return [
-            'twitter:site' => config('app.name', 'Sleep finance'),
-            'og:site_name' => config('app.name', 'Sleep finance'),
-            'og:type' => config('app.name', 'Sleep finance'),
+            'twitter:site' => config('app.name', 'Gas finance'),
+            'og:site_name' => config('app.name', 'Gas finance'),
+            'og:type' => config('app.name', 'Gas finance'),
             'twitter:card' => 'summary_large_image',
-            'twitter:url' => config('app.url', 'https://sleepfinance.io'),
-            'og:url' => config('app.url', 'https://sleepfinance.io'),
+            'twitter:url' => config('app.url', 'https://giveaways.finance'),
+            'og:url' => config('app.url', 'https://giveaways.finance'),
             ...static::$meta,
         ];
     }

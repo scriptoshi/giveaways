@@ -43,7 +43,7 @@ class OneTimePassword extends Notification implements ShouldQueue
             ->code($code)
             ->subject(config('app.name') . ' Activation Code')
             ->greeting('Hello ' . $notifiable->name)
-            ->line('Your Activation Code for Sleep finance: ');
+            ->line('Your Activation Code for Gas finance: ');
     }
 
 

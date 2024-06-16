@@ -74,7 +74,7 @@ class GiveawaysController extends Controller
         $giveawaysItems = $query->paginate($perPage);
         Meta::addMeta('title', __('Latest Giveaways'));
         Meta::addMeta('keywords', __('audited crypto giveaway, usdt giveaway, crypto giveaway reviews and comments, questing campaigns, Like, follow retweet giveaway, simple giveaway tasks, sleep, tokens'));
-        Meta::addMeta('description', __('Grab the newests crypto giveaways on sleepfinance.  Sleep finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
+        Meta::addMeta('description', __('Grab the newests crypto giveaways on giveawaysfinance.  Gas finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
         return Inertia::render('Giveaways/Index', [
             'giveaways' => GiveawayResource::collection($giveawaysItems),
             'popular' => function () use ($request) {
@@ -302,7 +302,7 @@ class GiveawaysController extends Controller
         $summary = value(function () use ($giveaway) {
             $total = $giveaway->prize * $giveaway->num_winners * 2;
             $tasks = $giveaway->totalTasks ?? 0;
-            return  "@{$giveaway->project->name} giveaway on sleepfinance. Total {$total} USDT for {$giveaway->num_winners} winners each taking {$giveaway->prize} USDT.  Only {$tasks} Tasks to join";
+            return  "@{$giveaway->project->name} giveaway on giveawaysfinance. Total {$total} USDT for {$giveaway->num_winners} winners each taking {$giveaway->prize} USDT.  Only {$tasks} Tasks to join";
         });
         $title = value(function () use ($giveaway) {
             $total = $giveaway->prize * $giveaway->num_winners * 2;
@@ -311,7 +311,7 @@ class GiveawaysController extends Controller
         $prize = $giveaway->prize * 1;
         $sleep =  $giveaway->sleep * 1;
         Meta::addMeta('title', $title);
-        Meta::addMeta('keywords', "$prize USDT, $sleep SLEEP, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, sleep.finance'));
+        Meta::addMeta('keywords', "$prize USDT, $sleep GAS, " . __('usdt, crypto giveaway, usdt giveaway, reviews , comments, questing, like, follow, retweet, sleep.finance'));
         Meta::addMeta('description', $summary);
         return Inertia::render('Giveaways/Show', [
             'giveaway' =>  new GiveawayResource($giveaway),
@@ -374,7 +374,7 @@ class GiveawaysController extends Controller
     }
 
     /**
-     * SleepQuestBot
+     * GasQuestBot
      * Show the form for editing the specified resource.
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -518,7 +518,7 @@ class GiveawaysController extends Controller
         $giveaway->save();
         $giveaway->project->code = $request->code;
         $giveaway->project->save();
-        return back()->with('success', '25000 SLEEP was added to your giveaway faucet!');
+        return back()->with('success', '25000 GAS was added to your giveaway faucet!');
     }
 
     /**

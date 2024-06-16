@@ -44,7 +44,7 @@ const pump = () => {
 						v-show="form.recentlySuccessful"
 						class="text-sm text-emerald-500"
 					>
-						{{ $t("You earned 100 SLEEP Tokens") }}
+						{{ $t("You earned 100 GAS Tokens") }}
 					</h3>
 				</CollapseTransition>
 				<CollapseTransition>
@@ -52,7 +52,7 @@ const pump = () => {
 						v-show="!form.recentlySuccessful"
 						class="text-sm"
 					>
-						{{ $t("Pump to get 100 SLEEP") }}
+						{{ $t("Pump to get 100 GAS") }}
 					</h3>
 				</CollapseTransition>
 				<p

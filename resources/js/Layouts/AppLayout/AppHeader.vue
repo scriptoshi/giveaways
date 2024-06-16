@@ -83,7 +83,7 @@ const userNavigation = [
 		active: window.route().current("account.*"),
 	},
 	{
-		name: t("Withdraw Sleep"),
+		name: t("Withdraw Gas"),
 		href: window.route("questers.sleep"),
 		icon: HiTicket,
 		active: false,

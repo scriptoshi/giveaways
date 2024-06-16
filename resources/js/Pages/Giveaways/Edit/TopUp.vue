@@ -163,7 +163,7 @@ const draft = async () => {
 						<template #lead>$</template>
 						<template #trail
 							><span class="text-emerald-500"
-								>{{ (totalPrize * 1000) / 2 }} SLEEP</span
+								>{{ (totalPrize * 1000) / 2 }} GAS</span
 							></template
 						>
 					</FormInput>

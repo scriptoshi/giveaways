@@ -137,6 +137,6 @@ class TasksController extends Controller
         if ($giveaway->galxe) {
             Galxe::giveaway($quester);
         }
-        return back()->with('message', __("All Tasks completed. Your SLEEP Token was allocated"));
+        return back()->with('message', __("All Tasks completed. Your GAS Token was allocated"));
     }
 }

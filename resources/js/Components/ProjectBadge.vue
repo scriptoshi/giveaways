@@ -32,7 +32,7 @@ const badge = computed(() => {
 	if (props.TAX) return "TAX";
 	if (props.CAT) return "CAT";
 	if (props.DOG) return "DOG";
-	return "SLEEP";
+	return "GAS";
 });
 </script>
 <template>

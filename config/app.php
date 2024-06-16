@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
     'gas' => [
-        'referral' => env('SLEEP_PER_REFERRAL', 100),
-        'quest' => env('SLEEP_PER_QUEST', 50),
-        'pump' => env('SLEEP_PER_PUMP', 50),
+        'referral' => env('GAS_PER_REFERRAL', 100),
+        'quest' => env('GAS_PER_QUEST', 50),
+        'pump' => env('GAS_PER_PUMP', 50),
     ],
     'usdt' => [
         11155111 => '0x6475e543a0EF140cD407b9385a8C09c29A5813f9',
@@ -36,7 +36,7 @@ return [
     'telegram_channel' => env('TELEGRAM_CHANNEL', null),
     'nftBaseURI' => env('D3_SPACES_CDN', env('D3_SPACES_ENDPOINT', null)),
     'nftscanApiKey' => env('NFTSCAN_APIKEY'),
-    'sleepChainId' => env('SLEEP_CHAINID'),
+    'sleepChainId' => env('GAS_CHAINID'),
     'galxeApiKey' => env('GALXE_APIKEY'),
 
     /*

@@ -83,7 +83,7 @@ defineProps({
 						<div
 							class="text-gray-500 ml-5 inline-block leading-[1em] text-[10px] font-bold tracking-[0.7px] uppercase"
 						>
-							{{ $t("SLEEP TOKENS:") }}
+							{{ $t("GAS TOKENS:") }}
 							<span
 								class="text-emerald-600 dark:text-emerald-500 whitespace-nowrap"
 								>{{ useBillions(giveaway.sleep) }}</span

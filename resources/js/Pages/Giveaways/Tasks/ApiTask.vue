@@ -155,7 +155,7 @@ const link = computed(() => {
 						class="w-full"
 						label="Api Url"
 						v-model="form.username"
-						placeholder="https://sleepfinance.io/check-task/registered"
+						placeholder="https://giveaways.finance/check-task/registered"
 					/>
 					<PrimaryButton
 						:disabled="form.processing"

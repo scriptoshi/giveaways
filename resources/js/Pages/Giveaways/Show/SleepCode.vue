@@ -91,7 +91,7 @@ const showInfo = ref(false);
 					<li>
 						{{
 							$t(
-								"A bonus code allows you to add more sleep token rewards to your giveaway. Sleep tokens are claimed by participants who complete your quest.",
+								"A bonus code allows you to add more sleep token rewards to your giveaway. Gas tokens are claimed by participants who complete your quest.",
 							)
 						}}
 					</li>

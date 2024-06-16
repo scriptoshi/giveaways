@@ -10,7 +10,7 @@ const props = defineProps({
 	},
 	src0Text: {
 		type: String,
-		default: "SLEEP",
+		default: "GAS",
 	},
 	src1: {
 		type: String,
@@ -25,7 +25,7 @@ const props = defineProps({
 	sm: Boolean,
 });
 const size = computed(() =>
-	props.sm ? "!w-[40px] !h-[40px] !rounded-sm" : "!w-[72px] !h-[72px] !rounded-sm"
+	props.sm ? "!w-[40px] !h-[40px] !rounded-sm" : "!w-[72px] !h-[72px] !rounded-sm",
 );
 const hgt = computed(() => (props.sm ? "!h-[40px]" : "!h-[72px]"));
 const icon = computed(() => (props.sm ? "!w-5 !h-5 -right-1 " : "w-7 h-7 -right-3"));

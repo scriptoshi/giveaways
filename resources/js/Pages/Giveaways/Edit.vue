@@ -36,7 +36,7 @@ const form = useForm({
 	duration: "12",
 	period: "hours",
 	type: "draw",
-	brief: "Sleep takeover 2024",
+	brief: "Gas takeover 2024",
 	...props.giveaway,
 });
 
@@ -68,14 +68,14 @@ const winOptions = reactive([
 	{
 		key: uid(),
 		value: "leaderboard",
-		title: "SLEEP Leaderboard",
-		subtitle: "Select the users who claimed the most SLEEP token",
+		title: "GAS Leaderboard",
+		subtitle: "Select the users who claimed the most GAS token",
 	},
 	{
 		key: uid(),
 		value: "draw_leaderboard",
 		title: "Draw Leaderboard",
-		subtitle: "Draw from 100 users who claimed the most SLEEP",
+		subtitle: "Draw from 100 users who claimed the most GAS",
 	},
 	{
 		key: uid(),
@@ -145,7 +145,7 @@ const top = ref(false);
 								v-model="form.brief"
 								class="col-span-3"
 								:error="form.errors.brief"
-								:placeholder="$t('Sleep finance Takeover 2024')"
+								:placeholder="$t('Gas finance Takeover 2024')"
 							/>
 							<div>
 								<label

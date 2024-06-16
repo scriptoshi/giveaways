@@ -29,7 +29,7 @@ const icon = computed(() => (props.sm ? "w-5 h-5 -right-1 " : "w-7 h-7 -right-3"
 		</div>
 		<Verified
 			v-if="verified"
-			v-tippy="$t('Verified by Sleep Team')"
+			v-tippy="$t('Verified by Gas Team')"
 			:class="icon"
 			class="absolute bg-white border-gray-300 dark:border-gray-600 dark:bg-gray-900 rounded-full bottom-0"
 		/>

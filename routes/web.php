@@ -161,8 +161,8 @@ Route::name('questers.')
         Route::get('/sleep', 'gas')->name('gas');
         Route::post('/questers/pump/{quester}', 'pump')->name('pump');
         Route::post('/questers/boost/{quester}', 'boost')->name('boost');
-        Route::post('/questers/claim-sleep', 'claimSleep')->name('claim.sleep');
-        Route::post('/questers/claimed-sleep/{quester}', 'claimedSleep')->name('claimed.sleep');
+        Route::post('/questers/claim-sleep', 'claimGas')->name('claim.sleep');
+        Route::post('/questers/claimed-sleep/{quester}', 'claimedGas')->name('claimed.sleep');
         Route::post('/questers/claim/{quester}', 'claim')->name('claim');
         Route::post('/questers/claimed/{quester}', 'claimed')->name('claimed');
     });

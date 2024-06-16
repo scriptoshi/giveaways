@@ -79,7 +79,7 @@ debouncedWatch(
 			#label
 		>
 			<div class="flex justify-between items-center">
-				<ExternalLink href="https://t.me/SleepQuestBot"> [ ADD SLEEP BOT]</ExternalLink>
+				<ExternalLink href="https://t.me/GasQuestBot"> [ ADD GAS BOT]</ExternalLink>
 				<a
 					v-if="telegram"
 					class="text-sky-500 flex items-center dark:text-sky-400 hover:font-semibold hover:text-sky-700 dark:hover:text-sky-200"

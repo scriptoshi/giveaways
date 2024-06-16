@@ -22,11 +22,11 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   script: |
                       rm -rf /var/www/build
-                      cd /var/www && git clone git@github.com:sleepfinance/sleep.git build
+                      cd /var/www && git clone git@github.com:giveawaysfinance/sleep.git build
                       cp /var/www/sleep.finance/.env /var/www/build/.env
                       cd /var/www/build && ./.scripts/deploy.sh
-                      rm -rf /var/www/sleepfinance_io_back
-                      mv /var/www/sleep.finance /var/www/sleepfinance_io_back
+                      rm -rf /var/www/giveawaysfinance_io_back
+                      mv /var/www/sleep.finance /var/www/giveawaysfinance_io_back
                       mv /var/www/build /var/www/sleep.finance
                       cd /var/www/sleep.finance && php artisan optimize
                       cd /var/www/sleep.finance && php artisan storage:link

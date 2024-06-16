@@ -8,7 +8,7 @@ use Hash;
 use Illuminate\Database\Seeder;
 use Str;
 
-class SleepUsersTableSeeder extends Seeder
+class GasUsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

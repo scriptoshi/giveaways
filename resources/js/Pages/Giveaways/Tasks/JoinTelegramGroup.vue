@@ -90,7 +90,7 @@ watch(
 						class="w-full"
 						label="Group URL"
 						v-model="form.username"
-						placeholder="https://t.me/sleepfinance"
+						placeholder="https://t.me/giveawaysfinance"
 					/>
 					<PrimaryButton
 						:disabled="form.processing"

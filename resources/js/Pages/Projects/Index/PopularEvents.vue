@@ -58,7 +58,7 @@ defineProps({
 						<div
 							class="text-gray-500 inline-block leading-[1em] text-[10px] font-bold tracking-[0.7px] uppercase"
 						>
-							{{ $t("SLEEP:") }}
+							{{ $t("GAS:") }}
 							<span
 								class="text-emerald-600 dark:text-emerald-500 whitespace-nowrap"
 								>{{ useBillions(project.sleep) }}</span

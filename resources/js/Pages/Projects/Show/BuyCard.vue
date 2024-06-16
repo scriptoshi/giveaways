@@ -259,8 +259,8 @@ const why = ref(false);
 			<template #content>
 				<ul class="list-disc list-inside">
 					<li>
-						All launches on sleep finance V2 are prize fairlaunch. It means the final
-						price of the token is not known until the the sale ends
+						All launches on giveaways finance V2 are prize fairlaunch. It means the
+						final price of the token is not known until the the sale ends
 					</li>
 					<li>
 						In a fair launch, all tokens listed for sale are distributed to contributors
@@ -278,7 +278,7 @@ const why = ref(false);
 					</li>
 					<li>
 						All users who contribute WILL BE legible for 5% sale kickback prize. This
-						prize will be distributed by SLEEP finance Team to top 10 pumpers
+						prize will be distributed by GAS finance Team to top 10 pumpers
 						leaderboard.!
 					</li>
 				</ul>

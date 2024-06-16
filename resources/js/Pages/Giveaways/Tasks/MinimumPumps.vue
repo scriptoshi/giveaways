@@ -43,7 +43,7 @@ const pump = () => {
 					:class="{'text-green-500': $page.props.vote?.pump > giveaway.pumps}"
 					class="text-sm"
 				>
-					Pump to claim 100 SLEEP
+					Pump to claim 100 GAS
 				</h3>
 				<p>You can pump once every hour</p>
 			</div>

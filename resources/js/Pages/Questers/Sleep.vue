@@ -72,15 +72,15 @@ const retry = async (quest) => {
 		<div class="min-h-full w-full bg-white dark:bg-gray-900">
 			<div class="container sm:px-4">
 				<div class="max-w-2xl mt-8 mx-auto p-8">
-					<h3 class="text-base">Claim Sleep Prize</h3>
+					<h3 class="text-base">Claim Gas Prize</h3>
 					<div class="p-6 mt-6 border grid gap-3 dark:border-gray-600">
 						<div class="flex items-center justify-between">
 							<h3 class="text-xl text-gray-500">All Time Claims</h3>
-							<h3 class="text-xl">{{ total * 1 }} SLEEP</h3>
+							<h3 class="text-xl">{{ total * 1 }} GAS</h3>
 						</div>
 						<div class="flex items-center justify-between">
 							<h3 class="text-sm text-gray-500">Available</h3>
-							<h3 class="font-Walsheim-Bold text-base">{{ available * 1 }} SLEEP</h3>
+							<h3 class="font-Walsheim-Bold text-base">{{ available * 1 }} GAS</h3>
 						</div>
 
 						<div class="flexitems-center justify-end">
@@ -147,10 +147,7 @@ const retry = async (quest) => {
 									><Loading
 										class="mr-2 -ml-2"
 										v-if="claiming == 'retry' && state.busy"
-									/>{{
-										formatEther(qst.gas_claim.amount) * 1
-									}}
-									SLEEP</PrimaryButton
+									/>{{ formatEther(qst.gas_claim.amount) * 1 }} GAS</PrimaryButton
 								>
 							</div>
 						</div>
@@ -181,21 +178,21 @@ const retry = async (quest) => {
 							</div>
 							<div class="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-300">
 								<p>
-									Sleep is distributed on first come first serve. If Project sleep
+									Gas is distributed on first come first serve. If Project sleep
 									faucet is dry, you wont earn any sleep!
 								</p>
 								<ul class="list-disc list-inside">
 									<li>
-										Participate and complete any giveway. You claim 100 SLEEP
-										for every task.
+										Participate and complete any giveway. You claim 100 GAS for
+										every task.
 									</li>
 									<li>
 										You can pump your quest on a giveaway once every hour for
-										100 SLEEP.
+										100 GAS.
 									</li>
 									<li>
 										You can refer users to boost with your boost ID. You each
-										get 200 SLEEP per boost.
+										get 200 GAS per boost.
 									</li>
 								</ul>
 							</div>
@@ -244,7 +241,7 @@ const retry = async (quest) => {
 								v-if="qst.gas_hash"
 								:txhash="qst.gas_hash"
 								:chainId="sleepChainId"
-								>{{ qst.sleep * 1 }} SLEEP
+								>{{ qst.sleep * 1 }} GAS
 								<VueIcon
 									class="w-4 h-4 text-emerald-500"
 									:icon="PrExternalLink"
@@ -254,7 +251,7 @@ const retry = async (quest) => {
 								v-else
 								class="flex items-end uppercase"
 							>
-								{{ qst.sleep * 1 }} SLEEP
+								{{ qst.sleep * 1 }} GAS
 							</div>
 						</div>
 					</div>

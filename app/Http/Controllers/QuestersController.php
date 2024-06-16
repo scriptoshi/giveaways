@@ -46,7 +46,7 @@ class QuestersController extends Controller
             ->take(100)
             ->get()
             ->unique('gas_signature');
-        return Inertia::render('Questers/Sleep', [
+        return Inertia::render('Questers/Gas', [
             'total' => fn () => Quester::query()
                 ->where('user_id', $request->user()->id)
                 ->sum('gas'),
@@ -59,7 +59,7 @@ class QuestersController extends Controller
                 ->sum('gas'),
             'questers' => fn () =>  QuesterResource::collection($questers),
             'signed' => fn () =>  QuesterResource::collection($signed),
-            'prizeClaim' => json_decode(\File::get(resource_path('js/abi/SleepClaim.json')), true)
+            'prizeClaim' => json_decode(\File::get(resource_path('js/abi/GasClaim.json')), true)
 
         ]);
     }
@@ -166,7 +166,7 @@ class QuestersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function claimSleep(Request $request)
+    public function claimGas(Request $request)
     {
         $query = Quester::query()
             ->where('user_id', $request->user()->id)
@@ -180,7 +180,7 @@ class QuestersController extends Controller
         $address = Utils::toChecksumAddress($request->address);
         if (!$request->user()->accounts()->where('address', $address)->exists())
             return ['error' => 'Invalid or unregistered address!'];
-        $prizeClaim = json_decode(\File::get(resource_path('js/abi/SleepClaim.json')), true);
+        $prizeClaim = json_decode(\File::get(resource_path('js/abi/GasClaim.json')), true);
         $contract =  $prizeClaim['addresses'][$quester->giveaway->chainId];
         $wei = Web3Utils::toSatoshi($total, 18);
         $uuid = Str::uuid();
@@ -217,7 +217,7 @@ class QuestersController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function claimedSleep(Request $request, Quester $quester)
+    public function claimedGas(Request $request, Quester $quester)
     {
         $this->authorize('update', $quester);
         Quester::query()

@@ -65,9 +65,9 @@ class SelectWinners
 
         if ($giveaway->type == GiveawayType::LEADERBOARD) {
             $winners =  $giveaway->questers()
-                ->withSum('pumps as totalSleep', 'weight')
+                ->withSum('pumps as totalGas', 'weight')
                 ->where('status', QuesterStatus::COMPLETED)
-                ->latest('totalSleep')
+                ->latest('totalGas')
                 ->take($giveaway->num_winners)
                 ->get();
             static::update($winners, QuesterStatus::WINNER);
@@ -79,9 +79,9 @@ class SelectWinners
         if ($giveaway->type == GiveawayType::DRAW_LEADERBOARD) {
             $take = $giveaway->num_winners > $giveaway->draw_size ? $giveaway->num_winners * 5 : $giveaway->draw_size;
             $selection =  $giveaway->questers()
-                ->withSum('pumps as totalSleep', 'weight')
+                ->withSum('pumps as totalGas', 'weight')
                 ->where('status', QuesterStatus::COMPLETED)
-                ->latest('totalSleep')
+                ->latest('totalGas')
                 ->take($take)
                 ->get();
             static::update($selection, QuesterStatus::DRAWN);
@@ -99,9 +99,9 @@ class SelectWinners
         if ($giveaway->type == GiveawayType::FCFS_LEADERBOARD) {
             $take = $giveaway->num_winners > $giveaway->draw_size ? $giveaway->num_winners * 5 : $giveaway->draw_size;
             $selection =  $giveaway->questers()
-                ->withSum('pumps as totalSleep', 'weight')
+                ->withSum('pumps as totalGas', 'weight')
                 ->where('status', QuesterStatus::COMPLETED)
-                ->latest('totalSleep')
+                ->latest('totalGas')
                 ->take($take)
                 ->get();
             static::update($selection, QuesterStatus::DRAWN);

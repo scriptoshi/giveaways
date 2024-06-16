@@ -23,8 +23,7 @@ defineProps({
 					}}</span>
 				</h3>
 				<p class="text-xs">
-					Referral task is enabled by default. Both the referred and referrer earn 200
-					SLEEP
+					Referral task is enabled by default. Both the referred and referrer earn 200 GAS
 				</p>
 			</div>
 		</div>

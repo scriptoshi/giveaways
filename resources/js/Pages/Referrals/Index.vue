@@ -72,7 +72,7 @@ defineProps({
 									{{ $t("Referral Links") }}
 								</h3>
 								<h3 class="text-gray-900 text-sm dark:text-white">
-									{{ $t("25K Sleep Bonus Code") }}
+									{{ $t("25K Gas Bonus Code") }}
 								</h3>
 								<h3 class="text-gray-900 text-sm dark:text-white">
 									{{ $t("Number of referrals") }}

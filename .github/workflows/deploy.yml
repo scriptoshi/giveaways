@@ -5,7 +5,7 @@ name: Deploy
 on:
     push:
         branches:
-            - sleepfinance
+            - giveawaysfinance
 # Authenticate to the the server via ssh
 # and run our deployment script
 jobs:
@@ -22,13 +22,13 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   script: |
                       rm -rf /var/www/build
-                      cd /var/www && git clone git@github.com:sleepfinance/giveaways.git build
+                      cd /var/www && git clone git@github.com:giveawaysfinance/giveaways.git build
                       cp /var/www/envs/.sleep /var/www/build/.env
                       cd /var/www/build && ./.scripts/deploy.sh
-                      rm -rf /var/www/sleepfinance_io_back
-                      mv /var/www/sleepfinance.io /var/www/sleepfinance_io_back
-                      mv /var/www/build /var/www/sleepfinance.io
-                      cd /var/www/sleepfinance.io && php artisan optimize
-                      cd /var/www/sleepfinance.io && php artisan storage:link
-                      cd /var/www/sleepfinance.io && sudo chgrp -R www-data storage bootstrap/cache
-                      cd /var/www/sleepfinance.io && sudo chmod -R ug+rwx storage bootstrap/cache
+                      rm -rf /var/www/giveawaysfinance_io_back
+                      mv /var/www/giveaways.finance /var/www/giveawaysfinance_io_back
+                      mv /var/www/build /var/www/giveaways.finance
+                      cd /var/www/giveaways.finance && php artisan optimize
+                      cd /var/www/giveaways.finance && php artisan storage:link
+                      cd /var/www/giveaways.finance && sudo chgrp -R www-data storage bootstrap/cache
+                      cd /var/www/giveaways.finance && sudo chmod -R ug+rwx storage bootstrap/cache

@@ -6871,16 +6871,16 @@
             "time": "2024-01-09T14:57:04+00:00"
         },
         {
-            "name": "sleepfinance/eip712",
+            "name": "giveawaysfinance/eip712",
             "version": "1.0.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sleepfinance/eip712.git",
+                "url": "https://github.com/giveawaysfinance/eip712.git",
                 "reference": "b6c81926901c8fc663f995455bee776e279e737f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sleepfinance/eip712/zipball/b6c81926901c8fc663f995455bee776e279e737f",
+                "url": "https://api.github.com/repos/giveawaysfinance/eip712/zipball/b6c81926901c8fc663f995455bee776e279e737f",
                 "reference": "b6c81926901c8fc663f995455bee776e279e737f",
                 "shasum": ""
             },
@@ -6889,7 +6889,7 @@
                 "illuminate/support": "^8.0|^9.0|^10.9|^11",
                 "kornrunner/keccak": "^1.1",
                 "kornrunner/solidity": "^0.2.0",
-                "sleepfinance/simple-web3-php": "^0.13.0"
+                "giveawaysfinance/simple-web3-php": "^0.13.0"
             },
             "require-dev": {
                 "barryvdh/laravel-ide-helper": "^2.13",
@@ -6898,7 +6898,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "SleepFinance\\": "src/"
+                    "GasFinance\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -6913,22 +6913,22 @@
             ],
             "description": "Generate Eip712 Hashes for signing",
             "support": {
-                "issues": "https://github.com/sleepfinance/eip712/issues",
-                "source": "https://github.com/sleepfinance/eip712/tree/1.0.5"
+                "issues": "https://github.com/giveawaysfinance/eip712/issues",
+                "source": "https://github.com/giveawaysfinance/eip712/tree/1.0.5"
             },
             "time": "2024-06-03T18:27:17+00:00"
         },
         {
-            "name": "sleepfinance/simple-web3-php",
+            "name": "giveawaysfinance/simple-web3-php",
             "version": "v0.13",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sleepfinance/Simple-Web3-Php.git",
+                "url": "https://github.com/giveawaysfinance/Simple-Web3-Php.git",
                 "reference": "a4bdf993ffd6c71c308882325b03d35a450c2a56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sleepfinance/Simple-Web3-Php/zipball/a4bdf993ffd6c71c308882325b03d35a450c2a56",
+                "url": "https://api.github.com/repos/giveawaysfinance/Simple-Web3-Php/zipball/a4bdf993ffd6c71c308882325b03d35a450c2a56",
                 "reference": "a4bdf993ffd6c71c308882325b03d35a450c2a56",
                 "shasum": ""
             },
@@ -6973,21 +6973,21 @@
                 "web3"
             ],
             "support": {
-                "source": "https://github.com/sleepfinance/Simple-Web3-Php/tree/v0.13"
+                "source": "https://github.com/giveawaysfinance/Simple-Web3-Php/tree/v0.13"
             },
             "time": "2024-06-03T18:15:29+00:00"
         },
         {
-            "name": "sleepfinance/web3.php",
+            "name": "giveawaysfinance/web3.php",
             "version": "0.1.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sleepfinance/web3.php.git",
+                "url": "https://github.com/giveawaysfinance/web3.php.git",
                 "reference": "85bb8d3fa07e97a6ba6e658d4c5f612dadfbfcf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sleepfinance/web3.php/zipball/85bb8d3fa07e97a6ba6e658d4c5f612dadfbfcf2",
+                "url": "https://api.github.com/repos/giveawaysfinance/web3.php/zipball/85bb8d3fa07e97a6ba6e658d4c5f612dadfbfcf2",
                 "reference": "85bb8d3fa07e97a6ba6e658d4c5f612dadfbfcf2",
                 "shasum": ""
             },
@@ -7022,7 +7022,7 @@
             ],
             "description": "Ethereum web3 interface.",
             "support": {
-                "source": "https://github.com/sleepfinance/web3.php/tree/0.1.8"
+                "source": "https://github.com/giveawaysfinance/web3.php/tree/0.1.8"
             },
             "time": "2023-03-10T20:32:17+00:00"
         },

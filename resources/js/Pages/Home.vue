@@ -56,7 +56,7 @@ const showHowItWorks = ref(false);
 				class="grid relative grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
 			>
 				<div class="lg:col-span-3 mt-4">
-					<h1 class="text-base">Sleep Finance Giveaways</h1>
+					<h1 class="text-base">Gas Finance Giveaways</h1>
 					<p>
 						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
 						done. Prize giveaway is decentralized and instant!. If you dont win, no
@@ -199,9 +199,9 @@ const showHowItWorks = ref(false);
 				<h3 class="text-sm">How can you join a giveaway?</h3>
 				<p>
 					Basically, joining a crypto giveway will require you to have an account on
-					twitter, telegram and discord. Find the giveway on sleepfinance, and enroll by
-					following the project. After the giveaway ends and you are selected , you will
-					claim your prize.
+					twitter, telegram and discord. Find the giveway on giveawaysfinance, and enroll
+					by following the project. After the giveaway ends and you are selected , you
+					will claim your prize.
 				</p>
 				<h3 class="text-sm">How can I avoid giveaway/ quest scams?</h3>
 				<ul>
@@ -210,8 +210,8 @@ const showHowItWorks = ref(false);
 					<li>Never accept to approve any action in your wallet during claims</li>
 					<li>Ensure the address claiming giveaways has no valuable assets</li>
 					<li>
-						Only participate in giveways on sleep finance. Sleep finance only hosts USDT
-						giveaways
+						Only participate in giveways on giveaways finance. Gas finance only hosts
+						USDT giveaways
 					</li>
 				</ul>
 				<h3 class="text-sm">
@@ -245,7 +245,7 @@ const showHowItWorks = ref(false);
 					<li>
 						{{
 							$t(
-								"After the giveaway ends, sleep finance will select a winner based on the giveaway criterion",
+								"After the giveaway ends, giveaways finance will select a winner based on the giveaway criterion",
 							)
 						}}
 					</li>
@@ -266,13 +266,13 @@ const showHowItWorks = ref(false);
 					<li>
 						{{
 							$t(
-								"Sleep tokens will be available to withdraw from all your quests, but after withdraw, you cannot pump giveaway again.",
+								"Gas tokens will be available to withdraw from all your quests, but after withdraw, you cannot pump giveaway again.",
 							)
 						}}
 					</li>
 					<li>
 						{{
-							"Sleep finance does not endorse any of the projects listed here, DYOR before investing or paying for anything."
+							"Gas finance does not endorse any of the projects listed here, DYOR before investing or paying for anything."
 						}}.
 					</li>
 				</ul>

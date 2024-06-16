@@ -191,9 +191,7 @@ const order = computed(() => params.order);
 												<div
 													class="inline-flex space-x-4 items-center justify-between text-gray-500 dark:text-gray-400 font-normal text-sm"
 												>
-													<span class="flex whitespace-nowrap"
-														>SLEEP</span
-													>
+													<span class="flex whitespace-nowrap">GAS</span>
 												</div>
 												<div
 													class="font-bold font-Walsheim-Bold text-2xl mt-0.5"
