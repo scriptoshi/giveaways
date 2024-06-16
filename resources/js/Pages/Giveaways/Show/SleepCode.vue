@@ -91,14 +91,14 @@ const showInfo = ref(false);
 					<li>
 						{{
 							$t(
-								"A bonus code allows you to add more sleep token rewards to your giveaway. Gas tokens are claimed by participants who complete your quest.",
+								"A bonus code allows you to add more gas token rewards to your giveaway. Gas tokens are claimed by participants who complete your quest.",
 							)
 						}}
 					</li>
 					<li>
 						{{
 							$t(
-								"Please note that an empty sleep faucet doesnt stop your giveaway from progressing. so don't lose any sleep over zero sleep balance",
+								"Please note that an empty gas faucet doesnt stop your giveaway from progressing. so don't lose any gas over zero gas balance",
 							)
 						}}
 					</li>

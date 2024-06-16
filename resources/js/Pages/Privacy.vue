@@ -16,23 +16,21 @@ defineProps({
 					Privacy and Policy
 				</h2>
 				<div class="text-lg font-semibold mb-2">
-					This Privacy Notice describes how sleep collects and processes your personal
-					information through the sleep websites and applications that reference this
-					Privacy Notice.
+					This Privacy Notice describes how giveaways finance collects and processes your
+					personal information through the giveaways finance websites and applications
+					that reference this Privacy Notice.
 				</div>
 				<p class="text-gray-500 dark:text-gray-300">
-					sleep refers to an ecosystem comprising sleep launchpad, sleep Token Create,
-					multi-Send, Staking Create, Token lock, Bookie, DEXE, and more. This Privacy
-					Policy applies to all platforms, websites, and departments of sleep and sleep
-					Operators. By using sleep Services, you are consenting to the collection,
-					storage, processing and transfer of your personal information as described in
-					this Privacy Policy.
+					giveaways finance refers to the app hosted at www.giveaways.finance URL. This
+					Privacy Policy applies to this APP. By using giveaways finance Services, you are
+					consenting to the collection, storage, processing and transfer of your personal
+					information as described in this Privacy Policy.
 				</p>
 				<ol class="list-decimal px-4 md:px-8">
 					<li>
-						What Personal Information does sleep collect and process? Why does sleep
-						process my personal information? What is the legal basis for our use of
-						personal information?
+						What Personal Information does giveaways finance collect and process? Why
+						does giveaways finance process my personal information? What is the legal
+						basis for our use of personal information?
 					</li>
 					<li>
 						<strong>Personal Information</strong>
@@ -50,7 +48,7 @@ defineProps({
 							</li>
 							<li>
 								Communicate with you. We use your personal information to
-								communicate with you in relation to sleep Services;
+								communicate with you in relation to giveaways finance Services;
 							</li>
 							<li>
 								We may collect and process identity information and Sensitive
@@ -86,15 +84,16 @@ defineProps({
 						login, e-mail address, password, and location of your device or computer
 					</li>
 					<li>
-						sleep Services metrics (e.g., the occurrences of technical errors, your
-						interactions with service features and content, and your settings
-						preferences)
+						giveaways finance Services metrics (e.g., the occurrences of technical
+						errors, your interactions with service features and content, and your
+						settings preferences)
 					</li>
 					<li>version and time zone settings;</li>
 					<li>
-						Provide, troubleshoot, and improve sleep Services. We use your personal
-						information to provide functionality, analyze performance, fix errors, and
-						improve the usability and effectiveness of sleep Services.
+						Provide, troubleshoot, and improve giveaways finance Services. We use your
+						personal information to provide functionality, analyze performance, fix
+						errors, and improve the usability and effectiveness of giveaways finance
+						Services.
 					</li>
 				</ol>
 				<p class="text-gray-500 dark:text-gray-300">
@@ -113,9 +112,9 @@ defineProps({
 						Information from other sources: we may receive information about you from
 						other sources such as credit history information from credit bureaus; Fraud
 						prevention and credit risks. We process personal information to prevent and
-						detect fraud and abuse in order to protect the security of our users, sleep
-						Services, and others. We may also use scoring methods to assess and manage
-						credit risks
+						detect fraud and abuse in order to protect the security of our users,
+						giveaways finance Services, and others. We may also use scoring methods to
+						assess and manage credit risks
 					</li>
 					<li>
 						Information about your behavior: we may process information about you on
@@ -128,11 +127,15 @@ defineProps({
 					<li>
 						Recommendations and personalization. We use your personal information to
 						recommend features and services that might be of interest to you, identify
-						your preferences, and personalize your experience with sleep Services;
+						your preferences, and personalize your experience with giveaways finance
+						Services;
 					</li>
 				</ol>
-				<h3>Can Children Use sleep Services?</h3>
-				<div>sleep does not allow anyone under 18 to use sleep Services.</div>
+				<h3>Can Children Use giveaways finance Services?</h3>
+				<div>
+					giveaways finance does not allow anyone under 18 to use giveaways finance
+					Services.
+				</div>
 				<h3 class="my-3">What About Cookies and Other Identifiers?</h3>
 				<div>
 					We use cookies and similar tools to enhance your user experience, provide our
@@ -140,14 +143,14 @@ defineProps({
 					improvements. Depending on applicable laws in the region you are located in, the
 					cookie banner on your browser will tell you how to accept or refuse cookies.
 				</div>
-				<h3 class="my-3">Does sleep Share My Personal Information?</h3>
+				<h3 class="my-3">Does giveaways finance Share My Personal Information?</h3>
 				<p class="text-gray-500 dark:text-gray-300">
 					Information about our users is an important part of our business and we are not
-					in the business of selling our users' personal information to others. sleep
-					shares users' personal information only as described below and with the
-					subsidiaries or affiliates of sleep that are either subject to this Privacy
-					Notice or follow practices at least as protective as those described in this
-					Privacy Notice.
+					in the business of selling our users' personal information to others. giveaways
+					finance shares users' personal information only as described below and with the
+					subsidiaries or affiliates of giveaways finance that are either subject to this
+					Privacy Notice or follow practices at least as protective as those described in
+					this Privacy Notice.
 				</p>
 				<p class="text-gray-500 dark:text-gray-300">
 					Third-party service providers: We employ other companies and individuals to
@@ -167,25 +170,25 @@ defineProps({
 					otherwise).
 				</p>
 				<p class="text-gray-500 dark:text-gray-300">
-					Also, in the unlikely event that sleep or substantially all of its assets are
-					acquired, user information will be one of the transferred assets.
+					Also, in the unlikely event that giveaways finance or substantially all of its
+					assets are acquired, user information will be one of the transferred assets.
 				</p>
 				<p class="text-gray-500 dark:text-gray-300">
-					Protection of sleep and others: We release account and other personal
-					information when we believe release is appropriate to comply with the law or
-					with our regulatory obligations; enforce or apply our Terms of Use and other
-					agreements; or protect the rights, property, or safety of sleep, our users or
-					others. This includes exchanging information with other companies and
-					organizations for fraud protection and credit risk reduction.
+					Protection of giveaways finance and others: We release account and other
+					personal information when we believe release is appropriate to comply with the
+					law or with our regulatory obligations; enforce or apply our Terms of Use and
+					other agreements; or protect the rights, property, or safety of giveaways
+					finance, our users or others. This includes exchanging information with other
+					companies and organizations for fraud protection and credit risk reduction.
 				</p>
 				<h3 class="my-3">International transfers of personal data</h3>
 				<p class="text-gray-500 dark:text-gray-300">
-					sleep may transfer your data outside of the European Economic Area (“EEA”).
-					sleep puts in place suitable technical, organizational and contractual
-					safeguards (including Standard Contractual Clauses), to ensure that such
-					transfer is carried out in compliance with applicable data protection rules,
-					except where the country to which the data is transferred has already been
-					determined by the European Commission to provide an adequate level of
+					giveaways finance may transfer your data outside of the European Economic Area
+					(“EEA”). giveaways finance puts in place suitable technical, organizational and
+					contractual safeguards (including Standard Contractual Clauses), to ensure that
+					such transfer is carried out in compliance with applicable data protection
+					rules, except where the country to which the data is transferred has already
+					been determined by the European Commission to provide an adequate level of
 					protection.
 				</p>
 				<h3 class="my-3">How Secure is My Information?</h3>
@@ -199,8 +202,8 @@ defineProps({
 					the collection, storage, and disclosure of your personal information. Our
 					security procedures mean that we may ask you to verify your identity to protect
 					you against unauthorized access to your account password. We recommend using a
-					unique password for your sleep account that is not utilized for other online
-					accounts and signing off when you finish using a shared computer.
+					unique password for your giveaways finance account that is not utilized for
+					other online accounts and signing off when you finish using a shared computer.
 				</p>
 				<h3 class="my-3">What About Advertising?</h3>
 				<p class="text-gray-500 dark:text-gray-300">
@@ -271,10 +274,10 @@ defineProps({
 					</li>
 					<li>Right to lodge a complaint to the relevant data protection authority.</li>
 				</ol>
-				<h3 class="my-3">How Long Does sleep Keep My Personal Information?</h3>
+				<h3 class="my-3">How Long Does giveaways finance Keep My Personal Information?</h3>
 				<p class="text-gray-500 dark:text-gray-300">
-					We keep your personal information to enable your continued use of sleep
-					Services, for as long as it is required in order to fulfill the relevant
+					We keep your personal information to enable your continued use of giveaways
+					finance Services, for as long as it is required in order to fulfill the relevant
 					purposes described in this Privacy Notice, and as may be required by law such as
 					for tax and accounting purposes, compliance with Anti-Money Laundering laws, or
 					as otherwise communicated to you.
@@ -287,20 +290,21 @@ defineProps({
 				</p>
 				<h3 class="my-3">Conditions of Use, Notices, and Revisions</h3>
 				<p class="text-gray-500 dark:text-gray-300">
-					If you choose to use sleep Services, your use and any dispute over privacy are
-					subject to this Notice and our Terms of Use. If you have any concerns about
-					privacy at sleep, please contact us with a thorough description, and we will try
-					to resolve them. You also have the right to contact your local Data Protection
-					Authority.
+					If you choose to use giveaways finance Services, your use and any dispute over
+					privacy are subject to this Notice and our Terms of Use. If you have any
+					concerns about privacy at giveaways finance, please contact us with a thorough
+					description, and we will try to resolve them. You also have the right to contact
+					your local Data Protection Authority.
 				</p>
 				<p class="text-gray-500 dark:text-gray-300">
 					Our business changes constantly, and our Privacy Notice will change also. You
 					should check our websites frequently to see recent changes. If you do not agree
-					with the revised content, you shall stop accessing sleep immediately. When an
-					updated version of the Privacy Policy is released, your continued access to
-					sleep means that you agree to the updated content and agree to abide by the
-					updated Privacy Notice. Unless stated otherwise, our current Privacy Notice
-					applies to all information that we have about you and your account.
+					with the revised content, you shall stop accessing giveaways finance
+					immediately. When an updated version of the Privacy Policy is released, your
+					continued access to giveaways finance means that you agree to the updated
+					content and agree to abide by the updated Privacy Notice. Unless stated
+					otherwise, our current Privacy Notice applies to all information that we have
+					about you and your account.
 				</p>
 			</div>
 		</main>

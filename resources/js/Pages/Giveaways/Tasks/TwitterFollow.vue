@@ -91,7 +91,7 @@ watch(
 						class="w-full"
 						label="Twitter account url"
 						v-model="form.username"
-						placeholder="https://x.com/sleeprotocol"
+						placeholder="https://x.com/giveawaysfinance"
 					/>
 					<PrimaryButton
 						:disabled="form.processing"

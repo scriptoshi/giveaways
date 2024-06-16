@@ -49,7 +49,7 @@ const attemptConnection = ({connector}) => {
 	pendingConnector.value = connector;
 	connect({connector});
 };
-const appName = computed(() => usePage().props.appName ?? "sleep");
+const appName = computed(() => usePage().props.appName ?? "gas");
 const Icons = {
 	Injected: ChevronDoubleDownIcon,
 	MetaMask: MetamaskIcon,

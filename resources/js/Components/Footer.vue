@@ -75,12 +75,12 @@ const links = [
 						</ul>
 						<!-- Copyright Area -->
 						<div class="py-6 text-lg font-semibold text-gray-600 dark:text-gray-400">
-							©{{ new Date().getFullYear() }} sleep, All Rights Reserved By
+							©{{ new Date().getFullYear() }} gas, All Rights Reserved By
 							<a
 								href="https://giveaways.finance"
 								class="font-medium no-underline text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
 								target="_blank"
-								>sleep</a
+								>gas</a
 							>
 						</div>
 					</div>

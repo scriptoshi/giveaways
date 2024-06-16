@@ -73,7 +73,7 @@ class GiveawaysController extends Controller
         }
         $giveawaysItems = $query->paginate($perPage);
         Meta::addMeta('title', __('Latest Giveaways'));
-        Meta::addMeta('keywords', __('audited crypto giveaway, usdt giveaway, crypto giveaway reviews and comments, questing campaigns, Like, follow retweet giveaway, simple giveaway tasks, sleep, tokens'));
+        Meta::addMeta('keywords', __('audited crypto giveaway, usdt giveaway, crypto giveaway reviews and comments, questing campaigns, Like, follow retweet giveaway, simple giveaway tasks, gas, tokens'));
         Meta::addMeta('description', __('Grab the newests crypto giveaways on giveawaysfinance.  Gas finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
         return Inertia::render('Giveaways/Index', [
             'giveaways' => GiveawayResource::collection($giveawaysItems),
@@ -266,7 +266,7 @@ class GiveawaysController extends Controller
             'questers as totalParticipants',
             'quests as totalTasks'
         ]);
-        $select = ["*", \DB::raw("RANK() OVER (ORDER BY sleep DESC) as 'rank'")];
+        $select = ["*", \DB::raw("RANK() OVER (ORDER BY gas DESC) as 'rank'")];
         $quests = auth()->check()
             ?  $giveaway->quests()->withExists([
                 'tasks as complete' => function (Builder $query) use ($request) {

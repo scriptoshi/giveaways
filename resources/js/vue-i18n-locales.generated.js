@@ -236,7 +236,7 @@ export default {
         "Eg 10": "Eg 10",
         "Eg https://discord.gg/shXVDx78BQ": "Eg https://discord.gg/shXVDx78BQ",
         "Eg https://t.me/giveawaysfinance": "Eg https://t.me/giveawaysfinance",
-        "Eg https://x.com/sleeprotocol": "Eg https://x.com/sleeprotocol",
+        "Eg https://x.com/giveawaysfinance": "Eg https://x.com/giveawaysfinance",
         "Eg sushiswap": "Eg sushiswap",
         "Eg Tether": "Eg Tether",
         "Eg VERIFIED": "Eg VERIFIED",

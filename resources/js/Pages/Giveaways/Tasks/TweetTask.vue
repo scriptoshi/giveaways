@@ -91,7 +91,7 @@ watch(
 						class="w-full"
 						label="Tweet Url"
 						v-model="form.username"
-						placeholder="https://x.com/sleeprotocol/status/1764280752135442586"
+						placeholder="https://x.com/giveawaysfinance/status/1764280752135442586"
 					/>
 					<PrimaryButton
 						:disabled="form.processing"

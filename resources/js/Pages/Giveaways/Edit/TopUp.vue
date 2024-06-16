@@ -65,7 +65,7 @@ const {address} = useAccount();
 const form = useForm({
 	prize: props.giveaway.prize,
 	fee: 0,
-	sleep: 0,
+	gas: 0,
 	symbol: "USDT",
 	num_winners: props.giveaway.num_winners,
 	hash: null,

@@ -22,7 +22,7 @@ const props = defineProps({
 	questers: Array,
 	signed: Array,
 	prizeClaim: Object,
-	sleepChainId: Number,
+	gasChainId: Number,
 });
 
 const {address} = useAccount();
@@ -173,13 +173,13 @@ const retry = async (quest) => {
 								</svg>
 								<span class="sr-only">Info</span>
 								<h3 class="text-lg font-medium text-gray-800 dark:text-gray-300">
-									You need to claim some more sleep in order to withdraw.
+									You need to claim some more gas in order to withdraw.
 								</h3>
 							</div>
 							<div class="mt-2 mb-4 text-sm text-gray-800 dark:text-gray-300">
 								<p>
-									Gas is distributed on first come first serve. If Project sleep
-									faucet is dry, you wont earn any sleep!
+									Gas is distributed on first come first serve. If Project gas
+									faucet is dry, you wont earn any gas!
 								</p>
 								<ul class="list-disc list-inside">
 									<li>
@@ -240,7 +240,7 @@ const retry = async (quest) => {
 							<TxHash
 								v-if="qst.gas_hash"
 								:txhash="qst.gas_hash"
-								:chainId="sleepChainId"
+								:chainId="gasChainId"
 								>{{ qst.gas * 1 }} GAS
 								<VueIcon
 									class="w-4 h-4 text-emerald-500"

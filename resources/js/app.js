@@ -26,7 +26,7 @@ import messages from "@/vue-i18n-locales.generated";
 BigInt.prototype.toJSON = function () { return this.toString(); };
 createInertiaApp({
     progress: { color: "#4B5563" },
-    title: (title) => `${title} | sleep`,
+    title: (title) => `${title} | gas`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,

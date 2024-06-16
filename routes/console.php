@@ -60,7 +60,7 @@ Artisan::command('update:galxe', function () {
 Artisan::command('access:json', function () {
     $data = [
         'name' => 'Gas Finance Access Badge',
-        'description' => ' The giveawaysfinance access badge grants you limited access to claim sleep tokens earned via the quest rewards system from the sleep rewards contract',
+        'description' => ' The giveawaysfinance access badge grants you limited access to claim gas tokens earned via the quest rewards system from the gas rewards contract',
         'external_url' => 'https://giveaways.finance/access',
         'image' => 'https://nft.giveaways.finance/gas-finance-access.png',
         'attributes' => [

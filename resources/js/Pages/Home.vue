@@ -60,8 +60,8 @@ const showHowItWorks = ref(false);
 					<p>
 						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
 						done. Prize giveaway is decentralized and instant!. If you dont win, no
-						worries, we dont give XPS, we give you sleep tokens. withdraw your sleep
-						tokens and trade them for USDT.
+						worries, we dont give XPS, we give you gas tokens. withdraw your gas tokens
+						and trade them for USDT.
 					</p>
 				</div>
 				<div class="lg:col-span-2 mt-4">
@@ -259,7 +259,7 @@ const showHowItWorks = ref(false);
 					<li>
 						{{
 							$t(
-								"If you dont win, you can still claim the sleep tokens you earned from participation.",
+								"If you dont win, you can still claim the gas tokens you earned from participation.",
 							)
 						}}
 					</li>

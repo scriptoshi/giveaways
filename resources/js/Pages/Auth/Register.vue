@@ -69,7 +69,7 @@ const save = () => {
 	}
 	open({onConnect: submit, onError: (e) => (error.value = e.message ?? e.toString())});
 };
-const appName = window.document.getElementsByTagName("title")[0]?.innerText || "sleep";
+const appName = window.document.getElementsByTagName("title")[0]?.innerText || "gas";
 </script>
 <template>
 	<Meta />

@@ -80,7 +80,7 @@ const formdata = {
 	period: "hours",
 	prize: "0",
 	fee: 0,
-	sleep: 0,
+	gas: 0,
 	symbol: "USDT",
 	num_winners: "1",
 	type: "draw",
@@ -324,7 +324,7 @@ debouncedWatch(
 										<VueIcon :icon="AiCeur" /> {{ $t("Prize Details") }}
 									</h3>
 									<p>
-										We dont give XPS, Instead we distribute sleep token which
+										We dont give XPS, Instead we distribute gas token which
 										participants can trade later.
 									</p>
 								</div>
@@ -401,7 +401,7 @@ debouncedWatch(
 									:disabled="giveaway?.live"
 									:label="$t('Twitter account to follow')"
 									:placeholder="$t('Enter Twitter Profile url')"
-									:help="$t('Eg https://x.com/sleeprotocol')"
+									:help="$t('Eg https://x.com/gasrotocol')"
 									v-model="form.twitter"
 									:error="form.errors.twitter"
 									class="mt-1"

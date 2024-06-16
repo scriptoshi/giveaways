@@ -30,7 +30,7 @@ class QuestersController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
-    public function sleep(Request $request)
+    public function gas(Request $request)
     {
         $query = Quester::query()
             ->where('user_id', $request->user()->id)
@@ -76,7 +76,7 @@ class QuestersController extends Controller
     {
         $this->authorize('update', $quester);
         if ($quester->gas_signature) {
-            throw ValidationException::withMessages(['code' => 'You already claimed your sleep tokens']);
+            throw ValidationException::withMessages(['code' => 'You already claimed your gas tokens']);
         }
         if ($quester->last_pump_at > now()->subHour()) {
             throw ValidationException::withMessages(['code' => __('You next pump is in :minutes minutes', ['minutes' => $quester->last_pump_at->addHour()->diffInMinutes(now())])]);
@@ -87,7 +87,7 @@ class QuestersController extends Controller
         $pump =  config('app.pump', 100);
         $giveaway =  $quester->giveaway;
         if ($giveaway->gas_balance < $pump)
-            throw ValidationException::withMessages(['code' => 'Giveaway sleep faucet is dry']);
+            throw ValidationException::withMessages(['code' => 'Giveaway gas faucet is dry']);
         $giveaway->gas_balance -= $pump;
         $giveaway->save();
         $quester->pump += 1;
@@ -281,7 +281,7 @@ class QuestersController extends Controller
         $giveaway = $quester->giveaway;
         $boost =  config('app.referral', 200);
         if ($giveaway->gas_balance < ($boost * 2))
-            throw ValidationException::withMessages(['boostId' => 'Giveaway sleep faucet is dry']);
+            throw ValidationException::withMessages(['boostId' => 'Giveaway gas faucet is dry']);
         $quester->pump += 1;
         $quester->gas += $boost;
         $quester->boosted_at = now();

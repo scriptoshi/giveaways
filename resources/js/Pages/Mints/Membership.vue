@@ -17,14 +17,14 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 const props = defineProps({
 	membership: Object,
 	accounts: Array,
-	sleepChainId: Number,
+	gasChainId: Number,
 	hasAccess: Boolean,
 });
 const nft = {
 	name: "Gas Finance Access Badge",
 	symbol: "ACCESS",
 	description:
-		"The giveaways.finance access badge grants you limited access to claim sleep tokens earned via the quest rewards system ",
+		"The giveaways.finance access badge grants you limited access to claim gas tokens earned via the quest rewards system ",
 	external_url: "https://giveaways.finance/access",
 	image: "https://nft.giveaways.finance/gas-finance-access.png",
 	attributes: [
@@ -102,7 +102,7 @@ const mintNft = async () => {
 									<h3 class="text-sm text-gray-500">Contract</h3>
 									<Address
 										:address="membersContract"
-										:chain-id="sleepChainId"
+										:chain-id="gasChainId"
 										class="font-Walsheim-Bold text-base"
 									/>
 								</div>
