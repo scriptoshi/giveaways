@@ -25,6 +25,7 @@ import TopUp from "@/Pages/Giveaways/Edit/TopUp.vue";
 const props = defineProps({
 	hasProject: Boolean,
 	prizeClaim: Object,
+	usdtContracts: Object,
 	giveaway: {
 		type: Object,
 		default: () => ({}),
@@ -145,7 +146,7 @@ const top = ref(false);
 								v-model="form.brief"
 								class="col-span-3"
 								:error="form.errors.brief"
-								:placeholder="$t('Gas finance Takeover 2024')"
+								:placeholder="$t('Giveaways Finance Takeover 2024')"
 							/>
 							<div>
 								<label
@@ -242,6 +243,7 @@ const top = ref(false);
 								v-show="top"
 								:prize-claim="prizeClaim"
 								:giveaway="giveaway"
+								:usdtContracts="usdtContracts"
 							/>
 						</CollapseTransition>
 						<CollapseTransition>

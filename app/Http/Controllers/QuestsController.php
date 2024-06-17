@@ -72,7 +72,7 @@ class QuestsController extends Controller
         $min = 0;
         $questType = QuestType::from($request->type);
         $isLive = $request->live;
-        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() < $giveaway->prize) {
+        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() > $giveaway->prize) {
             $isLive = false;
         }
         if ($request->type == 'discord') {
@@ -93,7 +93,9 @@ class QuestsController extends Controller
             if (!$added) throw ValidationException::withMessages(['username' => ['Telegram Quest cannot be saved. Bot not authorized']]);
         }
         if (in_array($request->type, ['token', 'contribute'])) {
-            if ($isLive && $questType->min() < $giveaway->prize) $isLive = false;
+            if ($isLive && $questType->min() > $giveaway->prize) {
+                $isLive = false;
+            }
             $min = $request->min;
         }
         if ($request->type == 'token') {
@@ -169,7 +171,7 @@ class QuestsController extends Controller
         $min = 0;
         $questType = QuestType::from($request->type);
         $isLive = $request->live;
-        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() < $quest->giveaway->prize) {
+        if ($isLive && in_array($request->type, ['token', 'contribute', 'nft', 'api']) && $questType->min() > $quest->giveaway->prize) {
             $isLive = false;
         }
         if ($request->type == 'discord') {
@@ -191,6 +193,9 @@ class QuestsController extends Controller
         }
 
         if (in_array($request->type, ['token', 'contribute'])) {
+            if ($isLive && $questType->min() > $quest->giveaway->prize) {
+                $isLive = false;
+            }
             $min = $request->min;
         }
 

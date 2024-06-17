@@ -1,3 +1,5 @@
+export LINODE_TOKEN=6b497ef039a1bb26b6f0649f305ba1cf233dd3a37c58eacec9004d9d19497559
+python3 -m acme_linode_objectstorage -k account_key.pem cdn.giveaways.finance
 <script setup>
 import {computed, ref} from "vue";
 
@@ -72,7 +74,7 @@ const retry = async (quest) => {
 		<div class="min-h-full w-full bg-white dark:bg-gray-900">
 			<div class="container sm:px-4">
 				<div class="max-w-2xl mt-8 mx-auto p-8">
-					<h3 class="text-base">Claim Gas Prize</h3>
+					<h3 class="text-base">Claim Gas Tokens</h3>
 					<div class="p-6 mt-6 border grid gap-3 dark:border-gray-600">
 						<div class="flex items-center justify-between">
 							<h3 class="text-xl text-gray-500">All Time Claims</h3>

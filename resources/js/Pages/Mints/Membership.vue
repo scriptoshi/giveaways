@@ -21,10 +21,10 @@ const props = defineProps({
 	hasAccess: Boolean,
 });
 const nft = {
-	name: "Gas Finance Access Badge",
+	name: "Giveaways Finance Access Badge",
 	symbol: "ACCESS",
 	description:
-		"The giveaways.finance access badge grants you limited access to claim gas tokens earned via the quest rewards system ",
+		"The giveaways.finance access badge grants you limited access to claim GAS tokens earned via the quest rewards system ",
 	external_url: "https://giveaways.finance/access",
 	image: "https://nft.giveaways.finance/gas-finance-access.png",
 	attributes: [

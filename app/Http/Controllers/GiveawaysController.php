@@ -19,6 +19,7 @@ use App\Http\Resources\Launchpad;
 use App\Http\Resources\Quest as ResourcesQuest;
 use App\Http\Resources\Quester as QuesterResource;
 use App\Http\Tags\Meta;
+use App\Jobs\CheckGiveawayStatusLater;
 use App\Models\Account;
 use App\Models\Coin;
 use App\Models\Giveaway;
@@ -74,7 +75,7 @@ class GiveawaysController extends Controller
         $giveawaysItems = $query->paginate($perPage);
         Meta::addMeta('title', __('Latest Giveaways'));
         Meta::addMeta('keywords', __('audited crypto giveaway, usdt giveaway, crypto giveaway reviews and comments, questing campaigns, Like, follow retweet giveaway, simple giveaway tasks, gas, tokens'));
-        Meta::addMeta('description', __('Grab the newests crypto giveaways on giveawaysfinance.  Gas finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
+        Meta::addMeta('description', __('Grab the newests crypto giveaways on giveawaysfinance.  Giveaways Finance lists the audited and verified crypto giveaways.  Earn crypto by simply completing 3 - 5 simple tasks liek retweet, follow and  like.'));
         return Inertia::render('Giveaways/Index', [
             'giveaways' => GiveawayResource::collection($giveawaysItems),
             'popular' => function () use ($request) {
@@ -246,6 +247,11 @@ class GiveawaysController extends Controller
                 $errors['telegram'] = 'Telegram Quest was not saved. Bot not authorized';
             }
         }
+        if ($status != GiveawayStatus::PAID) {
+            // check again after a minute
+            CheckGiveawayStatusLater::dispatch($giveaway)
+                ->delay(now()->addMinute());
+        }
         return redirect()
             ->route('giveaways.tasks', ['giveaway' => $giveaway->uuid])
             ->with('success', 'Giveaway added!');
@@ -385,6 +391,7 @@ class GiveawaysController extends Controller
         $this->authorize('update', $giveaway->project);
         return Inertia::render('Giveaways/Edit', [
             'giveaway' => new GiveawayResource($giveaway),
+            'usdtContracts' => config('app.usdt'),
             'prizeClaim' => json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')), true)
         ]);
     }

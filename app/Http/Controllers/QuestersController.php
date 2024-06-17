@@ -76,7 +76,7 @@ class QuestersController extends Controller
     {
         $this->authorize('update', $quester);
         if ($quester->gas_signature) {
-            throw ValidationException::withMessages(['code' => 'You already claimed your gas tokens']);
+            throw ValidationException::withMessages(['code' => 'You already claimed your GAS tokens']);
         }
         if ($quester->last_pump_at > now()->subHour()) {
             throw ValidationException::withMessages(['code' => __('You next pump is in :minutes minutes', ['minutes' => $quester->last_pump_at->addHour()->diffInMinutes(now())])]);

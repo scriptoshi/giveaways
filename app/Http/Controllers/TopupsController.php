@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\GiveawayStatus;
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckTopupStatusLater;
 use App\Models\Topup;
 
 use App\Models\Giveaway;
@@ -38,7 +39,12 @@ class TopupsController extends Controller
         $topup->num_winners = $request->num_winners;
         $topup->status = GiveawayStatus::UNPAID;
         $topup->save();
-        Etherscan::updateTopupStatus($topup);
+        $checked = Etherscan::updateTopupStatus($topup);
+        if (!$checked) {
+            // check in one minute
+            CheckTopupStatusLater::dispatch($topup)
+                ->delay(now()->addMinute());
+        }
         return back();
     }
 }

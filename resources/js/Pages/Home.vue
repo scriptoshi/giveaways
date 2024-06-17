@@ -56,11 +56,11 @@ const showHowItWorks = ref(false);
 				class="grid relative grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
 			>
 				<div class="lg:col-span-3 mt-4">
-					<h1 class="text-base">Gas Finance Giveaways</h1>
+					<h1 class="text-base">Giveaways Finance Giveaways</h1>
 					<p>
 						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
 						done. Prize giveaway is decentralized and instant!. If you dont win, no
-						worries, we dont give XPS, we give you gas tokens. withdraw your gas tokens
+						worries, we dont give XPS, we give you GAS tokens. withdraw your GAS tokens
 						and trade them for USDT.
 					</p>
 				</div>
@@ -210,8 +210,8 @@ const showHowItWorks = ref(false);
 					<li>Never accept to approve any action in your wallet during claims</li>
 					<li>Ensure the address claiming giveaways has no valuable assets</li>
 					<li>
-						Only participate in giveways on giveaways finance. Gas finance only hosts
-						USDT giveaways
+						Only participate in giveways on giveaways finance. Giveaways Finance only
+						hosts USDT giveaways
 					</li>
 				</ul>
 				<h3 class="text-sm">
@@ -259,7 +259,7 @@ const showHowItWorks = ref(false);
 					<li>
 						{{
 							$t(
-								"If you dont win, you can still claim the gas tokens you earned from participation.",
+								"If you dont win, you can still claim the GAS tokens you earned from participation.",
 							)
 						}}
 					</li>
@@ -272,7 +272,7 @@ const showHowItWorks = ref(false);
 					</li>
 					<li>
 						{{
-							"Gas finance does not endorse any of the projects listed here, DYOR before investing or paying for anything."
+							"Giveaways Finance does not endorse any of the projects listed here, DYOR before investing or paying for anything."
 						}}.
 					</li>
 				</ul>

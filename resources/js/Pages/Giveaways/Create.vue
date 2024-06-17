@@ -241,7 +241,7 @@ debouncedWatch(
 								v-model="form.brief"
 								class="col-span-3"
 								:error="form.errors.brief"
-								:placeholder="$t('Gas finance Takeover 2024')"
+								:placeholder="$t('Giveaways Finance Takeover 2024')"
 							/>
 							<div>
 								<label
@@ -324,7 +324,7 @@ debouncedWatch(
 										<VueIcon :icon="AiCeur" /> {{ $t("Prize Details") }}
 									</h3>
 									<p>
-										We dont give XPS, Instead we distribute gas token which
+										We dont give XPS, Instead we distribute GAS token which
 										participants can trade later.
 									</p>
 								</div>
@@ -348,7 +348,7 @@ debouncedWatch(
 											:error="form.errors.num_winners"
 										/>
 										<FormInput
-											:label="$t('Participant Fees')"
+											:label="$t('Participant GAS Tokens')"
 											:help="$t('Distributed to all participants')"
 											v-model="totalFee"
 											:error="form.errors.fee"
@@ -442,7 +442,7 @@ debouncedWatch(
 								<div class="gap-8 mt-5 w-full grid sm:grid-cols-3">
 									<FormInput
 										class="max-w-xs"
-										inputClasses="!pl-28"
+										inputClasses="!pl-32"
 										v-model="form.name"
 										:label="$t('Create a Username / Gas unique url')"
 										:error="error ?? form.errors.name"

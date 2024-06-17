@@ -278,7 +278,7 @@ const why = ref(false);
 					</li>
 					<li>
 						All users who contribute WILL BE legible for 5% sale kickback prize. This
-						prize will be distributed by GAS finance Team to top 10 pumpers
+						prize will be distributed by Giveaways Finance Team to top 10 pumpers
 						leaderboard.!
 					</li>
 				</ul>

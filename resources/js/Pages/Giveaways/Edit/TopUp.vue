@@ -4,10 +4,11 @@ import {computed, reactive, ref, watch} from "vue";
 import {useForm} from "@inertiajs/vue3";
 import {AiCeur} from "oh-vue-icons/icons";
 import {useAccount, usePublicClient} from "use-wagmi";
-import {erc20Abi, parseUnits, zeroAddress} from "viem";
+import {erc20Abi, parseUnits} from "viem";
 import {useI18n} from "vue-i18n";
 
 import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
+import CollapseTransition from "@/Components/CollapseTransition.vue";
 import ConnectWalletButton from "@/Components/ConnectWalletButton.vue";
 import FormInput from "@/Components/FormInput.vue";
 import Loading from "@/Components/Loading.vue";
@@ -19,27 +20,20 @@ import {useReactiveContractCall} from "@/hooks/contracts/useContractCall";
 const props = defineProps({
 	prizeClaim: Object,
 	giveaway: Object,
+	usdtContracts: Object,
 });
 
 const chainId = computed(() => props.giveaway.chainId);
 const prizeContract = computed(() => props.prizeClaim.addresses[chainId.value]);
+const usdtContract = computed(() => props.usdtContracts[chainId.value]);
 const usdt = reactive({
-	address: zeroAddress,
+	address: usdtContract,
 	abi: erc20Abi,
 	decimals: 6,
 	symbol: "USDT",
 });
 const publicClient = usePublicClient();
 const updateUsdt = async (prizeContract) => {
-	usdt.address = await publicClient.value
-		.readContract({
-			address: prizeContract,
-			abi: props.prizeClaim.abi,
-			functionName: "usdt",
-		})
-		.catch((e) => {
-			console.log(e);
-		});
 	usdt.decimals = await publicClient.value
 		.readContract({
 			address: usdt.address,
@@ -153,7 +147,7 @@ const draft = async () => {
 						:error="form.errors.num_winners"
 					/>
 					<FormInput
-						:label="$t('Participant Fees')"
+						:label="$t('Participant GAS Tokens')"
 						:help="$t('Distributed to all participants')"
 						v-model="totalFee"
 						:error="form.errors.fee"
@@ -179,8 +173,24 @@ const draft = async () => {
 				</div>
 			</div>
 			<div class="w-full flex items-center justify-end">
-				<TxStatus :state="state" />
+				<TxStatus
+					v-if="!form.recentlySuccessful"
+					:state="state"
+				/>
 			</div>
+			<CollapseTransition>
+				<div
+					v-show="form.recentlySuccessful"
+					class="flex justify-end"
+				>
+					<p
+						class="p-2 border border-green-500 rounded-sm text-green-500 text-right max-w-lg"
+					>
+						<strong>Topup has been received.</strong> <br />
+						Changes may take upto 5 minutes to reflect, please be patient!
+					</p>
+				</div>
+			</CollapseTransition>
 			<div class="mt-3 w-full flex space-x-3 items-center justify-end">
 				<p
 					v-if="state.busy"

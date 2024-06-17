@@ -165,6 +165,7 @@ class Etherscan
             }
             $gasPrice = 1000;
             $amount = Web3Utils::toBTC($tx->value, $tx->tokenDecimal);
+            $giveaway->paid = $amount;
             $giveaway->prize = $amount / ($giveaway->num_winners * 2);
             $giveaway->fee =  $amount / 2;
             $giveaway->gas = $giveaway->fee * $gasPrice;
@@ -174,7 +175,7 @@ class Etherscan
         }
     }
 
-    public static function updateTopupStatus(Topup $topup)
+    public static function updateTopupStatus(Topup $topup): bool
     {
         $giveaway = $topup->giveaway;
         $prizeClaim = json_decode(\File::get(resource_path('js/abi/PrizeClaim.json')), true);
@@ -184,8 +185,8 @@ class Etherscan
         ];
         $claimAddress = $prizeClaim['addresses'][$giveaway->chainId];
         $tx = Etherscan::getTokenTransfer($giveaway->chainId, $usdt[(int) $giveaway->chainId], $topup->hash, $topup->account);
-        if (!isset($tx->to)) return;
-        if (Utils::toChecksumAddress($tx->to) != Utils::toChecksumAddress($claimAddress)) return back()->with('error', 'Invalid transaction hash');
+        if (!isset($tx->to)) return false;
+        if (Utils::toChecksumAddress($tx->to) != Utils::toChecksumAddress($claimAddress)) return false;
         $topup->paid = Web3Utils::toBTC($tx->value, $tx->tokenDecimal);
         $topup->status = GiveawayStatus::PAID;
         $topup->paid_before = $giveaway->paid;
@@ -203,6 +204,7 @@ class Etherscan
         $giveaway->num_winners = $topup->num_winners;
         $giveaway->paid = $amount;
         $giveaway->save();
+        return true;
     }
 
     public static function getTokenBalance($chainId, $contract, $address): string

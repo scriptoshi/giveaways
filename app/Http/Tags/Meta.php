@@ -26,9 +26,9 @@ class Meta
     public static function meta()
     {
         return [
-            'twitter:site' => config('app.name', 'Gas finance'),
-            'og:site_name' => config('app.name', 'Gas finance'),
-            'og:type' => config('app.name', 'Gas finance'),
+            'twitter:site' => config('app.name', 'Giveaways Finance'),
+            'og:site_name' => config('app.name', 'Giveaways Finance'),
+            'og:type' => config('app.name', 'Giveaways Finance'),
             'twitter:card' => 'summary_large_image',
             'twitter:url' => config('app.url', 'https://giveaways.finance'),
             'og:url' => config('app.url', 'https://giveaways.finance'),
