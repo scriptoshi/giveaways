@@ -22,7 +22,7 @@ jobs:
                   key: ${{ secrets.SSHKEY }}
                   script: |
                       rm -rf /var/www/build
-                      cd /var/www && git clone git@github.com:giveawaysfinance/giveaways.git build
+                      cd /var/www && git clone git@github.com:sleepfinance/giveaways.git build
                       cp /var/www/envs/.gas /var/www/build/.env
                       cd /var/www/build && ./.scripts/deploy.sh
                       rm -rf /var/www/giveaways_back
