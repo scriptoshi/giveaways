@@ -541,6 +541,13 @@ debouncedWatch(
 							<TxStatus :state="state" />
 						</div>
 						<div class="mt-3 w-full flex space-x-3 items-center justify-end">
+							<p
+								v-if="state.busy"
+								class="text-red-500"
+							>
+								Dont leave this page! We need to save your giveaway after TX
+								confirms.
+							</p>
 							<PrimaryButton
 								@click.prevent="reset"
 								secondary
