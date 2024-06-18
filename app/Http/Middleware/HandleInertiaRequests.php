@@ -105,6 +105,7 @@ class HandleInertiaRequests extends Middleware
                 'discordUrl' => config('app.discordUrl'),
                 'twitterUrl' => config('app.twitterUrl'),
                 'telegramUrl' => config('app.telegramUrl'),
+                'telegramBot' => config('app.telegramBot'),
                 'mediumUrl' => config('app.mediumUrl'),
                 'uploadsDisk' => config('app.uploads_disk'),
                 'nftsDisk' => config('app.nfts_disk'),

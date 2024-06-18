@@ -23,6 +23,7 @@ return [
     'discordUrl' => env('DISCORD'),
     'twitterUrl' => env('TWITTER'),
     'telegramUrl' => env('TELEGRAM'),
+    'telegramBot' => env('TELEGRAM_BOT_NAME'),
     'admin' => env('ADMIN'),
     'deployer' => env('DEPLOYER'),
     'disable_email_verification' => env('ADMIN'),

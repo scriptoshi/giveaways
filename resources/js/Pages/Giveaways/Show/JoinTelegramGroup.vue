@@ -65,7 +65,7 @@ defineEmits(["verify"]);
 			<TelegramButton
 				mode="redirect"
 				v-else
-				telegram-login="GasQuestBot"
+				:telegram-login="`${$page.props.config.telegramBot}`"
 				requestAccess="write"
 				@loaded="loading = false"
 				size="medium"
