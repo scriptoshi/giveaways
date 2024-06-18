@@ -1,5 +1,3 @@
-export LINODE_TOKEN=6b497ef039a1bb26b6f0649f305ba1cf233dd3a37c58eacec9004d9d19497559
-python3 -m acme_linode_objectstorage -k account_key.pem cdn.giveaways.finance
 <script setup>
 import {computed, ref} from "vue";
 
