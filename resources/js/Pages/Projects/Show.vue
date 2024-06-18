@@ -333,7 +333,7 @@ const order = computed(() => params.order);
 								<a
 									target="_blank"
 									class="text-sky-600 dark:text-sky-500 hover:text-sky-800 dark:hover:text-sky-400"
-									href="https://t.me/betnfinance"
+									href="https://t.me/giveawaysfinance"
 									>Telegram</a
 								>
 								for more information

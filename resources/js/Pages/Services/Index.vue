@@ -217,7 +217,7 @@ const liveTags = computed(() => (params.cat ? props.tags[params.cat] ?? [] : [])
 								<a
 									target="_blank"
 									class="text-sky-600 dark:text-sky-500 hover:text-sky-800 dark:hover:text-sky-400"
-									href="https://t.me/betnfinance"
+									href="https://t.me/giveawaysfinance"
 									>Telegram</a
 								>
 								for more information
