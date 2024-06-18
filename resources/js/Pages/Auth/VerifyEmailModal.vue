@@ -1,7 +1,8 @@
 <script setup>
-import {computed} from "vue";
+import {computed, watch} from "vue";
 
 import {Link, useForm, usePage} from "@inertiajs/vue3";
+import {useInterval} from "@vueuse/core";
 import {MdErrorTwotone} from "oh-vue-icons/icons";
 
 import FormInput from "@/Components/FormInput.vue";
@@ -14,7 +15,17 @@ import SecondaryButton from "@/Jetstream/SecondaryButton.vue";
 const status = computed(() => usePage().props.status);
 const verified = computed(() => usePage().props.verified);
 const AuthCheck = computed(() => usePage().props.AuthCheck);
-
+const {counter, reset, pause, resume, isActive} = useInterval(1000, {controls: true});
+watch(
+	counter,
+	(counter) => {
+		if (counter === 60) {
+			pause();
+			reset();
+		}
+	},
+	{immediate: true},
+);
 const form = useForm({
 	code: null,
 });
@@ -22,6 +33,8 @@ const form = useForm({
 const resend = () => {
 	form.code = null;
 	form.post(window.route("verification.send"));
+	reset();
+	resume();
 };
 
 const activate = () => {
@@ -85,14 +98,22 @@ const verificationLinkSent = computed(() => status.value === "verification-link-
 				<hr />
 				<div class="pt-4">
 					<PrimaryButton
-						class="!py-2"
+						class="!py-2 disabled:opacity-70"
 						@click.prevent="resend"
+						:disabled="(form.processing && !form.code) || isActive"
 					>
 						<Loading
 							class="-ml-1 mr-2 inline-flex"
 							v-if="form.processing && !form.code"
 						/>
 						{{ $t("Resend") }}
+						{{
+							isActive
+								? $t(" in {mins} Secs", {
+										mins: 60 - counter,
+								  })
+								: ""
+						}}
 					</PrimaryButton>
 					<SecondaryButton @click.prevent="activate">
 						<Loading

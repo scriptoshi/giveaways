@@ -8,6 +8,7 @@ export default {
         " {name} Badge Disabled!": " {name} Badge Disabled!",
         " {name} Badge Enabled!": " {name} Badge Enabled!",
         " Disclaimer: The information provided shall not in any way constitute a recommendation as to whether you should invest in any product discussed. We accept no liability for any loss occasioned to any person acting or refraining from action as a result of any material provided or published.": " Disclaimer: The information provided shall not in any way constitute a recommendation as to whether you should invest in any product discussed. We accept no liability for any loss occasioned to any person acting or refraining from action as a result of any material provided or published.",
+        " in {mins} Secs": " in {mins} Secs",
         " The fastest way to build your projects social media following, Get thousand of active followers in days by running simple giveaway campaign on giveaways.finance. With over 200K members and growing join the huge list of projects growing giveaways.finance ": " The fastest way to build your projects social media following, Get thousand of active followers in days by running simple giveaway campaign on giveaways.finance. With over 200K members and growing join the huge list of projects growing giveaways.finance ",
         " Your Website if any": " Your Website if any",
         "100 USDT": "100 USDT",
