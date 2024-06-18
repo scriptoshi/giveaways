@@ -56,7 +56,7 @@ const showHowItWorks = ref(false);
 				class="grid relative grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3 lg:gap-6"
 			>
 				<div class="lg:col-span-3 mt-4">
-					<h1 class="text-base">Giveaways Finance Giveaways</h1>
+					<h1 class="text-base">Giveaways Finance</h1>
 					<p>
 						No nonsense giveaways. Only 3 - 5 simple tasks like retweet, follow and you
 						done. Prize giveaway is decentralized and instant!. If you dont win, no
