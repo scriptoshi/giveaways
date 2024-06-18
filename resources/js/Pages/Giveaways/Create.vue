@@ -401,7 +401,7 @@ debouncedWatch(
 									:disabled="giveaway?.live"
 									:label="$t('Twitter account to follow')"
 									:placeholder="$t('Enter Twitter Profile url')"
-									:help="$t('Eg https://x.com/gasrotocol')"
+									:help="$t('Eg https://x.com/giveawaypot')"
 									v-model="form.twitter"
 									:error="form.errors.twitter"
 									class="mt-1"

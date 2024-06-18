@@ -23,7 +23,7 @@ jobs:
                   script: |
                       rm -rf /var/www/build
                       cd /var/www && git clone git@github.com:giveawaysfinance/giveaways.git build
-                      cp /var/www/envs/.sleep /var/www/build/.env
+                      cp /var/www/envs/.gas /var/www/build/.env
                       cd /var/www/build && ./.scripts/deploy.sh
                       rm -rf /var/www/giveawaysfinance_io_back
                       mv /var/www/giveaways.finance /var/www/giveawaysfinance_io_back
