@@ -44,11 +44,12 @@ const props = defineProps({
 		default: () => ({}),
 	},
 	usdtContracts: Object,
+	gasChainId: Number,
 });
 
 const {chainId} = useChainId();
-const prizeContract = computed(() => props.prizeClaim.addresses[chainId.value]);
-const usdtContract = computed(() => props.usdtContracts[chainId.value]);
+const prizeContract = computed(() => props.prizeClaim.addresses[props.gasChainId]);
+const usdtContract = computed(() => props.usdtContracts[props.gasChainId]);
 const usdt = reactive({
 	address: usdtContract,
 	abi: erc20Abi,
@@ -56,7 +57,7 @@ const usdt = reactive({
 	symbol: "USDT",
 });
 const publicClient = usePublicClient();
-const updateUsdt = async (prizeContract) => {
+const updateUsdt = async () => {
 	usdt.decimals = await publicClient.value.readContract({
 		address: usdt.address,
 		abi: usdt.abi,
@@ -64,10 +65,10 @@ const updateUsdt = async (prizeContract) => {
 	});
 };
 watch(
-	prizeContract,
-	(prizeContract) => {
-		if (!prizeContract) return;
-		updateUsdt(prizeContract);
+	usdtContract,
+	(usdtContract) => {
+		if (!usdtContract) return;
+		updateUsdt();
 	},
 	{immediate: true},
 );
@@ -136,6 +137,7 @@ const draft = async () => {
 			form.setError("logo_uri", t("You need to provide project logo"));
 	}
 	if (form.hasErrors) return;
+	await updateUsdt();
 	const fee = parseUnits(totalPrize.value.toString(), usdt.decimals);
 	await state.call("transfer", [prizeContract.value, fee], null, t("Deposit Prize"));
 	if (state.error) return;
@@ -556,8 +558,8 @@ debouncedWatch(
 							</PrimaryButton>
 							<ConnectWalletButton>
 								<SwitchChainButton
-									v-if="chainId"
-									:to-chain="chainId"
+									v-if="gasChainId"
+									:to-chain="gasChainId"
 								>
 									<PrimaryButton
 										@click.prevent="draft"
