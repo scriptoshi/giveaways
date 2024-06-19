@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\QuesterStatus;
+use App\Enums\QuestStatus;
 use App\Enums\QuestType;
 use App\Enums\TaskStatus;
 use App\Http\Controllers\Controller;
@@ -79,7 +80,9 @@ class TasksController extends Controller
      */
     public function checkAll(Request $request, Giveaway $giveaway)
     {
-        $giveaway->load(['quests' => fn (HasMany $q) => $q->where('user_id', $request->user()->id)]);
+        $giveaway->load([
+            'quests' => fn (HasMany $q) => $q->where('status',  QuestStatus::ACTIVE)
+        ]);
         $quester =  $giveaway->questers()->firstOrCreate([
             'user_id' => $request->user()->id,
             'giveaway_id' =>  $giveaway->id,

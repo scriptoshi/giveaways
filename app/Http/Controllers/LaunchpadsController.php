@@ -63,7 +63,7 @@ class LaunchpadsController extends Controller
         $launchpad->chainId = $request->chainId;
         $launchpad->address = $request->address;
         $launchpad->contract = $request->contract;
-        $launchpad->abi = $abi;
+        $launchpad->abi = $abi->abi;
         $launchpad->lastblock  = $block->latestBlock;
         $launchpad->save();
         return back();

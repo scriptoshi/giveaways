@@ -98,7 +98,7 @@ const showInfo = ref(false);
 					<li>
 						{{
 							$t(
-								"Please note that an empty gas faucet doesnt stop your giveaway from progressing. so don't lose any gas over zero gas balance",
+								"Please note that an empty gas faucet doesnt stop your giveaway from progressing. so don't lose any sleep over zero gas balance",
 							)
 						}}
 					</li>

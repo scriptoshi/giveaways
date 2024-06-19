@@ -8,6 +8,7 @@ import {useAccount} from "use-wagmi";
 import {formatEther} from "viem";
 import {useI18n} from "vue-i18n";
 
+import AddressLink from "@/Components/Address.vue";
 import PrimaryButton from "@/Components/Buttons/PrimaryButton.vue";
 import Loading from "@/Components/Loading.vue";
 import TxHash from "@/Components/TxHash.vue";
@@ -72,14 +73,24 @@ const retry = async (quest) => {
 		<div class="min-h-full w-full bg-white dark:bg-gray-900">
 			<div class="container sm:px-4">
 				<div class="max-w-2xl mt-8 mx-auto p-8">
-					<h3 class="text-base">Claim Gas Tokens</h3>
+					<div>
+						<h3 class="text-base">Claim Your GAS Tokens</h3>
+						<p>GAS rewards from all your giveways will be claimed in one Transaction</p>
+						<p class="text-xs">
+							Rewards Contract:
+							<AddressLink
+								:address="prizeContract"
+								:chain-id="gasChainId"
+							/>
+						</p>
+					</div>
 					<div class="p-6 mt-6 border grid gap-3 dark:border-gray-600">
 						<div class="flex items-center justify-between">
-							<h3 class="text-xl text-gray-500">All Time Claims</h3>
+							<h3 class="text-xl text-gray-500">All Time Rewards</h3>
 							<h3 class="text-xl">{{ total * 1 }} GAS</h3>
 						</div>
 						<div class="flex items-center justify-between">
-							<h3 class="text-sm text-gray-500">Available</h3>
+							<h3 class="text-sm text-gray-500">Available to claim</h3>
 							<h3 class="font-Walsheim-Bold text-base">{{ available * 1 }} GAS</h3>
 						</div>
 

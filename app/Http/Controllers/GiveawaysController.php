@@ -274,7 +274,9 @@ class GiveawaysController extends Controller
         ]);
         $select = ["*", \DB::raw("RANK() OVER (ORDER BY gas DESC) as 'rank'")];
         $quests = auth()->check()
-            ?  $giveaway->quests()->withExists([
+            ?  $giveaway->quests()
+            ->where('status', QuestStatus::ACTIVE)
+            ->withExists([
                 'tasks as complete' => function (Builder $query) use ($request) {
                     $query->where('user_id', $request->user()->id)
                         ->where('status', TaskStatus::COMPLETE);
@@ -284,7 +286,9 @@ class GiveawaysController extends Controller
                 $query->where('user_id', $request->user()->id);
             }])
             ->get()
-            :  $giveaway->quests()->get(); // tasks
+            :  $giveaway->quests()
+            ->where('status', QuestStatus::ACTIVE)
+            ->get(); // tasks
         $query = $giveaway->questers() // leaderboard
             ->select($select)
             ->withCount(
