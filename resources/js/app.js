@@ -16,7 +16,7 @@ import VueTippy from "vue-tippy";
 import { useWagmiConfig } from '@/Wagmi/hooks/config';
 import { vueQueryOptions } from '@/Wagmi/hooks/query';
 // eslint-disable-next-line import/order
-import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
+import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import "../css/app.css";
 import "./bootstrap";
 // eslint-disable-next-line import/order

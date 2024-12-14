@@ -36,7 +36,7 @@ const remove = (val) => emit("remove", val);
 				type="button"
 				@click.prevent="remove(account)"
 				:disabled="account.is_primary || address == account.address"
-				class="btn py-1 border border-gray-300 font-medium text-gray-800 hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90"
+				class="btn py-1 border border-gray-300 font-medium text-gray-800 hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-100/80 dark:border-gray-450 dark:text-gray-50 dark:hover:bg-gray-500 dark:focus:bg-gray-500 dark:active:bg-gray-500/90"
 			>
 				<TrashIcon class="h-5 w-5 mr-2 -ml-1" /> {{ $t("Disconnect") }}
 			</button>

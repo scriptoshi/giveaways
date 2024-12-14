@@ -18,7 +18,7 @@
 }
 
 .filepond.fp-bordered .filepond--panel-root {
-	@apply border-2 border-slate-300 border-dashed dark:border-navy-450 bg-transparent;
+	@apply border-2 border-slate-300 border-dashed dark:border-gray-450 bg-transparent;
 }
 .filepond.nft-upload .filepond--root {
 	@apply !mb-0;
@@ -37,13 +37,13 @@
 }
 
 .filepond.fp-bg-filled .filepond--panel-root {
-	@apply bg-slate-150/80 dark:bg-navy-500/[.85];
+	@apply bg-slate-150/80 dark:bg-gray-500/[.85];
 }
 
 .filepond--drop-label label {
-	@apply text-slate-600 dark:text-navy-100;
+	@apply text-slate-600 dark:text-gray-100;
 }
 
 .filepond.label-icon .filepond--drop-label label {
-	@apply text-slate-400 dark:text-navy-300;
+	@apply text-slate-400 dark:text-gray-300;
 }

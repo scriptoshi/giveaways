@@ -2,39 +2,41 @@
 
 .ql-container.ql-snow,
 .ql-toolbar.ql-snow {
-  @apply border-slate-300 dark:border-navy-450;
+	@apply border-slate-300 dark:border-gray-450;
 }
 
 .ql-header-filled .ql-toolbar.ql-snow {
-  @apply bg-slate-150/80 dark:bg-navy-500/[.85];
+	@apply bg-slate-150/80 dark:bg-gray-500/[.85];
 }
 
 .ql-toolbar.ql-snow {
-  @apply rounded-t-lg;
+	@apply rounded-t-lg;
 }
 
 .ql-container.ql-snow {
-  @apply rounded-b-lg font-sans;
+	@apply rounded-b-lg font-sans;
 }
 
 .ql-snow .ql-stroke {
-  @apply stroke-current;
+	@apply stroke-current;
 }
 
 .ql-snow .ql-fill,
 .ql-snow .ql-stroke.ql-fill {
-  @apply fill-current;
+	@apply fill-current;
 }
 
-.ql-snow .ql-picker,.ql-snow .ql-fill,
-.ql-snow .ql-stroke.ql-fill,.ql-snow .ql-stroke {
-  @apply text-slate-600 dark:text-navy-200;
+.ql-snow .ql-picker,
+.ql-snow .ql-fill,
+.ql-snow .ql-stroke.ql-fill,
+.ql-snow .ql-stroke {
+	@apply text-slate-600 dark:text-gray-200;
 }
 
-.ql-editor{
-    @apply text-sm
+.ql-editor {
+	@apply text-sm;
 }
 
 .ql-editor.ql-blank::before {
-  color: inherit;
+	color: inherit;
 }
