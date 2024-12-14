@@ -144,28 +144,28 @@ const type = computed(() => types[props.giveaway.type]);
 							<div class="flex flex-wrap -space-x-2">
 								<div class="avatar h-7 w-7 hover:z-10">
 									<img
-										class="rounded-full ring ring-white dark:ring-navy-700"
+										class="rounded-full ring ring-white dark:ring-gray-700"
 										src="https://lineone.piniastudio.com/images/avatar/avatar-16.jpg"
 										alt="avatar"
 									/>
 								</div>
 								<div class="avatar h-7 w-7 hover:z-10">
 									<img
-										class="rounded-full ring ring-white dark:ring-navy-700"
+										class="rounded-full ring ring-white dark:ring-gray-700"
 										src="https://lineone.piniastudio.com/images/avatar/avatar-20.jpg"
 										alt="avatar"
 									/>
 								</div>
 								<div class="avatar h-7 w-7 hover:z-10">
 									<img
-										class="rounded-full ring ring-white dark:ring-navy-700"
+										class="rounded-full ring ring-white dark:ring-gray-700"
 										src="https://lineone.piniastudio.com/images/avatar/avatar-8.jpg"
 										alt="avatar"
 									/>
 								</div>
 								<div class="avatar h-7 w-7 hover:z-10">
 									<div
-										class="is-initial rounded-full bg-info text-xs uppercase text-white ring ring-white dark:ring-navy-700"
+										class="is-initial rounded-full bg-info text-xs uppercase text-white ring ring-white dark:ring-gray-700"
 									>
 										<VueIcon :icon="HiDotsHorizontal" />
 									</div>

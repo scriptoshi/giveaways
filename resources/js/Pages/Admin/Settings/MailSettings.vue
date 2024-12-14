@@ -105,7 +105,7 @@ const send = (s) => {
 					<div class="flex gap-x-3">
 						<label class="inline-flex items-center space-x-2">
 							<input
-								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-navy-500 dark:bg-navy-900"
+								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-gray-500 dark:bg-gray-900"
 								name="encryption"
 								v-model="form.MAIL_ENCRYPTION"
 								value="tls"
@@ -115,7 +115,7 @@ const send = (s) => {
 						</label>
 						<label class="inline-flex items-center space-x-2">
 							<input
-								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-navy-500 dark:bg-navy-900"
+								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-gray-500 dark:bg-gray-900"
 								name="encryption"
 								v-model="form.MAIL_ENCRYPTION"
 								value="ssl"
@@ -125,7 +125,7 @@ const send = (s) => {
 						</label>
 						<label class="inline-flex items-center space-x-2">
 							<input
-								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-navy-500 dark:bg-navy-900"
+								class="form-radio is-basic h-5 w-5 rounded-full border-slate-400/70 bg-slate-100 checked:!border-success checked:!bg-emerald-500 hover:!border-success focus:!border-success dark:border-gray-500 dark:bg-gray-900"
 								name="encryption"
 								v-model="form.MAIL_ENCRYPTION"
 								value=""

@@ -75,7 +75,7 @@ const showTransactions = () => emit("showTransactions");
 							:href="etherScanLink"
 							target="_blank"
 							ref="nofollow"
-							class="flex items-center text-emerald-500 hover:text-emerald-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-emerald-300/20 hover:border hover:border-emerald-500/50 focus:bg-emerald-400/20 active:border-emerald-500/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+							class="flex items-center text-emerald-500 hover:text-emerald-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-emerald-300/20 hover:border hover:border-emerald-500/50 focus:bg-emerald-400/20 active:border-emerald-500/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 						>
 							<VueIcon
 								class="h-5 w-5"
@@ -84,7 +84,7 @@ const showTransactions = () => emit("showTransactions");
 						</a>
 						<button
 							@click="logout"
-							class="flex items-center text-red-500 hover:text-red-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-red-300/20 hover:border hover:border-red-500/50 focus:bg-red-400/20 active:border-red-500/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+							class="flex items-center text-red-500 hover:text-red-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-red-300/20 hover:border hover:border-red-500/50 focus:bg-red-400/20 active:border-red-500/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 						>
 							<Loading
 								v-if="load"
@@ -106,7 +106,7 @@ const showTransactions = () => emit("showTransactions");
 					<a
 						href="#"
 						@click="accountRefetch"
-						class="flex items-center text-emerald-500 hover:text-emerald-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-emerald-300/20 hover:border hover:border-emerald-500/50 focus:bg-emerald-400/20 active:border-emerald-500/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+						class="flex items-center text-emerald-500 hover:text-emerald-700 justify-center -mr-1.5 h-8 w-8 rounded-full p-0 bg-emerald-300/20 hover:border hover:border-emerald-500/50 focus:bg-emerald-400/20 active:border-emerald-500/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 					>
 						<Loading
 							class="h-5 w-5"

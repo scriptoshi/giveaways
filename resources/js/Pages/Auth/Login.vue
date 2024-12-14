@@ -71,7 +71,7 @@ const attemptConnection = ({connector}) => {
 			<div class="flex items-center space-x-3">
 				<SiteLogo class="h-14 w-auto" />
 				<div class="">
-					<h2 class="text-4xl font-semibold text-gray-600 dark:text-navy-100">
+					<h2 class="text-4xl font-semibold text-gray-600 dark:text-gray-100">
 						Welcome Back
 					</h2>
 					<p
@@ -80,7 +80,7 @@ const attemptConnection = ({connector}) => {
 					>
 						{{ error }}
 					</p>
-					<p class="text-gray-400 dark:text-navy-300">
+					<p class="text-gray-400 dark:text-gray-300">
 						Please Connect a wallet to Proceed
 					</p>
 				</div>
@@ -213,9 +213,9 @@ const attemptConnection = ({connector}) => {
 					</p>
 				</div>
 			</div>
-			<div class="mt-8 flex text-xs text-gray-400 dark:text-navy-300">
+			<div class="mt-8 flex text-xs text-gray-400 dark:text-gray-300">
 				<a href="#">Privacy Notice</a>
-				<div class="mx-3 my-1 w-px bg-gray-500 dark:bg-navy-500"></div>
+				<div class="mx-3 my-1 w-px bg-gray-500 dark:bg-gray-500"></div>
 				<a href="#">Term of service</a>
 			</div>
 		</div>

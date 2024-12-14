@@ -71,7 +71,7 @@ const hover = useElementHover(avt);
             v-if="spacesPath"
             alt="avatar"
         >
-        <div class="absolute top-0 right-0 m-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500 dark:border-navy-700 dark:bg-emerald-500"></div>
+        <div class="absolute top-0 right-0 m-1 h-4 w-4 rounded-full border-2 border-white bg-emerald-500 dark:border-gray-700 dark:bg-emerald-500"></div>
         <div v-if="busy || isBusy"  class="absolute cursor-pointer rounded-full top-0 left-0 w-full flex flex-col justify-center items-center bg-gray-600/30 h-full opacity-100">
             <Loading class="self-center w-8 h-8 !mr-0" />
         </div>

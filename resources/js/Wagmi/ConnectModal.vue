@@ -80,7 +80,7 @@ const Icons = {
 					>
 						<button
 							type="button"
-							class="absolute top-3 text-gray-600 hover:text-red-500 dark:hover:text-red-400 dark:text-gray-300 right-4 btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+							class="absolute top-3 text-gray-600 hover:text-red-500 dark:hover:text-red-400 dark:text-gray-300 right-4 btn -mr-1.5 h-7 w-7 rounded-full p-0 hover:bg-slate-300/20 focus:bg-slate-300/20 active:bg-slate-300/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 							@click="close"
 							icon
 						>

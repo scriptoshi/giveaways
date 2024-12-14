@@ -22,13 +22,13 @@ defineProps({
 					<Link
 						v-if="link.url"
 						:href="link.url"
-						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-navy-500 dark:text-navy-200 dark:hover:bg-gray-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-gray-500 dark:text-gray-200 dark:hover:bg-gray-450 dark:focus:bg-gray-450 dark:active:bg-gray-450/90"
 					>
 						<ChevronLeftIcon class="h-4 w-4" />
 					</Link>
 					<div
 						v-else
-						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors dark:bg-navy-500 dark:text-navy-200"
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors dark:bg-gray-500 dark:text-gray-200"
 					>
 						<ChevronLeftIcon class="h-4 w-4" />
 					</div>
@@ -37,13 +37,13 @@ defineProps({
 					<Link
 						v-if="link.url"
 						:href="link.url"
-						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-navy-500 dark:text-navy-200 dark:hover:bg-gray-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-gray-500 dark:text-gray-200 dark:hover:bg-gray-450 dark:focus:bg-gray-450 dark:active:bg-gray-450/90"
 					>
 						<ChevronRightIcon class="h-4 w-4" />
 					</Link>
 					<div
 						v-else
-						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors dark:bg-navy-500 dark:text-navy-200"
+						class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-500 transition-colors dark:bg-gray-500 dark:text-gray-200"
 					>
 						<ChevronRightIcon class="h-4 w-4" />
 					</div>
@@ -58,7 +58,7 @@ defineProps({
 					<Link
 						v-else
 						:href="link.url"
-						class="flex h-8 min-w-[2rem] items-center justify-center rounded-full bg-gray-150 px-3 leading-tight transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-navy-500 dark:hover:bg-navy-450 dark:focus:bg-navy-450 dark:active:bg-navy-450/90"
+						class="flex h-8 min-w-[2rem] items-center justify-center rounded-full bg-gray-150 px-3 leading-tight transition-colors hover:bg-gray-300 focus:bg-gray-300 active:bg-gray-300/80 dark:bg-gray-500 dark:hover:bg-gray-450 dark:focus:bg-gray-450 dark:active:bg-gray-450/90"
 						>{{ link.label }}</Link
 					>
 				</li>

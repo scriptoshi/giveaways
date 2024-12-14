@@ -26,7 +26,7 @@ defineProps({
 					<div class="flex justify-between space-x-2">
 						<div class="flex items-center flex-row space-x-1">
 							<div
-								class="text-xs max-w-[200px] sm:max-w-sm text-ellipsis truncate text-slate-400 dark:text-navy-300"
+								class="text-xs max-w-[200px] sm:max-w-sm text-ellipsis truncate text-slate-400 dark:text-gray-300"
 							>
 								{{ project.description }}
 							</div>

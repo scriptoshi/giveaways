@@ -47,7 +47,7 @@ defineProps({
 								v-if="giveaway.hasStarted && !giveaway.hasEnded"
 							>
 								<div
-									class="w-3.5 h-3.5 mr-1 relative rounded-full border-2 border-white bg-success dark:border-navy-700"
+									class="w-3.5 h-3.5 mr-1 relative rounded-full border-2 border-white bg-success dark:border-gray-700"
 								>
 									<span
 										class="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-80"

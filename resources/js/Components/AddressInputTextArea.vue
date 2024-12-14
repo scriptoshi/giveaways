@@ -64,7 +64,7 @@ const validate = () => {
 				<div class="flex items-center space-x-1">
 					<button
 						@click.prevent="sort"
-						class="btn -ml-1 h-8 w-8 rounded-full p-0 hover:bg-gray-300/20 focus:bg-gray-300/20 active:bg-gray-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+						class="btn -ml-1 h-8 w-8 rounded-full p-0 hover:bg-gray-300/20 focus:bg-gray-300/20 active:bg-gray-300/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 					>
 						<VueIcon
 							:icon="HiArrowDown"
@@ -73,7 +73,7 @@ const validate = () => {
 					</button>
 					<button
 						@click.prevent="clear"
-						class="btn h-8 w-8 rounded-full p-0 hover:bg-gray-300/20 focus:bg-gray-300/20 active:bg-gray-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+						class="btn h-8 w-8 rounded-full p-0 hover:bg-gray-300/20 focus:bg-gray-300/20 active:bg-gray-300/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
 					>
 						<VueIcon
 							:icon="HiX"

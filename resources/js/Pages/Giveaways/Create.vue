@@ -489,7 +489,7 @@ debouncedWatch(
 													>
 														<input
 															v-model="form.logo_upload"
-															class="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:!bg-emerald-600 checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:before:bg-white"
+															class="form-switch h-5 w-10 rounded-full bg-slate-300 before:rounded-full before:bg-slate-50 checked:!bg-emerald-600 checked:before:bg-white dark:bg-gray-900 dark:before:bg-gray-300 dark:checked:before:bg-white"
 															type="checkbox"
 														/>
 														<span>{{ $t("Upload to server") }}</span>

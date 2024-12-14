@@ -1,13 +1,17 @@
 name: Deploy
 
-# Trigger the workflow on push and
-# pull request events on the production branch
 on:
     push:
         branches:
-            - giveawaysfinance
-# Authenticate to the the server via ssh
-# and run our deployment script
+            - main
+
+# Define environment variables for easier configuration
+env:
+    SITE_DIR: ${{ vars.SITE_DIR || 'giveaways.scriptoshi.com' }}
+    REPO_NAME: ${{ vars.REPO_NAME || 'giveaways' }}
+    GIT_REMOTE: ${{ vars.GIT_REMOTE || 'github-giveaways:scriptoshi/giveaways.git' }}
+    ENV_SOURCE: ${{ vars.ENV_SOURCE || '/var/www/envs/.giveaways' }}
+
 jobs:
     deploy:
         runs-on: ubuntu-latest
@@ -20,15 +24,14 @@ jobs:
                   username: ${{ secrets.USERNAME }}
                   port: ${{ secrets.PORT }}
                   key: ${{ secrets.SSHKEY }}
+                  envs: SITE_DIR,REPO_NAME,GIT_REMOTE,ENV_SOURCE
                   script: |
-                      rm -rf /var/www/build
-                      cd /var/www && git clone git@github.com:sleepfinance/giveaways.git build
-                      cp /var/www/envs/.gas /var/www/build/.env
-                      cd /var/www/build && ./.scripts/deploy.sh
-                      rm -rf /var/www/giveawaysfinance_io_back
-                      mv /var/www/giveaways.finance /var/www/giveawaysfinance_io_back
-                      mv /var/www/build /var/www/giveaways.finance
-                      cd /var/www/giveaways.finance && php artisan optimize
-                      cd /var/www/giveaways.finance && php artisan storage:link
-                      cd /var/www/giveaways.finance && sudo chgrp -R www-data storage bootstrap/cache
-                      cd /var/www/giveaways.finance && sudo chmod -R ug+rwx storage bootstrap/cache
+                      echo "Deployment started ..."
+                      rm -rf /var/www/${{ env.REPO_NAME }}
+                      cd /var/www && git clone ${{ env.GIT_REMOTE }} ${{ env.REPO_NAME }}
+                      cp ${{ env.ENV_SOURCE }} /var/www/${{ env.REPO_NAME }}/.env
+                      cd /var/www/${{ env.REPO_NAME }} && chmod u+r+x ./.scripts/deploy.sh
+                      echo "Running Deployment"
+                      SITE_DIR="${{ env.SITE_DIR }}" \
+                      REPO_NAME="${{ env.REPO_NAME }}" \
+                      ./.scripts/deploy.sh

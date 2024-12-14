@@ -48,7 +48,7 @@ const icon = computed(() => (props.sm ? "!w-5 !h-5 -right-1 " : "w-7 h-7 -right-
 				class="avatar hover:z-10"
 			>
 				<div
-					class="is-initial rounded-full font-bold bg-success text-xs text-[10px] uppercase text-white ring ring-white dark:ring-navy-700"
+					class="is-initial rounded-full font-bold bg-success text-xs text-[10px] uppercase text-white ring ring-white dark:ring-gray-700"
 				>
 					{{ src0Text }}
 				</div>
@@ -65,7 +65,7 @@ const icon = computed(() => (props.sm ? "!w-5 !h-5 -right-1 " : "w-7 h-7 -right-
 				class="avatar hover:z-10"
 			>
 				<div
-					class="is-initial rounded-full font-bold bg-success text-xs text-[10px] uppercase text-white ring ring-white dark:ring-navy-700"
+					class="is-initial rounded-full font-bold bg-success text-xs text-[10px] uppercase text-white ring ring-white dark:ring-gray-700"
 				>
 					{{ src1Text }}
 				</div>

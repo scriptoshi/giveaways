@@ -17,7 +17,7 @@ const props = defineProps({
 });
 const colors = computed(() => {
     if (props.default)
-        return "border-slate-300  text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-navy-450 dark:text-navy-50 dark:hover:bg-navy-500 dark:focus:bg-navy-500 dark:active:bg-navy-500/90";
+        return "border-slate-300  text-slate-800 hover:bg-slate-150 focus:bg-slate-150 active:bg-slate-150/80 dark:border-gray-450 dark:text-gray-50 dark:hover:bg-gray-500 dark:focus:bg-gray-500 dark:active:bg-gray-500/90";
     if (props.primary)
         return "border-emerald-500  text-emerald-500 hover:bg-emerald-500 hover:text-white focus:bg-emerald-500 focus:text-white active:bg-emerald-500/90";
     if (props.secondary)

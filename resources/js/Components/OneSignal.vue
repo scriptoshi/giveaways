@@ -11,7 +11,7 @@ const { state, toggle } = useOneSignalButton();
         v-tippy="'Get Reminders'"
         @click.prevent="toggle()"
         :disabled="state ==='loading'"
-        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-success focus:bg-slate-300/20 focus:text-success active:bg-slate-300/25 dark:hover:bg-navy-300/20 dark:focus:bg-navy-300/20 dark:active:bg-navy-300/25"
+        class="btn h-9 w-9 rounded-full p-0 hover:bg-slate-300/20 hover:text-success focus:bg-slate-300/20 focus:text-success active:bg-slate-300/25 dark:hover:bg-gray-300/20 dark:focus:bg-gray-300/20 dark:active:bg-gray-300/25"
     >
         <Loading
             v-if="state ==='loading'"

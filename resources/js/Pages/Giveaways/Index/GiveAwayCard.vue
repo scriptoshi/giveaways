@@ -30,11 +30,11 @@ const totalParticipants = computed(() => useBillions(props.giveaway.totalPartici
 							:src="giveaway.project.logo.url"
 							class="w-3 h-3"
 						/>
-						<p class="text-xs font-semibold text-slate-700 dark:text-navy-100">
+						<p class="text-xs font-semibold text-slate-700 dark:text-gray-100">
 							{{ giveaway.project.name }}
 						</p>
 						<p
-							class="text-xs max-w-sm text-ellipsis truncate text-slate-400 dark:text-navy-300"
+							class="text-xs max-w-sm text-ellipsis truncate text-slate-400 dark:text-gray-300"
 						>
 							# {{ giveaway.brief }}
 						</p>

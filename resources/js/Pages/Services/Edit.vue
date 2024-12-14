@@ -165,7 +165,7 @@ const liveTags = computed(() => (form.category ? props.tags[form.category] ?? []
 											class="inline-flex items-center space-x-2"
 										>
 											<input
-												class="form-checkbox is-basic w-5 h-5 rounded border-gray-400/70 checked:bg-success checked:!border-success hover:!border-success focus:!border-success dark:border-navy-400"
+												class="form-checkbox is-basic w-5 h-5 rounded border-gray-400/70 checked:bg-success checked:!border-success hover:!border-success focus:!border-success dark:border-gray-400"
 												type="checkbox"
 												:value="tag"
 												v-model="form.tags"
@@ -214,7 +214,7 @@ const liveTags = computed(() => (form.category ? props.tags[form.category] ?? []
 															>
 																<input
 																	v-model="form.image_upload"
-																	class="form-switch h-5 w-10 rounded-full bg-gray-300 before:rounded-full before:bg-gray-50 checked:!bg-emerald-600 checked:before:bg-white dark:bg-navy-900 dark:before:bg-navy-300 dark:checked:before:bg-white"
+																	class="form-switch h-5 w-10 rounded-full bg-gray-300 before:rounded-full before:bg-gray-50 checked:!bg-emerald-600 checked:before:bg-white dark:bg-gray-900 dark:before:bg-gray-300 dark:checked:before:bg-white"
 																	type="checkbox"
 																/>
 																<span>{{
