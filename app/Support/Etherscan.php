@@ -4,22 +4,14 @@ namespace App\Support;
 
 use App\Enums\ContributionStatus;
 use App\Enums\GiveawayStatus;
-use App\Enums\PackageType;
-use App\Enums\QuestType;
-use App\Enums\TaskType;
-use App\Enums\TicketStatus;
 use App\Models\Coin;
 use App\Models\Contribution;
 use App\Models\Giveaway;
 use App\Models\Launchpad;
-use App\Models\Mint;
-use App\Models\Package;
-use App\Models\Ticket;
 use App\Models\Topup;
 use App\Models\User;
 use App\Web3\Utils as Web3Utils;
 use Cache;
-use Carbon\Carbon;
 use Curl;
 use Illuminate\Database\Eloquent\Builder;
 use SWeb3\Utils;
@@ -245,7 +237,7 @@ class Etherscan
             'apikey' => $key,
         ];
         $response = Curl::to($url)->withData($blockData)->asJsonResponse()->get();
-        $tx = collect($response->result)->first(fn ($res) =>  strtolower($res->hash) ==  strtolower($hash));
+        $tx = collect($response->result)->first(fn($res) =>  strtolower($res->hash) ==  strtolower($hash));
         if (!$tx) return null;
         return $tx;
     }

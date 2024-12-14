@@ -42,6 +42,7 @@ class CoinsController extends Controller
                 $q->whereIn('chainId', $chns);
             });
         }
+
         $coinsItems = $query->latest()->paginate($perPage);
         $allCoinsList = Coin::where('contract', '!=', '0x0000000000000000000000000000000000000000')
             ->whereHas('chain', fn ($q) => $q->where('active', true))

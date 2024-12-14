@@ -6,13 +6,9 @@
 :root {
 	--header-height: 65px;
 }
-/*
-@font-face {
-	font-family: "ShadowsIntoLight";
-	src: url("./ShadowsIntoLight.ttf");
-	size-adjust: 130%;
-}
 
+
+/*
 @font-face {
 	font-family: "Al-dente";
 	src: url("./Al-dente.woff");

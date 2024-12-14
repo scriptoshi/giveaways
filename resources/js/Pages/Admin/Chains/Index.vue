@@ -67,7 +67,6 @@ const toggle = (chain) => {
 </script>
 <template>
 	<Head :title="title ?? 'Chains'" />
-
 	<AdminLayout>
 		<main class="h-full">
 			<div class="relative h-full flex flex-auto flex-col px-4 sm:px-6 py-12 sm:py-6 md:px-8">

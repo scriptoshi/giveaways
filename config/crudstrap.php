@@ -97,22 +97,7 @@ return [
         'projectables'
     ],
 
-    // these will not be generated for the;
-    //use these to skip generating certian items
-    // eg the models Team and User will NOT be geenerated in any theme above
-    'skip' => [
-        'model' => 'teams,user',
-        'controller' => 'user,resource,collections',
-        'migration' => 'teams,user,resource',
-        'resource' => null,
-        'policy' => null,
-        'transformer' => null,
-        'view' => null,
-        'route' => null,
-        'factory' => null,
-        'lang' => null,
-        'enums' => null
-    ],
+    
 
     'themes' => [
         [
@@ -127,8 +112,7 @@ return [
             */
             //eg posts.js
             'folder' => "crud/",
-            //
-            'form-helper' => 'html',
+
             /*model Namespce. 
             leave empty if your models are in app/ dir
             */
@@ -147,8 +131,7 @@ return [
             // example: setting this to admin will creates routes under Admin group
             'route-group' => '', //Prefix of the route group
             'force' => false, //Replace Items if they exists
-            //your theme MUST be in inertia theme
-            'locales' => 'en', //no|langs  
+
             /*items to create comma separated
                 *possible values : 
                 policy,transformer,controller,model,migration,view,route,factory,resource,lang, enums

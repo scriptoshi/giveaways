@@ -45,26 +45,6 @@
             "class": "User|user_id|id"
         },
         {
-            "name": "giveaways",
-            "type": "hasMany",
-            "class": "Giveaway|project_id|id"
-        },
-        {
-            "name": "questers",
-            "type": "hasManyThrough",
-            "class": "Quester|Giveaway::class"
-        },
-        {
-            "name": "nfts",
-            "type": "hasManyThrough",
-            "class": "Nft|Giveaway::class"
-        },
-        {
-            "name": "launchpad",
-            "type": "hasOne",
-            "class": "Launchpad|launchpad_id|id"
-        },
-        {
             "name": "uploads",
             "type": "morphMany",
             "class": "Upload|uploadable"

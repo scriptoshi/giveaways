@@ -2,10 +2,6 @@
 
 namespace App\Web3;
 
-use App\Enums\DepositStatus;
-use App\Models\Account;
-use BCMathExtended\BC;
-use Web3\Utils as Web3Utils;
 
 class Utils
 {

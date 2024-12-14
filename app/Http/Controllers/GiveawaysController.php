@@ -155,6 +155,7 @@ class GiveawaysController extends Controller
             'discord' => 'nullable|string|url',
             'twitter' => 'nullable|string|url',
             'telegram' => 'nullable|string|url',
+            
         ]);
         $project = $request->user()->project()->firstOrCreate([], [
             'name' => $request->name,

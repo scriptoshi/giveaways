@@ -38,16 +38,19 @@ class Giveaway extends Model
      *
      * @var string
      */
-    protected $casts = [
-        'starts_at' => 'datetime',
-        'ends_at' => 'datetime',
-        'winner_selected_at' => 'datetime',
-        'live' => 'boolean',
-        'is_topup' => 'boolean',
-        'period' => Period::class,
-        'type' => GiveawayType::class,
-        'status' => GiveawayStatus::class,
-    ];
+    protected function casts()
+    {
+        return [
+            'starts_at' => 'datetime',
+            'ends_at' => 'datetime',
+            'winner_selected_at' => 'datetime',
+            'live' => 'boolean',
+            'is_topup' => 'boolean',
+            'period' => Period::class,
+            'type' => GiveawayType::class,
+            'status' => GiveawayStatus::class,
+        ];
+    }
 
     /**
      * Attributes that should be mass-assignable.

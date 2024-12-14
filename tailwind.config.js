@@ -40,22 +40,7 @@ module.exports = {
                 "Walsheim-Bold": ["ShadowsIntoLight", "Walsheim-Bold", ...defaultTheme.fontFamily.sans],
             },
 
-            keyframes: {
-                'shake': {
-                    '10%, 90%': {
-                        transform: 'translate3d(-1px, 0, 0)'
-                    },
-                    '20%, 80%': {
-                        transform: 'translate3d(2px, 0, 0)'
-                    },
-                    '30%, 50%, 70%': {
-                        transform: 'translate3d(-4px, 0, 0)'
-                    },
-                    '40%, 60%': {
-                        transform: 'translate3d(4px, 0, 0)'
-                    }
-                }
-            },
+
             gridTemplateColumns: {
                 "token-section": "auto minmax(auto, 1fr) auto",
             },
@@ -236,7 +221,7 @@ module.exports = {
                     primary: "#BFBFBF",
                     "high-emphesis": "#E3E3E3",
                     "higher-emphesis": "#FCFCFD",
-                    navy: {
+                    gray: {
 
                         50: colors.stone["50"],
                         100: colors.stone["100"],
@@ -335,6 +320,20 @@ module.exports = {
                         visibility: "hidden",
                     },
                 },
+                'shake': {
+                    '10%, 90%': {
+                        transform: 'translate3d(-1px, 0, 0)'
+                    },
+                    '20%, 80%': {
+                        transform: 'translate3d(2px, 0, 0)'
+                    },
+                    '30%, 50%, 70%': {
+                        transform: 'translate3d(-4px, 0, 0)'
+                    },
+                    '40%, 60%': {
+                        transform: 'translate3d(4px, 0, 0)'
+                    }
+                }
             },
             opacity: {
                 15: ".15",
